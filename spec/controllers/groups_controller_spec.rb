@@ -41,6 +41,8 @@ RSpec.describe GroupsController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # GroupsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+  
+  before { sign_in }
 
   describe 'GET #index' do
     it 'returns a success response' do

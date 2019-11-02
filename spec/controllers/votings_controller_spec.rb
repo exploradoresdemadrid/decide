@@ -42,6 +42,8 @@ RSpec.describe VotingsController, type: :controller do
   # VotingsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before { sign_in }
+
   describe 'GET #index' do
     it 'returns a success response' do
       create :voting
