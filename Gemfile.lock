@@ -122,7 +122,7 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    puma (4.2.1)
+    puma (4.3.0)
       nio4r (~> 2.0)
     rack (2.0.7)
     rack-test (1.1.0)
@@ -249,7 +249,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.3)
   pg
   pry
-  puma (~> 4.2)
+  puma (~> 4.3)
   rails (~> 6.0.1)
   rspec-rails (~> 4.0.0.beta3)
   rubocop
