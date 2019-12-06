@@ -4,10 +4,19 @@ class VotingsController < ApplicationController
   # GET /votings
   def index
     @votings = Voting.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @votings }
+    end
   end
 
   # GET /votings/1
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @voting }
+    end
   end
 
   # GET /votings/new
