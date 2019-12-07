@@ -34,5 +34,12 @@ module Decide
       g.orm :active_record, primary_key_type: :uuid
       g.factory_bot suffix: "factory"
     end
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :options]
+      end
+    end
   end
 end

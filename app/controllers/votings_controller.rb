@@ -7,7 +7,7 @@ class VotingsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @votings }
+      format.json { render json: @votings, adapter: :json }
     end
   end
 
