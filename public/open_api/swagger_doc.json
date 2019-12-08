@@ -5,13 +5,78 @@
     "title": "Homepage APIs",
     "description": ""
   },
-  "security": null,
+  "security": [
+    {
+      "Authorization": [
+
+      ]
+    }
+  ],
   "tags": [
+    {
+      "name": "Sessions"
+    },
     {
       "name": "Votings"
     }
   ],
   "paths": {
+    "/api/v1/users/login": {
+      "post": {
+        "summary": "Get voting",
+        "operationId": "Sessions_Create",
+        "tags": [
+          "Sessions"
+        ],
+        "requestBody": {
+          "required": false,
+          "description": "a JSON",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "email",
+                      "password"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VotingListSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "None": [
+
+            ]
+          }
+        ]
+      }
+    },
     "/votings": {
       "get": {
         "operationId": "Votings_Index",
@@ -66,6 +131,13 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "Authorization": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
       "VotingResponseSchema": {
         "type": "object",
