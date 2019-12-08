@@ -23,7 +23,7 @@
   "paths": {
     "/api/v1/users/login": {
       "post": {
-        "summary": "Get voting",
+        "summary": "Sign in",
         "operationId": "Sessions_Create",
         "tags": [
           "Sessions"
@@ -62,7 +62,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VotingListSchema"
+                  "$ref": "#/components/schemas/UserResponseSchema"
                 }
               }
             }
@@ -175,6 +175,17 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "UserResponseSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
           }
         }
       }
