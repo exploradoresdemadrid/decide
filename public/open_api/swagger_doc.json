@@ -1,0 +1,226 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Homepage APIs",
+    "description": ""
+  },
+  "security": [
+    {
+      "Authorization": [
+
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "Sessions"
+    },
+    {
+      "name": "Votings"
+    }
+  ],
+  "paths": {
+    "/api/v1/users/login": {
+      "post": {
+        "summary": "Sign in",
+        "operationId": "Sessions_Create",
+        "tags": [
+          "Sessions"
+        ],
+        "requestBody": {
+          "required": false,
+          "description": "a JSON",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "email",
+                      "password"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "None": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/votings": {
+      "get": {
+        "operationId": "Votings_Index",
+        "tags": [
+          "Votings"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VotingListSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/votings/{id}": {
+      "get": {
+        "summary": "Get voting",
+        "operationId": "Votings_Show",
+        "tags": [
+          "Votings"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "UUID of the voting"
+            },
+            "description": "UUID of the voting"
+          }
+        ],
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/VotingResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestResponse"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundResponse"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "Authorization": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "UserResponseSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "VotingResponseSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "VotingListSchema": {
+        "type": "object",
+        "properties": {
+          "votings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VotingResponseSchema"
+            }
+          }
+        }
+      },
+      "BadRequestSchema": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "NotFoundResponse": {
+        "description": "Not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "BadRequestResponse": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/BadRequestSchema"
+            }
+          }
+        }
+      },
+      "VotingResponse": {
+        "description": "Voting",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VotingResponseSchema"
+            }
+          }
+        }
+      }
+    }
+  }
+}

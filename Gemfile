@@ -15,6 +15,10 @@ gem 'turbolinks', '~> 5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
+gem 'devise-jwt'
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'zero-rails_openapi'
+gem 'rack-cors'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -22,6 +26,7 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 4.0.0.beta3'
   gem 'rubocop'
+  gem 'dotenv-rails'
 end
 
 group :test do

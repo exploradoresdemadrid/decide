@@ -32,3 +32,6 @@
 
 # Ignore simplecov reports
 coverage
+
+# Ignore dotenv files
+.env
