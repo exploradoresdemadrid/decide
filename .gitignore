@@ -32,6 +32,3 @@
 
 # Ignore simplecov reports
 coverage
-
-# Ignore swagger documentation
-public/open_api/swagger_doc.json
