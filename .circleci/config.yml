@@ -34,7 +34,6 @@ jobs:
       - store_artifacts:
           path: coverage
           prefix: tests
-      - run: ./scripts/verify_updated_documentation.sh
 workflows:
   version: 2
   build:

@@ -139,6 +139,17 @@
       }
     },
     "schemas": {
+      "UserResponseSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
       "VotingResponseSchema": {
         "type": "object",
         "properties": {
@@ -175,17 +186,6 @@
             "items": {
               "type": "string"
             }
-          }
-        }
-      },
-      "UserResponseSchema": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
           }
         }
       }
