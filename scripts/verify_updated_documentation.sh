@@ -2,7 +2,7 @@
 
 existing_doc_hash=$(md5sum public/open_api/swagger_doc.json | cut -d' ' -f1)
 
-rails runner OpenApi.write_docs
+bundle exec rails runner OpenApi.write_docs
 
 updated_doc_hash=$(md5sum public/open_api/swagger_doc.json | cut -d' ' -f1)
 
