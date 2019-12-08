@@ -2,7 +2,18 @@
 
 class V1::AuthDoc < ApiDoc
   route_base 'api/v1/users/sessions'
-  api :create, 'Get voting', http: 'post' do
+
+  components do
+    schema UserResponseSchema: [
+      {
+        id: String,
+        email: String
+      },
+      dft: {}
+    ]
+  end
+
+  api :create, 'Sign in', http: 'post' do
     security_require :None
     request_body :opt, :json, data: {
       user: {
@@ -11,6 +22,6 @@ class V1::AuthDoc < ApiDoc
       }
     }, desc: 'a JSON'
 
-    response 200, 'Success', :json, data: :VotingListSchema
+    response 200, 'Success', :json, data: :UserResponseSchema
   end
 end
