@@ -68,6 +68,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.0.1)
+    cancancan (3.0.1)
     case_transform (0.2)
       activesupport
     coderay (1.1.2)
@@ -282,6 +283,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   bootsnap (>= 1.1.0)
   byebug
+  cancancan
   coffee-rails (~> 5.0)
   devise
   devise-jwt
