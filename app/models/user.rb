@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: JWTBlacklist
 
   AUTH_TOKEN_LENGTH = 6
+  AUTH_TOKEN_EXPIRATION_IN_DAYS = 2
 
   before_create :assign_auth_token
 
@@ -15,5 +16,6 @@ class User < ApplicationRecord
 
   def assign_auth_token
     self.auth_token = AUTH_TOKEN_LENGTH.times.map { (0..9).to_a.sample.to_s }.join
+    self.auth_token_expires_at = Time.current + AUTH_TOKEN_EXPIRATION_IN_DAYS.days
   end
 end
