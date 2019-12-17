@@ -39,16 +39,12 @@
                   "user": {
                     "type": "object",
                     "properties": {
-                      "email": {
-                        "type": "string"
-                      },
-                      "password": {
+                      "auth_token": {
                         "type": "string"
                       }
                     },
                     "required": [
-                      "email",
-                      "password"
+                      "auth_token"
                     ]
                   }
                 }
@@ -139,17 +135,6 @@
       }
     },
     "schemas": {
-      "UserResponseSchema": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          }
-        }
-      },
       "VotingResponseSchema": {
         "type": "object",
         "properties": {
@@ -186,6 +171,17 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "UserResponseSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
           }
         }
       }
