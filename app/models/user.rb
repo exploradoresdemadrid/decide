@@ -10,6 +10,8 @@ class User < ApplicationRecord
   AUTH_TOKEN_LENGTH = 6
   AUTH_TOKEN_EXPIRATION_IN_DAYS = 2
 
+  scope :with_valid_auth_token, -> { where('auth_token_expires_at > ?', Time.current) }
+
   before_create :assign_auth_token
 
   private
