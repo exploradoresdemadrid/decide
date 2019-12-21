@@ -21,6 +21,7 @@ gem 'zero-rails_openapi'
 gem 'rack-cors'
 
 gem 'cancancan'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
