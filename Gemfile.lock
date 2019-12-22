@@ -68,6 +68,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.0.1)
+    cancancan (3.0.1)
     case_transform (0.2)
       activesupport
     coderay (1.1.2)
@@ -227,6 +228,9 @@ GEM
       tilt
     shoulda-matchers (4.1.2)
       activesupport (>= 4.2.0)
+    simple_form (4.1.0)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     simplecov (0.17.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -282,6 +286,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   bootsnap (>= 1.1.0)
   byebug
+  cancancan
   coffee-rails (~> 5.0)
   devise
   devise-jwt
@@ -297,6 +302,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 6.0)
   shoulda-matchers
+  simple_form
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)

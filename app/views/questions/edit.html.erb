@@ -1,0 +1,6 @@
+<h1>Editing Question</h1>
+
+<%= render 'form', question: @question %>
+
+<%= link_to 'Show', voting_question_path(@voting, @question) %> |
+<%= link_to 'Back', voting_questions_path(@voting) %>

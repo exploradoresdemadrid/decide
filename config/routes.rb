@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :votings
+  resources :votings do
+    resources :questions
+  end
   resources :groups
-  root to: 'home#index'
+  root to: 'votings#index'
 end
