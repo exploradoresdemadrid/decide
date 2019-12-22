@@ -17,8 +17,7 @@ class V1::AuthDoc < ApiDoc
     security_require :None
     request_body :opt, :json, data: {
       user: {
-        email!: String,
-        password!: String
+        auth_token!: String
       }
     }, desc: 'a JSON'
 
