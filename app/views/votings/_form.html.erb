@@ -1,32 +1,9 @@
-<%= form_with(model: voting, local: true) do |form| %>
-  <% if voting.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(voting.errors.count, "error") %> prohibited this voting from being saved:</h2>
+<%= form_for(@voting, layout: :basic) do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_field :description %>
 
-      <ul>
-        <% voting.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= label_tag :status%>
+  <%= f.collection_select :status, Voting.statuses, :first, :first, {}, {:class => 'form-control'} %>
+  <br>
+  <%= f.submit 'Submit' %>
 <% end %>

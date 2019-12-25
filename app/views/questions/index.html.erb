@@ -1,31 +1,19 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Questions</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Voting</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.voting_id %></td>
-        <td><%= question.title %></td>
-        <td><%= question.description %></td>
-        <td><%= link_to 'Show', voting_question_path(@voting, question) %></td>
-        <td><%= link_to 'Edit', edit_voting_question_path(@voting, question) %></td>
-        <td><%= link_to 'Destroy', voting_question_path(@voting, question), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= bootstrap_table do |table| %>
+  <% table.headers = ['Title', 'Description', 'Show', 'Edit', 'Destroy'] %>
+  <% @questions.each do |question| %>
+    <% table.rows << [
+      question.title,
+      question.description,
+      link_to('Show', voting_question_path(@voting, question)),
+      link_to('Edit', edit_voting_question_path(@voting, question)),
+      link_to('Destroy', voting_question_path(@voting, question), method: :delete, data: { confirm: 'Are you sure?' })
+    ] %>
+  <% end %>
+<% end %>
 
 <br>
 
-<%= link_to 'New Question', new_voting_question_path(@voting) %>
+<%= link_to 'New Question', new_voting_question_path(@voting) %> | 
+<%= link_to 'Back', votings_path %>
