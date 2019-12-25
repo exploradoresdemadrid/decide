@@ -1,6 +1,6 @@
-<%= simple_form_for([@voting, @question]) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :voting_id, as: :hidden, input_html: { value: @voting.id } %>
-  <%= f.button :submit %>
+<%= form_for([@voting, @question], layout: :horizontal) do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_field :description %>
+  <%= f.hidden_field :voting_id, value: @voting.id %>
+  <%= f.submit 'Submit' %>
 <% end %>

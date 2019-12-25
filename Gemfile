@@ -14,6 +14,12 @@ gem 'turbolinks', '~> 5'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'bootstrap', '~> 4.4.1'
+gem 'bootstrap-sass'
+gem 'jquery-rails'
+gem 'bh'
+gem 'btgen'
+
 gem 'devise'
 gem 'devise-jwt'
 gem 'active_model_serializers', '~> 0.10.0'
