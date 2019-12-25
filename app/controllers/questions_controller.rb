@@ -36,7 +36,7 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   def update
     if @question.update(question_params)
-      redirect_to voting_question_path(@voting, @question), notice: 'Question was successfully updated.'
+      redirect_to voting_questions_path(@voting), notice: 'Question was successfully updated.'
     else
       render :edit
     end
