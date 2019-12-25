@@ -114,7 +114,7 @@
         ],
         "responses": {
           "202": {
-            "$ref": "#/components/responses/VotingResponse"
+            "$ref": "#/components/responses/VotingDetailedResponse"
           },
           "400": {
             "$ref": "#/components/responses/BadRequestResponse"
@@ -135,6 +135,37 @@
       }
     },
     "schemas": {
+      "OptionSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "QuestionSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptionSchema"
+            }
+          }
+        }
+      },
       "VotingResponseSchema": {
         "type": "object",
         "properties": {
@@ -149,6 +180,29 @@
           },
           "status": {
             "type": "string"
+          }
+        }
+      },
+      "VotingDetailedResponseSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuestionSchema"
+            }
           }
         }
       },
@@ -213,6 +267,16 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/VotingResponseSchema"
+            }
+          }
+        }
+      },
+      "VotingDetailedResponse": {
+        "description": "Voting",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VotingDetailedResponseSchema"
             }
           }
         }

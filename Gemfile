@@ -26,6 +26,8 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'zero-rails_openapi'
 gem 'rack-cors'
 
+gem 'cocoon'
+
 gem 'cancancan'
 gem 'simple_form'
 

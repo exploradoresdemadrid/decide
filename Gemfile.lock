@@ -85,6 +85,7 @@ GEM
     cancancan (3.0.1)
     case_transform (0.2)
       activesupport
+    cocoon (1.2.14)
     coderay (1.1.2)
     coffee-rails (5.0.0)
       coffee-script (>= 2.2.0)
@@ -310,6 +311,7 @@ DEPENDENCIES
   btgen
   byebug
   cancancan
+  cocoon
   coffee-rails (~> 5.0)
   devise
   devise-jwt
