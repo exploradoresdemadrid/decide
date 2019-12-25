@@ -6,11 +6,7 @@
     <% table.rows << [
       question.title,
       question.description,
-      content_tag(:ol) do
-        question.options.map do |option|
-          content_tag(:li) { option.title }
-        end.inject(:+)
-      end,
+      options_list(question),
       link_to('Edit', edit_voting_question_path(@voting, question)),
       link_to('Destroy', voting_question_path(@voting, question), method: :delete, data: { confirm: 'Are you sure?' })
     ] %>
