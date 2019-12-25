@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :option do
     title { "MyString" }
-    question { "" }
+    question
   end
 end
