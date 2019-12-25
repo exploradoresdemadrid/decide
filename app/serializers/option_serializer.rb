@@ -1,3 +1,3 @@
 class OptionSerializer < ActiveModel::Serializer
-  attributes :id, :title, :question
+  attributes :id, :title
 end
