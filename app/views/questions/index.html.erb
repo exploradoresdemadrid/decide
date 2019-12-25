@@ -1,12 +1,12 @@
 <h1>Questions</h1>
 
 <%= bootstrap_table do |table| %>
-  <% table.headers = ['Title', 'Description', 'Show', 'Edit', 'Destroy'] %>
+  <% table.headers = ['Title', 'Description', 'Options', 'Edit', 'Destroy'] %>
   <% @questions.each do |question| %>
     <% table.rows << [
       question.title,
       question.description,
-      link_to('Show', voting_question_path(@voting, question)),
+      options_list(question),
       link_to('Edit', edit_voting_question_path(@voting, question)),
       link_to('Destroy', voting_question_path(@voting, question), method: :delete, data: { confirm: 'Are you sure?' })
     ] %>
