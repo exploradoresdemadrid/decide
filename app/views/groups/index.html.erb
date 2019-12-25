@@ -1,28 +1,17 @@
 <h1>Groups</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Number</th>
-      <th>Available votes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @groups.each do |group| %>
-      <tr>
-        <td><%= group.name %></td>
-        <td><%= group.number %></td>
-        <td><%= group.available_votes %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= bootstrap_table do |table| %>
+  <% table.headers = ['Name', 'Number', 'Available votes', 'Edit', 'Destroy'] %>
+  <% @groups.each do |group| %>
+    <% table.rows << [
+      group.name,
+      group.number,
+      group.available_votes,
+      link_to('Edit', edit_group_path(group)),
+      link_to('Destroy', group, method: :delete, data: { confirm: 'Are you sure?' })
+    ] %>
+  <% end %>
+<% end %>
 
 <br>
 
