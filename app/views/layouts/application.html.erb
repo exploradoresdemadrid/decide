@@ -10,6 +10,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render './navbar' %>
+    <div id="main-container">
+      <%= alert_box notice if notice.present? %>
+      <%= yield %>
+    </div>
   </body>
 </html>
