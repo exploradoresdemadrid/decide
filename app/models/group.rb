@@ -11,6 +11,6 @@ class Group < ApplicationRecord
   private
 
   def create_user
-    self.user ||= User.create(email: "test+#{number}@example.com", password: SecureRandom.uuid)
+    self.user_id ||= User.create(email: "test+#{number}@example.com", password: SecureRandom.uuid).id
   end
 end
