@@ -2,5 +2,12 @@
   <%= f.text_field :title %>
   <%= f.text_field :description %>
   <%= f.hidden_field :voting_id, value: @voting.id %>
+
+  <div>
+    <%= link_to_add_association 'Add option', f, :options, {'data-association-insertion-method' => 'after', wrapper: 'bootstrap' } %>
+    <%= f.fields_for :options do |option| %>
+      <%= render 'option_fields', f: option %>
+    <% end %>
+  </div>
   <%= f.submit 'Submit' %>
 <% end %>
