@@ -9,5 +9,5 @@ OpenApi::Config.class_eval do
   info version: '1.0.0', title: 'Homepage APIs'#, description: ..
   # server 'http://localhost:3000', desc: 'Internal staging server for testing'
   bearer_auth :Authorization
-  global_auth :Authorization
+  global_auth :Authorization 
 end
