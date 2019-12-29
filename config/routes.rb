@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :questions
     post 'vote', to: 'votings#vote'
   end
-  resources :groups
+  resources :groups do
+    get 'current', on: :collection
+  end
   root to: 'votings#index'
 end
