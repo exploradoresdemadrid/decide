@@ -104,6 +104,27 @@
         ]
       }
     },
+    "/groups/current": {
+      "get": {
+        "summary": "My group",
+        "operationId": "Sessions_Current",
+        "tags": [
+          "Sessions"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/votings": {
       "get": {
         "operationId": "Votings_Index",
@@ -248,6 +269,34 @@
       }
     },
     "schemas": {
+      "UserResponseSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "GroupResponseSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "number": {
+            "type": "integer"
+          },
+          "available_votes": {
+            "type": "integer"
+          }
+        }
+      },
       "OptionSchema": {
         "type": "object",
         "properties": {
@@ -338,17 +387,6 @@
             "items": {
               "type": "string"
             }
-          }
-        }
-      },
-      "UserResponseSchema": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
           }
         }
       }

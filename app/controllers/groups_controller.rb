@@ -9,6 +9,13 @@ class GroupsController < ApplicationController
 
   def show; end
 
+  def current
+    @group = current_user.group
+    respond_to do |format|
+      format.json { render json: @group, status: :ok }
+    end
+  end
+
   def new
     @group = Group.new
   end
