@@ -60,13 +60,25 @@ class V1::VotingsDoc < ApiDoc
 
   api :index do
     response 200, 'Success', :json, data: :VotingListSchema
+    header 'Accept', String, default: 'application/json'
   end
 
   api :show, 'Get voting', http: 'get' do
     path :id, String
     param :path, :id, String, :req, desc: 'UUID of the voting'
+    header 'Accept', String, default: 'application/json'
     response_ref 202 => :VotingDetailedResponse
     response_ref 400 => :BadRequestResponse
     response_ref 404 => :NotFoundResponse
+  end
+
+  api :vote, 'Submit votes', http: 'post' do
+    path :id, String
+    header 'Accept', String, default: 'application/json'
+    request_body :opt, :json, data: {
+      'question_id' => Array['option_id']
+    }
+    response 201, 'Success', :json, data: {}
+    response_ref 400 => :BadRequestResponse
   end
 end

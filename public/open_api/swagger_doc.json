@@ -21,6 +21,37 @@
     }
   ],
   "paths": {
+    "": {
+      "get": {
+        "operationId": "Votings_Index",
+        "tags": [
+          "Votings"
+        ],
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VotingListSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/users/login": {
       "post": {
         "summary": "Sign in",
@@ -79,6 +110,17 @@
         "tags": [
           "Votings"
         ],
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -110,6 +152,15 @@
               "description": "UUID of the voting"
             },
             "description": "UUID of the voting"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
           }
         ],
         "responses": {
@@ -121,6 +172,68 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFoundResponse"
+          }
+        }
+      }
+    },
+    "/votings/{voting_id}/vote": {
+      "post": {
+        "summary": "Submit votes",
+        "operationId": "Votings_Vote",
+        "tags": [
+          "Votings"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "question_id": {
+                    "type": "array",
+                    "items": {
+                      "type": "option_id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestResponse"
           }
         }
       }

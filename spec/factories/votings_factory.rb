@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :voting do
     sequence(:title) { |n| "Title of voting #{n}" }
     sequence(:description) { |n| "Description of voting #{n}" }
-    status { :draft }
+    status { :open }
 
     trait(:invalid) { title { nil } }
   end
