@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_25_193542) do
+ActiveRecord::Schema.define(version: 2019_12_25_234818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -22,8 +22,10 @@ ActiveRecord::Schema.define(version: 2019_12_25_193542) do
     t.integer "available_votes", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "user_id"
     t.index ["name"], name: "index_groups_on_name", unique: true
     t.index ["number"], name: "index_groups_on_number", unique: true
+    t.index ["user_id"], name: "index_groups_on_user_id", unique: true
   end
 
   create_table "jwt_blacklist", force: :cascade do |t|
@@ -58,6 +60,11 @@ ActiveRecord::Schema.define(version: 2019_12_25_193542) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "auth_token", null: false
     t.datetime "auth_token_expires_at", null: false
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -71,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_12_25_193542) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "groups", "users"
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "votings"
 end
