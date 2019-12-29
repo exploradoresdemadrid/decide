@@ -21,4 +21,12 @@ RSpec.describe Group, type: :model do
       it { should validate_numericality_of(:available_votes).is_greater_than_or_equal_to(1) }
     end
   end
+
+  describe 'callbacks' do
+    context 'when a group is created' do
+      it 'creates and assigns a user to the group' do
+        expect(create(:group).user).to be_a(User)
+      end
+    end
+  end
 end

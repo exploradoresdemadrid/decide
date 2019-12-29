@@ -1,12 +1,14 @@
 <h1>Groups</h1>
 
 <%= bootstrap_table do |table| %>
-  <% table.headers = ['Name', 'Number', 'Available votes', 'Edit', 'Destroy'] %>
+  <% table.headers = ['Name', 'Number', 'Available votes', 'Auth token', 'Last login', 'Edit', 'Destroy'] %>
   <% @groups.each do |group| %>
     <% table.rows << [
       group.name,
       group.number,
       group.available_votes,
+      group.user.auth_token,
+      group.user.last_sign_in_at || 'Never',
       link_to('Edit', edit_group_path(group)),
       link_to('Destroy', group, method: :delete, data: { confirm: 'Are you sure?' })
     ] %>
