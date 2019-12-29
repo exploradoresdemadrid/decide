@@ -82,5 +82,11 @@ RSpec.describe VoteSubmissionService, type: :service do
         include_examples 'raises an error', "Cannot submit votes for a voting in #{status} status"
       end
     end
+
+    context 'when group is not provided' do
+      subject { described_class.new(nil, voting, [option_1.id, option_2.id]) }
+
+      include_examples 'raises an error', 'The group was not provided'
+    end
   end
 end

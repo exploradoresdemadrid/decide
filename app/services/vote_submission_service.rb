@@ -10,6 +10,7 @@ class VoteSubmissionService
   end
 
   def vote!
+    verify_group_presence!
     verify_voting_status!
     verify_options_belong_to_voting!
 
@@ -28,6 +29,10 @@ class VoteSubmissionService
   end
 
   private
+
+  def verify_group_presence!
+    raise Errors::VotingError, 'The group was not provided' unless group.present?
+  end
 
   def verify_voting_status!
     unless voting.open?
