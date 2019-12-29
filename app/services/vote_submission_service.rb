@@ -15,6 +15,10 @@ class VoteSubmissionService
     verify_questions_belong_to_voting!
     verify_options_belong_to_question!
 
+    unless response.size == voting.questions.count
+      raise Errors::VotingError, 'Votes for some of the questions are missing'
+    end
+
     unless response.values.all? { |question_responses| question_responses.count == group.available_votes }
       raise Errors::VotingError, "Number of votes submitted does not match available votes: #{group.available_votes}"
     end
