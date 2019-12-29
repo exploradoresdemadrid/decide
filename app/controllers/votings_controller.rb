@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VotingsController < ApplicationController
   load_and_authorize_resource
 
@@ -25,8 +27,7 @@ class VotingsController < ApplicationController
   end
 
   # GET /votings/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /votings
   def create
@@ -54,9 +55,23 @@ class VotingsController < ApplicationController
     redirect_to votings_url, notice: 'Voting was successfully destroyed.'
   end
 
-  private
-    # Only allow a trusted parameter "white list" through.
-    def voting_params
-      params.require(:voting).permit(:title, :description, :status)
+  def vote
+    VoteSubmissionService.new(current_user.group, Voting.find(params[:voting_id]), params.require(:options)).vote!
+    respond_to do |format|
+      format.html { redirect_to voting_path(@voting) }
+      format.json { head :created }
     end
+  rescue Errors::VotingError => e
+    respond_to do |format|
+      format.html { redirect_to voting_path(@voting, error: e.message) }
+      format.json { render json: { errors: [e.message] }, status: :bad_request }
+    end
+  end
+
+  private
+
+  # Only allow a trusted parameter "white list" through.
+  def voting_params
+    params.require(:voting).permit(:title, :description, :status)
+  end
 end
