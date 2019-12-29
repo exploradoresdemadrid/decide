@@ -56,7 +56,7 @@ class VotingsController < ApplicationController
   end
 
   def vote
-    VoteSubmissionService.new(Group.first, Voting.find(params[:voting_id]), params.require(:options)).vote!
+    VoteSubmissionService.new(current_user.group, Voting.find(params[:voting_id]), params.require(:options)).vote!
     respond_to do |format|
       format.html { redirect_to voting_path(@voting) }
       format.json { head :created }

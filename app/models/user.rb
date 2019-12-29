@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   before_create :assign_auth_token
 
+  has_one :group
+  
   private
 
   def assign_auth_token
