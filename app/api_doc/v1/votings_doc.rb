@@ -61,13 +61,11 @@ class V1::VotingsDoc < ApiDoc
   api :index do
     response 200, 'Success', :json, data: :VotingListSchema
     header 'Accept', String, default: 'application/json'
-    body :json
   end
 
   api :show, 'Get voting', http: 'get' do
     path :id, String
     param :path, :id, String, :req, desc: 'UUID of the voting'
-    body :json
     header 'Accept', String, default: 'application/json'
     response_ref 202 => :VotingDetailedResponse
     response_ref 400 => :BadRequestResponse
@@ -76,7 +74,6 @@ class V1::VotingsDoc < ApiDoc
 
   api :vote, 'Submit votes', http: 'post' do
     path :id, String
-    body :json
     header 'Accept', String, default: 'application/json'
     request_body :opt, :json, data: {
       options: Array[String]

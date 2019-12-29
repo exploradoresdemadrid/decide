@@ -38,17 +38,6 @@
             }
           }
         ],
-        "requestBody": {
-          "required": false,
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Success",
@@ -132,17 +121,6 @@
             }
           }
         ],
-        "requestBody": {
-          "required": false,
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Success",
@@ -185,17 +163,6 @@
             }
           }
         ],
-        "requestBody": {
-          "required": false,
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object"
-              }
-            }
-          }
-        },
         "responses": {
           "202": {
             "$ref": "#/components/responses/VotingDetailedResponse"
@@ -266,17 +233,6 @@
       }
     },
     "schemas": {
-      "UserResponseSchema": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          }
-        }
-      },
       "OptionSchema": {
         "type": "object",
         "properties": {
@@ -367,6 +323,17 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "UserResponseSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
           }
         }
       }
