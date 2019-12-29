@@ -78,5 +78,7 @@ class V1::VotingsDoc < ApiDoc
     request_body :opt, :json, data: {
       options: Array[String]
     }
+    response 201, 'Success', :json, data: {}
+    response_ref 400 => :BadRequestResponse
   end
 end
