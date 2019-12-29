@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
+         :trackable,
          :jwt_authenticatable, jwt_revocation_strategy: JWTBlacklist
 
   AUTH_TOKEN_LENGTH = 6
@@ -14,6 +15,8 @@ class User < ApplicationRecord
 
   before_create :assign_auth_token
 
+  has_one :group
+  
   private
 
   def assign_auth_token
