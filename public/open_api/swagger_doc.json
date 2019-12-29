@@ -210,10 +210,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "options": {
+                  "question_id": {
                     "type": "array",
                     "items": {
-                      "type": "string"
+                      "type": "option_id"
                     }
                   }
                 }
