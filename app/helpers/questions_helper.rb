@@ -14,9 +14,12 @@ module QuestionsHelper
   end
 
   def question_results_table(question)
+    distribution = vote_distribution_query(question)
+    votes_count = distribution.values.sum
+
     bootstrap_table do |table|
-       table.headers = ['Option', 'Votes']
-       table.rows = vote_distribution_query(question).to_a
+      table.headers = ['Option', 'Votes', 'Percentage']
+      table.rows = distribution.map { |(option, votes)| [option, votes, "#{(votes * 100.0 / votes_count).round(2)}%"] }
      end
   end
 
