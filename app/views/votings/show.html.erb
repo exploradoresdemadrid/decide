@@ -10,11 +10,20 @@
   <%= @voting.status %>
 </p>
 
-<h2>Results</h2>
+<% if @voting.finished? %>
+  <h2>Results</h2>
 
-<% @voting.questions.each do |question| %>
-  <%= render 'question_results', question: question %>
+  <% @voting.questions.each do |question| %>
+    <%= render 'question_results', question: question %>
+  <% end %>
 <% end %>
+
+<h2>Participation</h2>
+<h3>Votes submitted</h3>
+<%= groups_with_vote_submitted(@voting) %>
+
+<h3>Pending votes</h3>
+<%= groups_without_vote_submitted(@voting) %>
 
 <h2>Links</h2>
 
