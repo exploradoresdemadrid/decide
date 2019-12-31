@@ -1,7 +1,15 @@
 <h3><%= question.title %></h3>
 <p><%= question.description %></p>
 
-<%= question_results_table(question) %>
+<%= panel_row column_class: 'col-sm-6' do %>
+  <%= panel heading: 'Results' do %>
+    <%= question_results_table(question) %>
+  <% end %>
 
-<h4>Bar chart</h4>
-<%= question_column_chart question %>
+  <%= panel heading: 'Bar chart' do %>
+    <%= question_column_chart question %>
+  <% end %>
+<% end %>
+
+
+
