@@ -1,7 +1,4 @@
-<p>
-  <strong>Title:</strong>
-  <%= @voting.title %>
-</p>
+<h1><%= @voting.title %></h1>
 
 <p>
   <strong>Description:</strong>
@@ -12,6 +9,14 @@
   <strong>Status:</strong>
   <%= @voting.status %>
 </p>
+
+<h2>Results</h2>
+
+<% @voting.questions.each do |question| %>
+  <%= render 'question_results', question: question %>
+<% end %>
+
+<h2>Links</h2>
 
 <%= link_to 'Edit', edit_voting_path(@voting) %> |
 <%= link_to 'Back', votings_path %> | 

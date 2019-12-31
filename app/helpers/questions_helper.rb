@@ -12,4 +12,11 @@ module QuestionsHelper
       end
     end
   end
+
+  def question_results_table(question)
+    bootstrap_table do |table|
+       table.headers = ['Option', 'Votes']
+       table.rows = Option.left_outer_joins(:votes).where(question_id: question.id).group(:title).count('votes.id').to_a
+     end
+  end
 end
