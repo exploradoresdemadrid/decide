@@ -20,5 +20,5 @@ Rails.application.routes.draw do
   resources :groups do
     get 'current', on: :collection
   end
-  root to: 'votings#index'
+  root to: redirect('https://exploradoresdemadrid.github.io/decide')
 end
