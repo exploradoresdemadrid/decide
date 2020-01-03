@@ -12,6 +12,9 @@ module Api
           @user = User.with_valid_auth_token.find_by!(auth_token: user_params[:auth_token])
           bypass_sign_in(@user)
 
+          @user.update_tracked_fields(request)
+          @user.save!
+
           super
         end
 
