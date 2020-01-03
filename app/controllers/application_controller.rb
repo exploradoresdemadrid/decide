@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || votings_path
+  end
+
   def render_resource(resource)
     if resource.errors.empty?
       render json: resource
