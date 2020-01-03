@@ -40,6 +40,7 @@ class VotingsController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /votings/1
   def update
     if @voting.update(voting_params)

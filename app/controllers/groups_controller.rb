@@ -51,6 +51,11 @@ class GroupsController < ApplicationController
     end
   end
 
+  def reset_token
+    User.with_group.each { | user | user.reset_token}
+    redirect_to groups_url, notice: 'The Groups Tokens have been updated.'
+  end
+  
   private
 
   def set_group
