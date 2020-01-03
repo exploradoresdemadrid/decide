@@ -31,7 +31,7 @@ module QuestionsHelper
         ]
 
         unless question.voting.secret?
-          row << string_list(group_distribution[option].map { |(group_name, group_votes)| "#{group_name} (#{group_votes} votes)" })
+          row << string_list(group_distribution[option]&.map { |(group_name, group_votes)| "#{group_name} (#{group_votes} votes)" })
         end
 
         row
