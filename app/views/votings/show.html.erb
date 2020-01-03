@@ -1,7 +1,4 @@
-<p>
-  <strong>Title:</strong>
-  <%= @voting.title %>
-</p>
+<h1><%= @voting.title %></h1>
 
 <p>
   <strong>Description:</strong>
@@ -12,6 +9,23 @@
   <strong>Status:</strong>
   <%= @voting.status %>
 </p>
+
+<% if @voting.finished? %>
+  <h2>Results</h2>
+
+  <% @voting.questions.each do |question| %>
+    <%= render 'question_results', question: question %>
+  <% end %>
+<% end %>
+
+<h2>Participation</h2>
+<h3>Votes submitted</h3>
+<%= groups_with_vote_submitted(@voting) %>
+
+<h3>Pending votes</h3>
+<%= groups_without_vote_submitted(@voting) %>
+
+<h2>Links</h2>
 
 <%= link_to 'Edit', edit_voting_path(@voting) %> |
 <%= link_to 'Back', votings_path %> | 

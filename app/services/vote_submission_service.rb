@@ -31,6 +31,8 @@ class VoteSubmissionService
     raise Errors::VotingError, 'The group has already voted'
   rescue ActiveRecord::InvalidForeignKey, ActiveRecord::NotNullViolation
     raise Errors::VotingError, 'One of the options could not be found'
+  rescue ActiveRecord::RecordInvalid => e
+    raise Errors::VotingError, e.message.split(':').last.strip
   end
 
   private

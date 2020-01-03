@@ -127,7 +127,7 @@ RSpec.describe VoteSubmissionService, type: :service do
                                            question_2.id => [option_2_1.id, option_2_1.id])
       end
 
-      include_examples 'raises an error', 'One of the options could not be found'
+      include_examples 'raises an error', 'Option must exist'
     end
 
     context 'when one of the option_ids is not a UUID' do
@@ -136,7 +136,7 @@ RSpec.describe VoteSubmissionService, type: :service do
                                            question_2.id => [option_2_1.id, option_2_1.id])
       end
 
-      include_examples 'raises an error', 'One of the options could not be found'
+      include_examples 'raises an error', 'Option must exist'
     end
 
     %i[draft finished].each do |status|

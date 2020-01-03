@@ -19,6 +19,7 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'bh'
 gem 'btgen'
+gem 'chartkick'
 
 gem 'devise'
 gem 'devise-jwt'
