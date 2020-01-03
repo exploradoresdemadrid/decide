@@ -21,14 +21,20 @@ module QuestionsHelper
     group_distribution = vote_distribution_by_group(question)
 
     bootstrap_table do |table|
-      table.headers = ['Option', 'Votes', 'Percentage', 'Supporting groups']
+      table.headers = %w[Option Votes Percentage]
+      table.headers << 'Supporting groups' unless question.voting.secret?
       table.rows = distribution.map do |(option, votes)|
-        [
+        row = [
           option,
           votes,
-          "#{(votes * 100.0 / votes_count).round(2)}%",
-          string_list(group_distribution[option].map { |(group_name, group_votes)| "#{group_name} (#{group_votes} votes)" })
+          "#{(votes * 100.0 / votes_count).round(2)}%"
         ]
+
+        unless question.voting.secret?
+          row << string_list(group_distribution[option].map { |(group_name, group_votes)| "#{group_name} (#{group_votes} votes)" })
+        end
+
+        row
       end
     end
   end
