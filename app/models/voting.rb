@@ -3,8 +3,8 @@
 class Voting < ApplicationRecord
   enum status: %i[draft open finished]
 
-  has_many :questions
-  has_many :vote_submissions
+  has_many :questions, dependent: :destroy
+  has_many :vote_submissions, dependent: :destroy
   has_many :groups, through: :vote_submissions
 
   validates_presence_of :title, :status
