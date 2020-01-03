@@ -37,12 +37,7 @@ RSpec.describe VoteSubmissionService, type: :service do
       end
     end
 
-    context 'when the number of options matches the votes available' do
-      subject do
-        described_class.new(group, voting, question_1.id => [option_1_1.id, option_1_1.id],
-                                           question_2.id => [option_2_1.id, option_2_1.id])
-      end
-
+    RSpec.shared_examples 'votes created' do
       it 'creates several vote records' do
         expect { subject.vote! }.to change { Vote.where(option_id: option_1_1).count }.by(2)
       end
@@ -52,6 +47,37 @@ RSpec.describe VoteSubmissionService, type: :service do
 
         submission = VoteSubmission.find_by(group_id: group.id, voting_id: voting.id)
         expect(submission.votes_submitted).to eq 2
+      end
+    end
+
+    context 'when the number of options matches the votes available' do
+      subject do
+        described_class.new(group, voting, question_1.id => [option_1_1.id, option_1_1.id],
+                                           question_2.id => [option_2_1.id, option_2_1.id])
+      end
+
+      context 'when the voting is secret' do
+        before { voting.update(secret: true) }
+
+        include_examples 'votes created'
+
+        it 'does not assign the group to the votes' do
+          subject.vote!
+
+          expect(Vote.where.not(group_id: nil).count).to eq 0
+        end
+      end
+
+      context 'when the voting is not secret' do
+        before { voting.update(secret: false) }
+
+        include_examples 'votes created'
+
+        it 'assigns the group to the votes' do
+          subject.vote!
+
+          expect(Vote.where(group_id: nil).count).to eq 0
+        end
       end
     end
 

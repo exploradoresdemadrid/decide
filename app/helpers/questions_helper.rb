@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module QuestionsHelper
   def options_list(question)
     if question.options.any?
@@ -16,11 +18,25 @@ module QuestionsHelper
   def question_results_table(question)
     distribution = vote_distribution_query(question)
     votes_count = distribution.values.sum
+    group_distribution = vote_distribution_by_group(question)
 
     bootstrap_table do |table|
-      table.headers = ['Option', 'Votes', 'Percentage']
-      table.rows = distribution.map { |(option, votes)| [option, votes, "#{(votes * 100.0 / votes_count).round(2)}%"] }
-     end
+      table.headers = %w[Option Votes Percentage]
+      table.headers << 'Supporting groups' unless question.voting.secret?
+      table.rows = distribution.map do |(option, votes)|
+        row = [
+          option,
+          votes,
+          "#{(votes * 100.0 / votes_count).round(2)}%"
+        ]
+
+        unless question.voting.secret?
+          row << string_list(group_distribution[option]&.map { |(group_name, group_votes)| "#{group_name} (#{group_votes} votes)" })
+        end
+
+        row
+      end
+    end
   end
 
   def question_column_chart(question)
@@ -28,6 +44,17 @@ module QuestionsHelper
   end
 
   private
+
+  def vote_distribution_by_group(question)
+    Option.joins(:groups)
+          .where(question_id: question.id)
+          .group(:id, 'groups.name')
+          .count
+          .map { |(option_id, group_name), votes| [option_id, group_name, votes] }
+          .group_by(&:first)
+          .map { |option_id, groups| [Option.find(option_id).title, groups.map { |(_, name, votes)| [name, votes] }] }
+          .to_h
+  end
 
   def vote_distribution_query(question)
     Option.left_outer_joins(:votes).where(question_id: question.id).group(:title).count('votes.id')

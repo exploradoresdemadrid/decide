@@ -1,6 +1,7 @@
 class Group < ApplicationRecord
   # Associations
   belongs_to :user
+  has_many :votes
 
   # Validations
   validates_presence_of :name, :number, :available_votes
