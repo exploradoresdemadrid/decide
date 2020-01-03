@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2020_01_03_103404) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "private", default: false, null: false
+    t.boolean "secret", default: false, null: false
   end
 
   add_foreign_key "groups", "users"
