@@ -85,6 +85,7 @@ GEM
     cancancan (3.0.1)
     case_transform (0.2)
       activesupport
+    chartkick (3.3.1)
     cocoon (1.2.14)
     coderay (1.1.2)
     coffee-rails (5.0.0)
@@ -311,6 +312,7 @@ DEPENDENCIES
   btgen
   byebug
   cancancan
+  chartkick
   cocoon
   coffee-rails (~> 5.0)
   devise
