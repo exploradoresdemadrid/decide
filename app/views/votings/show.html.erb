@@ -10,6 +10,8 @@
   <%= @voting.status %>
 </p>
 
+<%= secret_voting_alert(@voting) %>
+
 <% if @voting.finished? %>
   <h2>Results</h2>
 
