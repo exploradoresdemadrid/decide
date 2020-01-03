@@ -24,13 +24,15 @@ class VoteSubmissionService
     end
 
     ActiveRecord::Base.transaction do
-      response.values.flatten.each .each { |option_id| Vote.create!(option_id: option_id) }
+      response.values.flatten.each .each { |option_id| Vote.create!(option_id: option_id, group_id: stored_group_id) }
       VoteSubmission.create!(group: group, voting: voting, votes_submitted: group.available_votes)
     end
   rescue ActiveRecord::RecordNotUnique
     raise Errors::VotingError, 'The group has already voted'
   rescue ActiveRecord::InvalidForeignKey, ActiveRecord::NotNullViolation
     raise Errors::VotingError, 'One of the options could not be found'
+  rescue ActiveRecord::RecordInvalid => e
+    raise Errors::VotingError, e.message.split(':').last.strip
   end
 
   private
@@ -63,5 +65,9 @@ class VoteSubmissionService
 
   def question_ids
     response.keys
+  end
+
+  def stored_group_id
+    group.id unless voting.secret?
   end
 end
