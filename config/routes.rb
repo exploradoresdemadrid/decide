@@ -19,11 +19,8 @@ Rails.application.routes.draw do
   end
 
   resources :groups do
-    post 'reset_token', on: :collection
-  end
-
-  resources :groups do
     get 'current', on: :collection
+    post 'reset_token', on: :collection
   end
   root to: redirect('https://exploradoresdemadrid.github.io/decide')
 end
