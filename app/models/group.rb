@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Group < ApplicationRecord
   # Associations
   belongs_to :user
@@ -9,6 +11,11 @@ class Group < ApplicationRecord
   validates_numericality_of :number, :available_votes, greater_than_or_equal_to: 1
 
   before_validation :create_user
+
+  def voted?(voting)
+    in? voting.groups
+  end
+
   private
 
   def create_user
