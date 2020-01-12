@@ -18,3 +18,7 @@
 <br>
 
 <%= link_to 'New Group', new_group_path %>
+
+<%= form_tag "/groups/reset_token" do %>
+  <%= submit_tag "Reset Tokens" %>
+<% end %>
