@@ -200,10 +200,15 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "question_id": {
-                    "type": "array",
-                    "items": {
-                      "type": "option_id"
+                  "votes": {
+                    "type": "object",
+                    "properties": {
+                      "question_id": {
+                        "type": "array",
+                        "items": {
+                          "type": "option_id"
+                        }
+                      }
                     }
                   }
                 }

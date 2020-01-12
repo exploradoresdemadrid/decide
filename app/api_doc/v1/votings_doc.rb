@@ -80,7 +80,9 @@ class V1::VotingsDoc < ApiDoc
     path :id, String
     header 'Accept', String, default: 'application/json'
     request_body :opt, :json, data: {
-      'question_id' => Array['option_id']
+      votes: {
+        'question_id' => Array['option_id']
+      }
     }
     response 201, 'Success', :json, data: {}
     response_ref 400 => :BadRequestResponse
