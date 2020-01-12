@@ -12,11 +12,17 @@ class User < ApplicationRecord
   AUTH_TOKEN_EXPIRATION_IN_DAYS = 2
 
   scope :with_valid_auth_token, -> { where('auth_token_expires_at > ?', Time.current) }
+  scope :with_group, -> { joins(:group) }
 
   before_create :assign_auth_token
 
   has_one :group
-  
+
+  def reset_token
+    assign_auth_token
+    save!
+  end
+
   private
 
   def assign_auth_token

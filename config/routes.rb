@@ -17,8 +17,10 @@ Rails.application.routes.draw do
     resources :questions
     post 'vote', to: 'votings#vote'
   end
+
   resources :groups do
     get 'current', on: :collection
+    post 'reset_token', on: :collection
   end
   root to: redirect('https://exploradoresdemadrid.github.io/decide')
 end
