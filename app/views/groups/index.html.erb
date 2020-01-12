@@ -8,7 +8,7 @@
       group.number,
       group.available_votes,
       group.user.auth_token,
-      group.user.last_sign_in_at || 'Never',
+      group.user.last_sign_in_at ? distance_of_time_in_words(group.user.last_sign_in_at, Time.now) : 'Never',
       link_to('Edit', edit_group_path(group)),
       link_to('Destroy', group, method: :delete, data: { confirm: 'Are you sure?' })
     ] %>
