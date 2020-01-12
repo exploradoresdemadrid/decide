@@ -21,37 +21,6 @@
     }
   ],
   "paths": {
-    "": {
-      "get": {
-        "operationId": "Votings_Index",
-        "tags": [
-          "Votings"
-        ],
-        "parameters": [
-          {
-            "name": "Accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "default": "application/json"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VotingListSchema"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v1/users/login": {
       "post": {
         "summary": "Sign in",
@@ -269,34 +238,6 @@
       }
     },
     "schemas": {
-      "UserResponseSchema": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          }
-        }
-      },
-      "GroupResponseSchema": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "number": {
-            "type": "integer"
-          },
-          "available_votes": {
-            "type": "integer"
-          }
-        }
-      },
       "OptionSchema": {
         "type": "object",
         "properties": {
@@ -342,6 +283,12 @@
           },
           "status": {
             "type": "string"
+          },
+          "secret": {
+            "type": "boolean"
+          },
+          "already_voted": {
+            "type": "boolean"
           }
         }
       },
@@ -359,6 +306,12 @@
           },
           "status": {
             "type": "string"
+          },
+          "secret": {
+            "type": "boolean"
+          },
+          "already_voted": {
+            "type": "boolean"
           },
           "questions": {
             "type": "array",
@@ -387,6 +340,34 @@
             "items": {
               "type": "string"
             }
+          }
+        }
+      },
+      "UserResponseSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "GroupResponseSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "number": {
+            "type": "integer"
+          },
+          "available_votes": {
+            "type": "integer"
           }
         }
       }

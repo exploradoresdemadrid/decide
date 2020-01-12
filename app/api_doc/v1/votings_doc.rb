@@ -26,7 +26,9 @@ class V1::VotingsDoc < ApiDoc
         id: String,
         title: String,
         description: String,
-        status: String
+        status: String,
+        secret: 'boolean',
+        already_voted: 'boolean'
       },
       dft: {}
     ]
@@ -37,6 +39,8 @@ class V1::VotingsDoc < ApiDoc
         title: String,
         description: String,
         status: String,
+        secret: 'boolean',
+        already_voted: 'boolean',
         questions: Array[:QuestionSchema]
       },
       dft: {}
