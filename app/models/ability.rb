@@ -5,8 +5,8 @@ class Ability
 
   def initialize(_user)
     can :manage, :all
-    cannot :edit, Voting do |voting|
-      !voting.draft?
+    cannot [:manage], Question do |question|
+      !question.voting.draft?
     end
   end
 end
