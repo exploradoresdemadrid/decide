@@ -19,7 +19,10 @@ module Api
         private
 
         def render_unauthorized
-          head :unauthorized
+          respond_to do |format|
+            format.json { head :unauthorized }
+            format.js { redirect_to new_session_path, notice: 'Invalid credentials' }
+          end
         end
 
         def user_params
