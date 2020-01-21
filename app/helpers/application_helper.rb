@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+
+  def current_group
+    current_user&.group
+  end
+
   def string_list(items)
     return unless items.present?
 
