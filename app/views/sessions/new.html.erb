@@ -1,0 +1,4 @@
+<%= simple_form_for :user, url: api_v1_users_login_path, remote: true do |f| %>
+  <%= f.input :auth_token, as: :string %>
+  <%= f.submit %>
+<% end %>

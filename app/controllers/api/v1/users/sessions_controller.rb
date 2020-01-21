@@ -4,8 +4,6 @@ module Api
   module V1
     module Users
       class SessionsController < Devise::SessionsController
-        respond_to :json
-
         rescue_from ActiveRecord::RecordNotFound, with: :render_unauthorized
 
         def create
@@ -26,14 +24,6 @@ module Api
 
         def user_params
           params.require(:user).permit(:auth_token)
-        end
-
-        def respond_with(resource, _opts = {})
-          render json: resource
-        end
-
-        def respond_to_on_destroy
-          head :no_content
         end
       end
     end

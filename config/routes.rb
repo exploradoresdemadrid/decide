@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :sessions, only: :new
+
   resources :votings do
     resources :questions
     post 'vote', to: 'votings#vote'
