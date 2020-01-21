@@ -11,6 +11,7 @@ class VoteSubmissionService
 
   def vote!
     verify_group_presence!
+    verify_group_already_voted!
     verify_voting_status!
     verify_questions_belong_to_voting!
     verify_options_belong_to_question!
@@ -29,8 +30,6 @@ class VoteSubmissionService
       end
       VoteSubmission.create!(group: group, voting: voting, votes_submitted: group.available_votes)
     end
-  rescue ActiveRecord::RecordNotUnique
-    raise Errors::VotingError, 'The group has already voted'
   rescue ActiveRecord::InvalidForeignKey, ActiveRecord::NotNullViolation
     raise Errors::VotingError, 'One of the options could not be found'
   rescue ActiveRecord::RecordInvalid => e
@@ -42,6 +41,12 @@ class VoteSubmissionService
   def verify_group_presence!
     unless group.present?
       raise Errors::VotingError, 'The group was not provided'
+    end
+  end
+
+  def verify_group_already_voted!
+    if VoteSubmission.where(group: group, voting: voting).any?
+      raise Errors::VotingError, 'The group has already voted'
     end
   end
 
