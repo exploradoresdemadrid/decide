@@ -10,7 +10,7 @@ module QuestionsHelper
       end
     else
       alert_box context: :warning do
-        'No options have been specified'
+        t('no_options')
       end
     end
   end

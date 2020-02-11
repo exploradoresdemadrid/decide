@@ -1,17 +1,17 @@
 <p>
-  <strong>Voting:</strong>
+  <strong> <%= t('voting') %>:</strong>
   <%= @question.voting_id %>
 </p>
 
 <p>
-  <strong>Title:</strong>
+  <strong> <%= t('title') %>:</strong>
   <%= @question.title %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong> <%= t('description') %>:</strong>
   <%= @question.description %>
 </p>
 
-<%= link_to 'Edit', edit_voting_question_path(@voting, @question) %> |
-<%= link_to 'Back', voting_questions_path(@voting) %>
+<%= link_to t('edit'), edit_voting_question_path(@voting, @question) %> |
+<%= link_to t('back'), voting_questions_path(@voting) %>

@@ -12,9 +12,9 @@ module VotingsHelper
   def secret_voting_alert(voting)
     alert_box do
       if voting.secret?
-        'This voting is secret. The votes submitted will not be associated to your group.'
+        t('is_secret')
       else
-        'This voting is not secret. The votes submitted will be associated to your group, and will be visible in the results.'
+        t('is_not_secret')
       end
     end
   end

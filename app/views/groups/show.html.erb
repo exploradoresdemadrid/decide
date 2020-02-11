@@ -1,17 +1,17 @@
 <p>
-  <strong>Name:</strong>
+  <strong> <%= t('name') %>:</strong>
   <%= @group.name %>
 </p>
 
 <p>
-  <strong>Number:</strong>
+  <strong> <%= t('number') %>:</strong>
   <%= @group.number %>
 </p>
 
 <p>
-  <strong>Available votes:</strong>
+  <strong> <%= t('available_votes') %>:</strong>
   <%= @group.available_votes %>
 </p>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<%= link_to t('edit'), edit_group_path(@group) %> |
+<%= link_to t('back'), groups_path %>

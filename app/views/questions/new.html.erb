@@ -1,5 +1,5 @@
-<h1>New Question</h1>
+<h1> <%= t('new_question') %> </h1>
 
 <%= render 'form', question: @question %>
 
-<%= link_to 'Back', voting_questions_path(@voting) %>
+<%= link_to t('back'), voting_questions_path(@voting) %>
