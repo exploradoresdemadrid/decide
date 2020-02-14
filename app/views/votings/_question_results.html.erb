@@ -2,11 +2,11 @@
 <p><%= question.description %></p>
 
 <%= panel_row column_class: 'col-sm-6' do %>
-  <%= panel heading: 'Results' do %>
+  <%= panel heading: t('results') do %>
     <%= question_results_table(question) %>
   <% end %>
 
-  <%= panel heading: 'Bar chart' do %>
+  <%= panel heading: t('bar_chart') do %>
     <%= question_column_chart question %>
   <% end %>
 <% end %>

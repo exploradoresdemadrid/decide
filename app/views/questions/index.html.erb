@@ -1,19 +1,19 @@
-<h1>Questions</h1>
+<h1> <%= t('questions')%></h1>
 
 <%= bootstrap_table do |table| %>
-  <% table.headers = ['Title', 'Description', 'Options', 'Edit', 'Destroy'] %>
+  <% table.headers = [t('title'), t('description'), t('options'), t('edit'), t('destroy')] %>
   <% @questions.each do |question| %>
     <% table.rows << [
       question.title,
       question.description,
       options_list(question),
-      link_to('Edit', edit_voting_question_path(@voting, question)),
-      link_to('Destroy', voting_question_path(@voting, question), method: :delete, data: { confirm: 'Are you sure?' })
+      link_to( t('edit'), edit_voting_question_path(@voting, question)),
+      link_to( t('destroy'), voting_question_path(@voting, question), method: :delete, data: { confirm: 'Are you sure?' })
     ] %>
   <% end %>
 <% end %>
 
 <br>
 
-<%= link_to 'New Question', new_voting_question_path(@voting) %> | 
-<%= link_to 'Back', votings_path %>
+<%= link_to t('new_question'), new_voting_question_path(@voting) %> | 
+<%= link_to t('back'), votings_path %>

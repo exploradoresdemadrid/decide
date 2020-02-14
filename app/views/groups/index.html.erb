@@ -1,7 +1,7 @@
-<h1>Groups</h1>
+<h1> <%= t('groups') %> </h1>
 
 <%= bootstrap_table do |table| %>
-  <% table.headers = ['Name', 'Number', 'Available votes', 'Auth token', 'Last login', 'Edit', 'Destroy'] %>
+  <% table.headers = [t('name'), t('number'), t('available_votes'), t('auth_token'), t('last_login'), t('edit'), t('destroy')] %>
   <% @groups.each do |group| %>
     <% table.rows << [
       group.name,
@@ -9,15 +9,15 @@
       group.available_votes,
       group.user.auth_token,
       group.user.last_sign_in_at ? distance_of_time_in_words(group.user.last_sign_in_at, Time.now) : 'Never',
-      link_to('Edit', edit_group_path(group)),
-      link_to('Destroy', group, method: :delete, data: { confirm: 'Are you sure?' })
+      link_to( t('edit'), edit_group_path(group)),
+      link_to(t('destroy'), group, method: :delete, data: { confirm: 'Are you sure?' })
     ] %>
   <% end %>
 <% end %>
 
 <br>
 
-<%= link_to 'New Group', new_group_path %>
+<%= link_to t('new_group'), new_group_path %>
 
 <%= form_tag "/groups/reset_token" do %>
   <%= submit_tag "Reset Tokens" %>

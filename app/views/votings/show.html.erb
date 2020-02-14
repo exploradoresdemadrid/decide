@@ -1,19 +1,19 @@
 <h1><%= @voting.title %></h1>
 
 <p>
-  <strong>Description:</strong>
+  <strong> <%= t('description') %> :</strong>
   <%= @voting.description %>
 </p>
 
 <p>
-  <strong>Status:</strong>
+  <strong><%= t('status') %>:</strong>
   <%= @voting.status %>
 </p>
 
 <%= secret_voting_alert(@voting) %>
 
 <% if @voting.finished? %>
-  <h2>Results</h2>
+  <h2><%= t('results') %></h2>
 
   <% @voting.questions.each do |question| %>
     <%= render 'question_results', question: question %>
@@ -24,15 +24,15 @@
   <%= render 'vote_submission_form', voting: @voting %>
 <% end %>
 
-<h2>Participation</h2>
-<h3>Votes submitted</h3>
+<h2><%= t('participation') %></h2>
+<h3><%= t('votes_submitted') %></h3>
 <%= groups_with_vote_submitted(@voting) %>
 
-<h3>Pending votes</h3>
+<h3><%= t('pending_votes') %></h3>
 <%= groups_without_vote_submitted(@voting) %>
 
-<h2>Links</h2>
+<h2><%= t('links') %></h2>
 
-<%= link_to 'Edit', edit_voting_path(@voting) %> |
-<%= link_to 'Back', votings_path %> | 
-<%= link_to 'Questions', voting_questions_path(@voting) %>
+<%= link_to t('edit'), edit_voting_path(@voting) %> |
+<%= link_to t('back'), votings_path %> | 
+<%= link_to t('questions'), voting_questions_path(@voting) %>
