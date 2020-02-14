@@ -43,6 +43,14 @@ module QuestionsHelper
     column_chart vote_distribution_query(question), download: true
   end
 
+  def question_input_form(f, question)
+    if current_group&.available_votes.to_i > 1
+      question.options.map { |option| range_for_option(f, option) }.inject(:+)
+    elsif current_group&.available_votes == 1
+      f.collection_select :status, question.options, :id, :title, { include_blank: '' }, class: 'form-control', name: "votes[#{question.id}]"
+    end
+  end
+
   private
 
   def vote_distribution_by_group(question)
