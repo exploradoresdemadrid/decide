@@ -1,15 +1,5 @@
 <h1><%= @voting.title %></h1>
 
-<p>
-  <strong> <%= t('description') %> :</strong>
-  <%= @voting.description %>
-</p>
-
-<p>
-  <strong><%= t('status') %>:</strong>
-  <%= @voting.status %>
-</p>
-
 <%= secret_voting_alert(@voting) %>
 
 <% if @voting.finished? %>
