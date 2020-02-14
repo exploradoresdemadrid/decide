@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GroupsController < ApplicationController
-  before_action :set_group, only: %i[show edit update destroy]
+  load_and_authorize_resource
 
   def index
     @groups = Group.includes(:user).all
@@ -57,10 +57,6 @@ class GroupsController < ApplicationController
   end
 
   private
-
-  def set_group
-    @group = Group.find(params[:id])
-  end
 
   def group_params
     params.require(:group).permit(:name, :number, :available_votes)

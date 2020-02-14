@@ -3,10 +3,14 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(_user)
+  def initialize(user)
     can :manage, :all
     cannot [:manage], Question do |question|
       !question.voting.draft?
+    end
+
+    unless user.admin?
+      cannot :index, Group
     end
   end
 end
