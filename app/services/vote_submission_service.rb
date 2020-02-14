@@ -6,11 +6,12 @@ class VoteSubmissionService
   def initialize(group, voting, response)
     @group = group
     @voting = voting
-    @response = response
+    @response = response.transform_values{ |v| v.transform_values(&:to_i) }
   end
 
   def vote!
     verify_group_presence!
+    verify_group_already_voted!
     verify_voting_status!
     verify_questions_belong_to_voting!
     verify_options_belong_to_question!
@@ -19,16 +20,16 @@ class VoteSubmissionService
       raise Errors::VotingError, 'Votes for some of the questions are missing'
     end
 
-    unless response.values.all? { |question_responses| question_responses.count == group.available_votes }
+    unless response.values.all? { |question_responses| question_responses.values.sum == group.available_votes }
       raise Errors::VotingError, "Number of votes submitted does not match available votes: #{group.available_votes}"
     end
 
     ActiveRecord::Base.transaction do
-      response.values.flatten.each .each { |option_id| Vote.create!(option_id: option_id, group_id: stored_group_id) }
+      response.values.inject(:merge).each do |option_id, votes|
+        votes.times { Vote.create!(option_id: option_id, group_id: stored_group_id) }
+      end
       VoteSubmission.create!(group: group, voting: voting, votes_submitted: group.available_votes)
     end
-  rescue ActiveRecord::RecordNotUnique
-    raise Errors::VotingError, 'The group has already voted'
   rescue ActiveRecord::InvalidForeignKey, ActiveRecord::NotNullViolation
     raise Errors::VotingError, 'One of the options could not be found'
   rescue ActiveRecord::RecordInvalid => e
@@ -40,6 +41,12 @@ class VoteSubmissionService
   def verify_group_presence!
     unless group.present?
       raise Errors::VotingError, 'The group was not provided'
+    end
+  end
+
+  def verify_group_already_voted!
+    if VoteSubmission.where(group: group, voting: voting).any?
+      raise Errors::VotingError, 'The group has already voted'
     end
   end
 
@@ -56,7 +63,7 @@ class VoteSubmissionService
   end
 
   def verify_options_belong_to_question!
-    response.each do |question_id, option_ids|
+    response.map { |k, v| [k, v.keys] }.to_h.each do |question_id, option_ids|
       if Option.where(id: option_ids).where.not(question_id: question_id).any?
         raise Errors::VotingError, 'One of the options does not belong to the question provided'
       end

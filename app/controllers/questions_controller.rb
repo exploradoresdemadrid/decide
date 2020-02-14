@@ -28,7 +28,6 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to voting_questions_path(@voting), notice: 'Question was successfully created.'
     else
-      binding.pry
       render :new
     end
   end

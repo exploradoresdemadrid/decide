@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   serialization_scope :view_context
 
+  add_flash_types :error
+
   private
 
   def after_sign_in_path_for(resource)
