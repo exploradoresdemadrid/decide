@@ -1,0 +1,12 @@
+<%= simple_form_for voting, :url => voting_vote_path(voting), method: :post, layout: :horizontal do |f| %>
+  <%= alert_box error, context: :danger if error.present? %>
+  <%= voting.questions.map do |question| %>
+    <%= content_tag :h4, question.title %>
+    <%= content_tag :p, question.description %>
+    <%= question.options.map do |option| %>
+      <%= range_for_option(f, option) %>
+    <% end.inject(:+) %>
+  <% end.inject(:+) %>
+  <%= alert_box error, context: :danger if error.present? %>
+  <%= f.submit 'Emitir votos' %>
+<% end %>

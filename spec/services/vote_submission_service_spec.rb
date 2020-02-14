@@ -52,8 +52,8 @@ RSpec.describe VoteSubmissionService, type: :service do
 
     context 'when the number of options matches the votes available' do
       subject do
-        described_class.new(group, voting, question_1.id => [option_1_1.id, option_1_1.id],
-                                           question_2.id => [option_2_1.id, option_2_1.id])
+        described_class.new(group, voting, question_1.id => { option_1_1.id => 2 },
+                                           question_2.id => { option_2_1.id => 2 })
       end
 
       context 'when the voting is secret' do
@@ -83,17 +83,8 @@ RSpec.describe VoteSubmissionService, type: :service do
 
     context 'when the number of options does not match the votes available' do
       subject do
-        described_class.new(group, voting, question_1.id => [option_1_1.id, option_1_1.id, option_1_1.id],
-                                           question_2.id => [option_2_1.id, option_2_1.id])
-      end
-
-      include_examples 'raises an error', 'Number of votes submitted does not match available votes: 2'
-    end
-
-    context 'when the number of options does not match the votes available (multiple questions)' do
-      subject do
-        described_class.new(group, voting, question_1.id => [option_1_1.id, option_1_1.id, option_1_1.id],
-                                           question_2.id => [option_2_1.id, option_2_1.id])
+        described_class.new(group, voting, question_1.id => { option_1_1.id => 3 },
+                                           question_2.id => { option_2_1.id => 2 })
       end
 
       include_examples 'raises an error', 'Number of votes submitted does not match available votes: 2'
@@ -101,8 +92,8 @@ RSpec.describe VoteSubmissionService, type: :service do
 
     context 'when the group has already voted' do
       subject do
-        described_class.new(group, voting, question_1.id => [option_1_1.id, option_1_2.id],
-                                           question_2.id => [option_2_1.id, option_2_1.id])
+        described_class.new(group, voting, question_1.id => { option_1_1.id => 1, option_1_2.id => 1 },
+                                           question_2.id => { option_2_1.id => 2 })
       end
       before { subject.vote! }
 
@@ -110,21 +101,21 @@ RSpec.describe VoteSubmissionService, type: :service do
     end
 
     context 'when one of the questions does not belong to the selected voting' do
-      subject { described_class.new(group, voting, another_question.id => [another_option_1.id, another_option_1.id]) }
+      subject { described_class.new(group, voting, another_question.id => { another_option_1.id => 2 }) }
 
       include_examples 'raises an error', 'One of the questions does not belong to the voting provided'
     end
 
     context 'when one of the options does not belong to the selected question' do
-      subject { described_class.new(group, voting, question_2.id => [option_1_1.id, option_1_2.id]) }
+      subject { described_class.new(group, voting, question_2.id => { option_1_1.id => 1, option_1_2.id => 1 }) }
 
       include_examples 'raises an error', 'One of the options does not belong to the question provided'
     end
 
     context 'when one of the options cannot be found' do
       subject do
-        described_class.new(group, voting, question_1.id => [option_1_1.id, SecureRandom.uuid],
-                                           question_2.id => [option_2_1.id, option_2_1.id])
+        described_class.new(group, voting, question_1.id => { option_1_1.id => 1, SecureRandom.uuid => 1 },
+                                           question_2.id => { option_2_1.id => 2 })
       end
 
       include_examples 'raises an error', 'Option must exist'
@@ -132,15 +123,15 @@ RSpec.describe VoteSubmissionService, type: :service do
 
     context 'when one of the option_ids is not a UUID' do
       subject do
-        described_class.new(group, voting, question_1.id => [option_1_1.id, 'foobar'],
-                                           question_2.id => [option_2_1.id, option_2_1.id])
+        described_class.new(group, voting, question_1.id => { option_1_1.id => 1, 'foobar' => 1 },
+                                           question_2.id => { option_2_1.id => 2 })
       end
 
       include_examples 'raises an error', 'Option must exist'
     end
 
     %i[draft finished].each do |status|
-      subject { described_class.new(group, voting, question_1.id => [option_1_1.id, option_1_2.id]) }
+      subject { described_class.new(group, voting, question_1.id => { option_1_1.id => 1, option_1_2.id => 1 }) }
 
       context "when voting is in #{status} status" do
         before { voting.update! status: status }
@@ -150,13 +141,13 @@ RSpec.describe VoteSubmissionService, type: :service do
     end
 
     context 'when group is not provided' do
-      subject { described_class.new(nil, voting, question_1.id => [option_1_1.id, option_1_2.id]) }
+      subject { described_class.new(nil, voting, question_1.id => { option_1_1.id => 1, option_1_2.id => 1 }) }
 
       include_examples 'raises an error', 'The group was not provided'
     end
 
     context 'when answers for one of the questions have not been provided' do
-      subject { described_class.new(group, voting, question_1.id => [option_1_1.id, option_1_1.id]) }
+      subject { described_class.new(group, voting, question_1.id => { option_1_1.id => 2 }) }
 
       include_examples 'raises an error', 'Votes for some of the questions are missing'
     end
