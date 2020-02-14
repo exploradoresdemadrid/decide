@@ -1,4 +1,7 @@
-<%= simple_form_for :user, url: api_v1_users_login_path, remote: true do |f| %>
-  <%= f.input :auth_token, as: :string %>
-  <%= f.submit %>
-<% end %>
+<div id="login-page">
+  <%= alert_box 'Introduce el pin que has recibido al inscribirte.' %>
+  <%= simple_form_for :user, url: api_v1_users_login_path, remote: true do |f| %>
+    <%= f.input :auth_token, as: :string, label: false, input_html: { maxlength: User::AUTH_TOKEN_LENGTH } %>
+    <%= f.submit 'Entrar' %>
+  <% end %>
+</div>
