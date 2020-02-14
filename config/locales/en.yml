@@ -40,6 +40,7 @@ en:
   sign_out: "Sing out"
   participation: "Participation"
   results: "Results"
+  votes: "Votes"
   votes_submitted: "Votes submitted"
   pending_votes: "Pending votes"
   links: "Links"
@@ -50,6 +51,7 @@ en:
   bar_chart: "Bar chart"
   show: "Show"
   options: "Options"
+  option: "Option"
   destroy: "Destroy"
   new_question: "New question"
   no_options: "No options have been specified"
@@ -70,3 +72,5 @@ en:
   is_secret: "This voting is secret. The votes submitted will not be associated to your group."
   is_not_secret: "This voting is not secret. The votes submitted will be associated to your group, and will be visible in the results."
   already_voted_message: Your vote was submitted. You will be able to see the results as soon as the voting finishes.
+  percentage: Percentage
+  supporting_groups: Supporting groups

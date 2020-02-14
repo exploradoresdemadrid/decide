@@ -15,6 +15,7 @@ class Ability
       cannot :index, Group
       cannot :index, Question
       cannot %i[edit destroy create], Voting
+      cannot :index, Voting, status: :draft
     end
   end
 end

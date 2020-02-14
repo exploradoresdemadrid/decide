@@ -9,6 +9,7 @@ es:
   sign_out: "Cerrar sesión"
   participation: "Participación"
   results: "Resultados"
+  votes: "Votos"
   votes_submitted: "Votos emitidos"
   pending_votes: "Votos pendientes"
   links: "Enlaces"
@@ -19,6 +20,7 @@ es:
   bar_chart: "Diagrama de barras"
   show: "Mostrar"
   options: "Opciones"
+  option: "Opción"
   destroy: "Eliminar"
   new_question: "Nueva pregunta"
   no_options: "Ninguna opción ha sido especificada"
@@ -39,3 +41,5 @@ es:
   is_secret: "Esta votación es secreta. Los votos emitidos no se asociarán a su grupo."
   is_not_secret: "Esta votación no es secreta. Los votos emitidos se asociarán a su grupo y serán visible en los resultados."
   already_voted_message: Tu voto ha sido enviado. En cuanto finalice la votación podrás ver los resultados.
+  percentage: Porcentaje
+  supporting_groups: Apoyos
