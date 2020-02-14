@@ -45,6 +45,7 @@ en:
   links: "Links"
   edit: "Edit"
   back: "Back"
+  reload: "Reload"
   questions: "Questions"
   bar_chart: "Bar chart"
   show: "Show"
@@ -68,3 +69,4 @@ en:
   edit_group: "Edit group"
   is_secret: "This voting is secret. The votes submitted will not be associated to your group."
   is_not_secret: "This voting is not secret. The votes submitted will be associated to your group, and will be visible in the results."
+  already_voted_message: Your vote was submitted. You will be able to see the results as soon as the voting finishes.

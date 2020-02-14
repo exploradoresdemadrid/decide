@@ -14,6 +14,7 @@ es:
   links: "Enlaces"
   edit: "Editar"
   back: "Atrás"
+  reload: "Recargar"
   questions: "Preguntas"
   bar_chart: "Diagrama de barras"
   show: "Mostrar"
@@ -37,3 +38,4 @@ es:
   edit_group: "Editar grupo"
   is_secret: "Esta votación es secreta. Los votos emitidos no se asociarán a su grupo."
   is_not_secret: "Esta votación no es secreta. Los votos emitidos se asociarán a su grupo y serán visible en los resultados."
+  already_voted_message: Tu voto ha sido enviado. En cuanto finalice la votación podrás ver los resultados.
