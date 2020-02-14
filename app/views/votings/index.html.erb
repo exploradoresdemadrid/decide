@@ -16,8 +16,9 @@
 
       table.rows << row
      end %>
-<% end %>
+<% end if @votings.any? %>
 
+<%= alert_box t('no_votings') if @votings.none? %>
 <br>
 
 <%= link_to t('new_voting'), new_voting_path if can?(:create, Voting) %>

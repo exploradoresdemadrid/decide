@@ -74,3 +74,4 @@ en:
   already_voted_message: Your vote was submitted. You will be able to see the results as soon as the voting finishes.
   percentage: Percentage
   supporting_groups: Supporting groups
+  no_votings: There is no active voting at the moment
