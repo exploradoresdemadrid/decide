@@ -24,5 +24,5 @@ Rails.application.routes.draw do
     get 'current', on: :collection
     post 'reset_token', on: :collection
   end
-  root to: redirect('https://exploradoresdemadrid.github.io/decide')
+  root to: 'sessions#new'
 end
