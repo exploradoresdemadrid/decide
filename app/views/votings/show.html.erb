@@ -24,12 +24,14 @@
   <%= render 'vote_submission_form', voting: @voting %>
 <% end %>
 
-<h2><%= t('participation') %></h2>
-<h3><%= t('votes_submitted') %></h3>
-<%= groups_with_vote_submitted(@voting) %>
+<% if current_user.admin? %>
+  <h2><%= t('participation') %></h2>
+  <h3><%= t('votes_submitted') %></h3>
+  <%= groups_with_vote_submitted(@voting) %>
 
-<h3><%= t('pending_votes') %></h3>
-<%= groups_without_vote_submitted(@voting) %>
+  <h3><%= t('pending_votes') %></h3>
+  <%= groups_without_vote_submitted(@voting) %>
+<% end %>
 
 <h2><%= t('links') %></h2>
 
