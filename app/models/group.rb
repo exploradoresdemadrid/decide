@@ -16,6 +16,10 @@ class Group < ApplicationRecord
     in? voting.groups
   end
 
+  def full_name
+    [name, number].join ' '
+  end
+
   private
 
   def create_user
