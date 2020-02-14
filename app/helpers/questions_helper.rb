@@ -21,8 +21,8 @@ module QuestionsHelper
     group_distribution = vote_distribution_by_group(question)
 
     bootstrap_table do |table|
-      table.headers = %w[Option Votes Percentage]
-      table.headers << 'Supporting groups' unless question.voting.secret?
+      table.headers = [t('option'), t('votes'), t('percentage')]
+      table.headers << t('supporting_groups') unless question.voting.secret?
       table.rows = distribution.map do |(option, votes)|
         row = [
           option,
@@ -31,7 +31,7 @@ module QuestionsHelper
         ]
 
         unless question.voting.secret?
-          row << string_list(group_distribution[option]&.map { |(group_name, group_votes)| "#{group_name} (#{group_votes} votes)" })
+          row << string_list(group_distribution[option]&.map { |(group_name, group_votes)| "#{group_name} (#{group_votes} #{t('votes')})" })
         end
 
         row
@@ -41,6 +41,23 @@ module QuestionsHelper
 
   def question_column_chart(question)
     column_chart vote_distribution_query(question), download: true
+  end
+
+  def question_input_form(f, question)
+    if current_group&.available_votes.to_i > 1
+      question.options.map { |option| range_for_option(f, option) }.inject(:+)
+    elsif current_group&.available_votes == 1
+      f.collection_select :status, question.options, :id, :title, { include_blank: '' }, class: 'form-control', name: "votes[#{question.id}]"
+    end
+  end
+
+  def question_group_summary(question)
+    Vote.joins(:option)
+        .where(group: current_group, options: { question: question })
+        .group('options.title')
+        .count
+        .map { |k, v| "#{k} (#{v} votos)" }
+        .join(', ')
   end
 
   private

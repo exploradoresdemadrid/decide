@@ -4,6 +4,7 @@
 <%= panel_row column_class: 'col-sm-6' do %>
   <%= panel heading: t('results') do %>
     <%= question_results_table(question) %>
+    <%= alert_box "#{t('you_voted')}: #{question_group_summary(question)}", context: :success %>
   <% end %>
 
   <%= panel heading: t('bar_chart') do %>

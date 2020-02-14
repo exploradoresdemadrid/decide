@@ -1,0 +1,15 @@
+#login-page{
+    text-align: center;
+    padding-top: 20%;
+
+    #user_auth_token{
+        font-size: 3em;
+        text-align: center;
+        padding: 0;
+    }
+
+    input[type=submit]{
+        margin: 20px;
+        font-size: 2em;
+    }
+}

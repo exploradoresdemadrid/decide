@@ -6,7 +6,8 @@ class VoteSubmissionService
   def initialize(group, voting, response)
     @group = group
     @voting = voting
-    @response = response.transform_values{ |v| v.transform_values(&:to_i) }
+    @response = response.transform_values { |v| v.is_a?(Hash) ? v : { v => 1 } }
+                        .transform_values { |v| v.transform_values(&:to_i) }
   end
 
   def vote!

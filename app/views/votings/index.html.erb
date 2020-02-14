@@ -1,19 +1,24 @@
 <h1><%= t('votings')%></h1>
 
 <%= bootstrap_table do |table| %>
-  <% table.headers = [t('title'), t('description'), t('status'), t('questions'), t('edit'), t('destroy')] %>
-  <% @votings.each do |voting| %>
-    <% table.rows << [
-      link_to(voting.title, voting),
-      voting.description,
-      voting.status.capitalize,
-      link_to("view #{voting.questions.count} questions", voting_questions_path(voting)),
-      link_to( t('edit'), edit_voting_path(voting)),
-      link_to( t('destroy'), voting, method: :delete, data: { confirm: 'Are you sure?' })
-    ] %>
-  <% end %>
-<% end %>
+  <% 
 
+  table.headers = [t('title'), t('status')]
+  table.headers << t('questions') if can?(:index, Question)
+  table.headers << t('edit') if can?(:edit, Voting)
+  table.headers << t('destroy') if can?(:destroy, Voting)
+
+  @votings.each do |voting| 
+      row = [ link_to(voting.title, voting), voting.status.capitalize ]
+      row <<  link_to("view #{voting.questions.count} questions", voting_questions_path(voting)) if can?(:index, Question)
+      row << link_to( t('edit'), edit_voting_path(voting)) if can?(:edit, Voting)
+      row << link_to( t('destroy'), voting, method: :delete, data: { confirm: 'Are you sure?' }) if can?(:destroy, Voting)
+
+      table.rows << row
+     end %>
+<% end if @votings.any? %>
+
+<%= alert_box t('no_votings') if @votings.none? %>
 <br>
 
-<%= link_to t('new_voting'), new_voting_path %>
+<%= link_to t('new_voting'), new_voting_path if can?(:create, Voting) %>

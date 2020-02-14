@@ -1,16 +1,6 @@
 <h1><%= @voting.title %></h1>
 
-<p>
-  <strong> <%= t('description') %> :</strong>
-  <%= @voting.description %>
-</p>
-
-<p>
-  <strong><%= t('status') %>:</strong>
-  <%= @voting.status %>
-</p>
-
-<%= secret_voting_alert(@voting) %>
+<%= secret_voting_alert(@voting) if @voting.open? %>
 
 <% if @voting.finished? %>
   <h2><%= t('results') %></h2>
@@ -21,7 +11,12 @@
 <% end %>
 
 <% if @voting.open? %>
-  <%= render 'vote_submission_form', voting: @voting %>
+  <% if current_group&.voted?(@voting) %>
+    <%= alert_box t('already_voted_message'), context: :success %>
+    <%= button_to t('reload'), voting_path(@voting), class: 'b', form_class: 'f', method: :get, context: :primary %>
+  <% else %>
+    <%= render 'vote_submission_form', voting: @voting if can?(:vote, @voting) %>
+  <% end %>
 <% end %>
 
 <% if current_user.admin? %>
@@ -33,8 +28,6 @@
   <%= groups_without_vote_submitted(@voting) %>
 <% end %>
 
-<h2><%= t('links') %></h2>
-
-<%= link_to t('edit'), edit_voting_path(@voting) %> |
-<%= link_to t('back'), votings_path %> | 
-<%= link_to t('questions'), voting_questions_path(@voting) %>
+<%= link_to t('edit'), edit_voting_path(@voting) if can?(:edit, @voting) %>
+<%= link_to t('back'), votings_path %>
+<%= link_to t('questions'), voting_questions_path(@voting) if can?(:index, Question) %>
