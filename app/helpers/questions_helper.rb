@@ -51,6 +51,15 @@ module QuestionsHelper
     end
   end
 
+  def question_group_summary(question)
+    Vote.joins(:option)
+        .where(group: current_group, options: { question: question })
+        .group('options.title')
+        .count
+        .map { |k, v| "#{k} (#{v} votos)" }
+        .join(', ')
+  end
+
   private
 
   def vote_distribution_by_group(question)
