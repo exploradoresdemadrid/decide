@@ -56,14 +56,15 @@ class VotingsController < ApplicationController
   end
 
   def vote
-    VoteSubmissionService.new(current_user.group, Voting.find(params[:voting_id]), params.require(:votes).permit!.to_h).vote!
+    voting = Voting.find(params[:voting_id])
+    VoteSubmissionService.new(current_user.group, voting, params.require(:votes).permit!.to_h).vote!
     respond_to do |format|
-      format.html { redirect_to voting_path(@voting) }
+      format.html { redirect_to voting_path(voting) }
       format.json { head :created }
     end
   rescue Errors::VotingError => e
     respond_to do |format|
-      format.html { redirect_to voting_path(@voting, error: e.message) }
+      format.html { redirect_to voting_path(voting), error: e.message }
       format.json { render json: { errors: [e.message] }, status: :bad_request }
     end
   end

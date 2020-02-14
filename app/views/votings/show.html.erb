@@ -20,7 +20,11 @@
   <% end %>
 <% end %>
 
-<h2> <%= t('participation') %> </h2>
+<% if @voting.open? %>
+  <%= render 'vote_submission_form', voting: @voting %>
+<% end %>
+
+<h2><%= t('participation') %></h2>
 <h3><%= t('votes_submitted') %></h3>
 <%= groups_with_vote_submitted(@voting) %>
 
