@@ -23,6 +23,10 @@ class User < ApplicationRecord
     save!
   end
 
+  def admin?
+    group.nil?
+  end
+
   private
 
   def assign_auth_token

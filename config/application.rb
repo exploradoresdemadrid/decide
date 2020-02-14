@@ -30,6 +30,9 @@ module Decide
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    config.i18n.available_locales = [:en, :es] 
+    config.i18n.default_locale = :es
+
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
       g.factory_bot suffix: "factory"

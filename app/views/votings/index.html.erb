@@ -1,19 +1,19 @@
-<h1>Votings</h1>
+<h1><%= t('votings')%></h1>
 
 <%= bootstrap_table do |table| %>
-  <% table.headers = ['Title', 'Description', 'Status', 'Questions', 'Edit', 'Destroy'] %>
+  <% table.headers = [t('title'), t('description'), t('status'), t('questions'), t('edit'), t('destroy')] %>
   <% @votings.each do |voting| %>
     <% table.rows << [
       link_to(voting.title, voting),
       voting.description,
       voting.status.capitalize,
       link_to("view #{voting.questions.count} questions", voting_questions_path(voting)),
-      link_to('Edit', edit_voting_path(voting)),
-      link_to('Destroy', voting, method: :delete, data: { confirm: 'Are you sure?' })
+      link_to( t('edit'), edit_voting_path(voting)),
+      link_to( t('destroy'), voting, method: :delete, data: { confirm: 'Are you sure?' })
     ] %>
   <% end %>
 <% end %>
 
 <br>
 
-<%= link_to 'New Voting', new_voting_path %>
+<%= link_to t('new_voting'), new_voting_path %>
