@@ -35,11 +35,10 @@ jobs:
           path: coverage
           prefix: tests
   build:
-    working_directory: ~/decide
-    parallelism: 1
-    shell: /bin/bash --login
+    machine: true
     steps:
       - checkout
+      - setup_remote_docker
       - run: docker build . -t decide
 workflows:
   version: 2
