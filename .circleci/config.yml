@@ -15,7 +15,7 @@ jobs:
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: decide_test
-          POSTGRES_PASSWORD: ""
+          POSTGRES_PASSWORD: postgres
     steps:
       - checkout
       - restore_cache:
