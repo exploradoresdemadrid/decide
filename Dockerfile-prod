@@ -56,4 +56,4 @@ RUN bin/yarn install
 COPY . /app/
 
 # Precompile assets
-RUN RAILS_ENV=production rails assets:precompile
+RUN RAILS_ENV=production SECRET_KEY_BASE=1 rails assets:precompile
