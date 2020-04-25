@@ -8,6 +8,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+raise 'Running seeds in non-development environment' unless Rails.env.development?
+
+Voting.destroy_all
+Group.destroy_all
+User.destroy_all
+
 admin = User.find_or_create_by!(email: 'admin@example.com') do |user|
   user.password = '12345678'
 end
@@ -96,9 +102,6 @@ public_voting.questions.find_or_create_by!(title: 'How is the temperature?') do 
   question.options.find_or_initialize_by(title: 'Really hot')
   question.options.find_or_initialize_by(title: 'Are we in hell?')
 end
-
-Vote.destroy_all
-VoteSubmission.destroy_all
 
 groups.each do |group|
   response = public_voting.questions.map do |question|
