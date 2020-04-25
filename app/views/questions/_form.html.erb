@@ -3,11 +3,17 @@
   <%= f.text_field :description %>
   <%= f.hidden_field :voting_id, value: @voting.id %>
 
-  <div>
-    <%= link_to_add_association t('add_option'), f, :options, {'data-association-insertion-method' => 'after', wrapper: 'bootstrap' } %>
+  <h4>Options</h4>
+  <div class="options-form">
     <%= f.fields_for :options do |option| %>
       <%= render 'option_fields', f: option %>
     <% end %>
+    <%= link_to_add_association t('add_option'), f, :options, {
+      'data-association-insertion-method' => 'append',
+      'data-association-insertion-node' => '.options-form > fieldset > .panel-body',
+      wrapper: 'bootstrap'
+    } %>
+
   </div>
   <%= f.submit t('submit') %>
 <% end %>
