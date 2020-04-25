@@ -39,9 +39,20 @@ jobs:
       - image: circleci/ruby:2.6.3-node-browsers
     steps:
       - checkout
+      - run:
+          name: Setup VirtualEnv
+          command: |
+            echo 'export TAG=0.1.${CIRCLE_BUILD_NUM}' >> $BASH_ENV
+            echo 'export IMAGE_NAME=decide' >> $BASH_ENV 
+            echo 'export ORG_NAME=exploradoresdemadrid' >> $BASH_ENV 
       - setup_remote_docker:
           docker_layer_caching: true
-      - run: docker build . -t decide
+      - run:
+          name: Build & push to DockerHub 
+          command: |
+            docker build -t $ORG_NAME/$IMAGE_NAME:$TAG .
+            echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
+            docker push $ORG_NAME/$IMAGE_NAME:$TAG
 workflows:
   version: 2
   build:
