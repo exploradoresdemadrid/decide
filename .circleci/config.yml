@@ -59,7 +59,10 @@ workflows:
     jobs:
       - test
       - build:
-          branches:
-            only:
-              - master
-              - beta
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
+                - beta
