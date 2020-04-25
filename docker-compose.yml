@@ -17,6 +17,6 @@ services:
       - migration
   migration:
     build: .
-    command: "bundle exec rake db:create db:migrate"
+    command: "bundle exec rake db:migrate"
     depends_on:
       - db
