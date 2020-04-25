@@ -104,7 +104,7 @@ groups.each do |group|
   response = public_voting.questions.map do |question|
     [
       question.id,
-      group.available_votes.times.map { question.option_ids.sample }
+      group.available_votes.times.map { question.option_ids.sample }.group_by(&:itself).transform_values(&:count)
     ]
   end.to_h
 
