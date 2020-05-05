@@ -9,6 +9,8 @@
 
   <% if @voting.class == MultiselectVoting %>
     <%= f.number_field :max_options %>
+
+    <%= f.text_area :options, value: @voting.questions.pluck(:title).join("\n") %>
   <% end %>
 
   <%= label_tag :status%>
