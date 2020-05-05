@@ -11,7 +11,7 @@ module VotingsHelper
 
   def types_for_multiselect
     Voting.types.map do |type|
-      { type.name => type.name.underscore.gsub('_', ' ').split.first.capitalize }
+      { type.name => type.human_class_name }
     end.inject(:merge)
   end
 

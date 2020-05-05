@@ -9,6 +9,10 @@ class Voting < ApplicationRecord
 
   validates_presence_of :title, :status
 
+  def self.human_class_name
+    name.underscore.gsub('_', ' ').split.first.capitalize
+  end
+
   def self.types
     [SimpleVoting, MultiselectVoting]
   end
