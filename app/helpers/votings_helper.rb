@@ -9,6 +9,14 @@ module VotingsHelper
     string_list(Group.where.not(id: voting.groups.select(:id)).pluck(:name))
   end
 
+  def voting_questions_form(voting, f)
+    voting.questions.map do |question|
+      content_tag(:h4, question.title) +
+        content_tag(:p, question.description) +
+        question_input_form(f, question)
+    end.inject(:+)
+  end
+
   def types_for_multiselect
     Voting.types.map do |type|
       { type.name => type.human_class_name }
