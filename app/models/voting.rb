@@ -16,4 +16,8 @@ class Voting < ApplicationRecord
   def self.types
     [SimpleVoting, MultiselectVoting]
   end
+
+  def transform_votes(votes, options)
+    votes
+  end
 end

@@ -11,6 +11,16 @@ class MultiselectVoting < Voting
     Voting.model_name
   end
 
+  def transform_votes(votes, options = {})
+    votes.transform_values do |question_response|
+      if question_response.values.first.positive?
+        question_response
+      else
+        { Option.find(question_response.keys.first).question.options.no.first.id => options[:available_votes] }
+      end
+    end
+  end
+
   private
 
   def handle_options

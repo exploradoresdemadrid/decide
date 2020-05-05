@@ -37,4 +37,26 @@ RSpec.describe MultiselectVoting, type: :model do
       expect(subject.questions.pluck(:id)).to include(*existing_ids)
     end
   end
+
+  describe '#transform_votes' do
+    context 'when there are several questions' do
+      subject { create(:multiselect_voting, options: "Foo\nBar") }
+      let(:first_question) { subject.questions.find_by(title: 'Foo') }
+      let(:second_question) { subject.questions.find_by(title: 'Bar') }
+      let(:original_response) do
+        {
+          first_question.id => { first_question.options.yes.first.id => 4 },
+          second_question.id => { second_question.options.yes.first.id => 0 }
+        }
+      end
+
+      it 'leaves the selected option untouched' do
+        expect(subject.transform_votes(original_response, available_votes: 4)[first_question.id]).to eq(original_response[first_question.id])
+      end
+
+      it 'defaults to the non-selected option if no value was selected' do
+        expect(subject.transform_votes(original_response, available_votes: 4)[second_question.id]).to eq(second_question.options.no.first.id => 4)
+      end
+    end
+  end
 end
