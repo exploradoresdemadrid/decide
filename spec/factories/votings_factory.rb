@@ -7,5 +7,9 @@ FactoryBot.define do
     status { :open }
 
     trait(:invalid) { title { nil } }
+
+    factory :multiselect_voting, class: 'MultiselectVoting' do
+      max_options { 5 }
+    end
   end
 end

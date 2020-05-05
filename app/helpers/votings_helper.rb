@@ -9,6 +9,12 @@ module VotingsHelper
     string_list(Group.where.not(id: voting.groups.select(:id)).pluck(:name))
   end
 
+  def types_for_multiselect
+    Voting.types.map do |type|
+      { type.name => type.name.underscore.gsub('_', ' ').split.first.capitalize }
+    end.inject(:merge)
+  end
+
   def secret_voting_alert(voting)
     alert_box do
       if voting.secret?

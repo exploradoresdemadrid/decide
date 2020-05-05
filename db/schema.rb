@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_03_104317) do
+ActiveRecord::Schema.define(version: 2020_05_05_185343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 2020_01_03_104317) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "secret", default: false, null: false
+    t.string "type", default: "SimpleVoting", null: false
+    t.integer "max_options"
   end
 
   add_foreign_key "groups", "users"

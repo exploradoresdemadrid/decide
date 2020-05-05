@@ -2,6 +2,15 @@
   <%= f.text_field :title %>
   <%= f.text_field :description %>
 
+  <% if @voting.new_record? %>
+    <%= label_tag :type %>
+    <%= f.collection_select :type, types_for_multiselect, :first, :last, {}, {:class => 'form-control'} %>
+  <% end %>
+
+  <% if @voting.class == MultiselectVoting %>
+    <%= f.number_field :max_options %>
+  <% end %>
+
   <%= label_tag :status%>
   <%= f.collection_select :status, Voting.statuses, :first, :first, {}, {:class => 'form-control'} %>
 

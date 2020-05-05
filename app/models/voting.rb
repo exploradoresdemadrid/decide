@@ -8,4 +8,8 @@ class Voting < ApplicationRecord
   has_many :groups, through: :vote_submissions
 
   validates_presence_of :title, :status
+
+  def self.types
+    [SimpleVoting, MultiselectVoting]
+  end
 end
