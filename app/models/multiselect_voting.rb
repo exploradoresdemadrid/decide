@@ -21,6 +21,15 @@ class MultiselectVoting < Voting
     end
   end
 
+  def perform_voting_validations!(votes)
+    return unless max_options.to_i.positive?
+
+    options_selected_count = votes.count { |_, option| option.values.first.positive? }
+    if options_selected_count > max_options
+      raise Errors::VotingError, "At most #{max_options} options can be selected, but you chose #{options_selected_count}"
+    end
+  end
+
   private
 
   def handle_options

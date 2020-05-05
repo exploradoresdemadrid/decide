@@ -59,4 +59,64 @@ RSpec.describe MultiselectVoting, type: :model do
       end
     end
   end
+
+  describe '#perform_voting_validations' do
+    subject { create(:multiselect_voting, options: "Foo\nBar\nFooBar\nBarFoo") }
+    let(:first_question) { subject.questions.find_by(title: 'Foo') }
+    let(:second_question) { subject.questions.find_by(title: 'Bar') }
+    let(:third_question) { subject.questions.find_by(title: 'FooBar') }
+    let(:fourth_question) { subject.questions.find_by(title: 'BarFoo') }
+
+    context 'when max options are not configured' do
+      before { subject.update(max_options: nil) }
+
+      it 'does not raise an error' do
+        expect do
+          subject.perform_voting_validations!(
+            first_question.id => { first_question.options.yes.first.id => 4 },
+            second_question.id => { second_question.options.yes.first.id => 4 },
+            third_question.id => { third_question.options.yes.first.id => 4 },
+            fourth_question.id => { fourth_question.options.yes.first.id => 4 }
+          )
+        end.not_to raise_error
+      end
+    end
+
+    context 'when max options are configured' do
+      before { subject.update(max_options: 2) }
+
+      it 'does not raise an error if selected options are under threshold' do
+        expect do
+          subject.perform_voting_validations!(
+            first_question.id => { first_question.options.yes.first.id => 4 },
+            second_question.id => { second_question.options.yes.first.id => 0 },
+            third_question.id => { third_question.options.yes.first.id => 0 },
+            fourth_question.id => { fourth_question.options.yes.first.id => 0 }
+          )
+        end.not_to raise_error
+      end
+
+      it 'does not raise an error if selected options equal the threshold' do
+        expect do
+          subject.perform_voting_validations!(
+            first_question.id => { first_question.options.yes.first.id => 4 },
+            second_question.id => { second_question.options.yes.first.id => 4 },
+            third_question.id => { third_question.options.yes.first.id => 0 },
+            fourth_question.id => { fourth_question.options.yes.first.id => 0 }
+          )
+        end.not_to raise_error
+      end
+
+      it 'raises an error if group selected more options than allowed' do
+        expect do
+          subject.perform_voting_validations!(
+            first_question.id => { first_question.options.yes.first.id => 4 },
+            second_question.id => { second_question.options.yes.first.id => 4 },
+            third_question.id => { third_question.options.yes.first.id => 4 },
+            fourth_question.id => { fourth_question.options.yes.first.id => 0 }
+          )
+        end.to raise_error Errors::VotingError, 'At most 2 options can be selected, but you chose 3'
+      end
+    end
+  end
 end

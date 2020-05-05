@@ -17,7 +17,9 @@ class Voting < ApplicationRecord
     [SimpleVoting, MultiselectVoting]
   end
 
-  def transform_votes(votes, options)
+  def transform_votes(votes, _options)
     votes
   end
+
+  def perform_voting_validations!(votes); end
 end
