@@ -36,6 +36,10 @@ RSpec.describe MultiselectVoting, type: :model do
       subject.update(options: "Foo\nBar\nFoobar")
       expect(subject.questions.pluck(:id)).to include(*existing_ids)
     end
+
+    it 'allows creation of votings with no options' do
+      expect(create(:multiselect_voting, options: nil)).to be_persisted
+    end
   end
 
   describe '#transform_votes' do
