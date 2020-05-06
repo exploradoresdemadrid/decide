@@ -20,11 +20,11 @@ RSpec.describe User, type: :model do
       expect(create(:user).auth_token).to match(/^\d{6}$/)
     end
 
-    it 'expires after 48 hours' do
+    it 'expires after 7 days' do
       user = create :user
       expect(user.auth_token_expires_at).to be_between(
-        (Time.now + 2.days - 1.second),
-        (Time.now + 2.days + 1.second)
+        (Time.now + 7.days - 1.second),
+        (Time.now + 7.days + 1.second)
       )
     end
   end
