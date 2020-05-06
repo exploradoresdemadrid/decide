@@ -2,6 +2,12 @@
 
 <%= secret_voting_alert(@voting) if @voting.open? %>
 
+<% if @voting.description.present? %>
+  <h2><%= t('description') %></h2>
+
+  <%= @voting.description %>
+<% end %>
+
 <% if @voting.finished? %>
   <h2><%= t('results') %></h2>
 
