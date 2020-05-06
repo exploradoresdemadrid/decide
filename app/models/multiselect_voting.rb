@@ -33,7 +33,7 @@ class MultiselectVoting < Voting
   private
 
   def handle_options
-    all_questions = options.split
+    all_questions = options&.split || []
     questions_already_present = questions.pluck(:title)
     questions_to_delete = questions_already_present - all_questions
     questions_to_create = all_questions - questions_already_present
