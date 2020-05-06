@@ -4,13 +4,15 @@
   <% 
 
   table.headers = [t('title'), t('status')]
+  table.headers << t('type') if can?(:edit, Voting)
   table.headers << t('questions') if can?(:index, Question)
   table.headers << t('edit') if can?(:edit, Voting)
   table.headers << t('destroy') if can?(:destroy, Voting)
 
   @votings.each do |voting| 
       row = [ link_to(voting.title, voting), voting.status.capitalize ]
-      row <<  link_to("view #{voting.questions.count} questions", voting_questions_path(voting)) if can?(:index, Question)
+      row << voting.class.human_class_name
+      row << link_to("view #{voting.questions.count} questions", voting_questions_path(voting)) if can?(:index, Question)
       row << link_to( t('edit'), edit_voting_path(voting)) if can?(:edit, Voting)
       row << link_to( t('destroy'), voting, method: :delete, data: { confirm: 'Are you sure?' }) if can?(:destroy, Voting)
 

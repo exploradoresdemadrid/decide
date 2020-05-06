@@ -11,6 +11,10 @@ class VoteSubmissionService
   end
 
   def vote!
+    voting.perform_voting_validations!(response)
+
+    @response = voting.transform_votes(@response, available_votes: @group&.available_votes)
+
     verify_group_presence!
     verify_group_already_voted!
     verify_voting_status!
