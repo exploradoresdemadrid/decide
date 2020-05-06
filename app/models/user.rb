@@ -9,7 +9,7 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: JWTBlacklist
 
   AUTH_TOKEN_LENGTH = 6
-  AUTH_TOKEN_EXPIRATION_IN_DAYS = 2
+  AUTH_TOKEN_EXPIRATION_IN_DAYS = 7
 
   scope :with_valid_auth_token, -> { where('auth_token_expires_at > ?', Time.current) }
   scope :with_group, -> { joins(:group) }
