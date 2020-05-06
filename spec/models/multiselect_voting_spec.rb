@@ -17,6 +17,10 @@ RSpec.describe MultiselectVoting, type: :model do
       expect(subject.questions.count).to eq 2
     end
 
+    it 'keeps multi-word options together' do
+      expect(create(:multiselect_voting, options: "Foo Bar\nFooBar").questions.pluck(:title)).to contain_exactly('Foo Bar', 'FooBar')
+    end
+
     it 'the options created have Yes/No choices' do
       expect(subject.questions.first.options.pluck(:title)).to contain_exactly('Yes', 'No')
     end
