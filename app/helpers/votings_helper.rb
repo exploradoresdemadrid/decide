@@ -26,6 +26,7 @@ module VotingsHelper
   end
 
   def multiselect_questions_form(voting, f)
+    content_tag(:h4, t('options')) +
     voting.questions.map do |question|
       f.check_box :options,
                   { label: question.title, name: "votes[#{question.id}][#{question.options.yes.first.id}]" },
