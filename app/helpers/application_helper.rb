@@ -9,7 +9,7 @@ module ApplicationHelper
   def string_list(items)
     return unless items.present?
 
-    content_tag(:ul) do
+    content_tag(:ol) do
       items.map do |group_name|
         content_tag(:li) { group_name }
       end.inject(:+)
