@@ -49,4 +49,15 @@ module VotingsHelper
       end
     end
   end
+
+  def voting_column_chart(voting)
+    results = Option.yes
+                    .left_outer_joins(:votes)
+                    .joins(:question)
+                    .where('questions.voting_id' => voting.id)
+                    .group('questions.title')
+                    .count('votes.id')
+                    .sort_by{|_, v| -v}
+    column_chart results, download: true
+  end
 end

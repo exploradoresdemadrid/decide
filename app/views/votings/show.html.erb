@@ -11,8 +11,12 @@
 <% if @voting.finished? %>
   <h2><%= t('results') %></h2>
 
-  <% @voting.questions.each do |question| %>
-    <%= render 'question_results', question: question %>
+  <% if @voting.is_a?(MultiselectVoting) %>
+    <%= voting_column_chart(@voting) %>
+  <% else %>
+    <% @voting.questions.each do |question| %>
+      <%= render 'question_results', question: question %>
+    <% end %>
   <% end %>
 <% end %>
 
