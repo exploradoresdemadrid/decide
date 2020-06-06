@@ -87,7 +87,7 @@ RSpec.describe VoteSubmissionService, type: :service do
                                            question_2.id => { option_2_1.id => 2 })
       end
 
-      include_examples 'raises an error', 'Number of votes submitted does not match available votes: 2'
+      include_examples 'raises an error', 'You must submit 2 votes in each question'
     end
 
     context 'when the group has already voted' do
@@ -97,7 +97,7 @@ RSpec.describe VoteSubmissionService, type: :service do
       end
       before { subject.vote! }
 
-      include_examples 'raises an error', 'The group has already voted'
+      include_examples 'raises an error', 'You have already voted'
     end
 
     context 'when one of the questions does not belong to the selected voting' do
@@ -118,7 +118,7 @@ RSpec.describe VoteSubmissionService, type: :service do
                                            question_2.id => { option_2_1.id => 2 })
       end
 
-      include_examples 'raises an error', 'Option debe existir'
+      include_examples 'raises an error', 'Option must exist'
     end
 
     context 'when one of the option_ids is not a UUID' do
@@ -127,7 +127,7 @@ RSpec.describe VoteSubmissionService, type: :service do
                                            question_2.id => { option_2_1.id => 2 })
       end
 
-      include_examples 'raises an error', 'Option debe existir'
+      include_examples 'raises an error', 'Option must exist'
     end
 
     %i[draft finished].each do |status|

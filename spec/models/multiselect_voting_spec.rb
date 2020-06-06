@@ -123,7 +123,7 @@ RSpec.describe MultiselectVoting, type: :model do
             third_question.id => { third_question.options.yes.first.id => 4 },
             fourth_question.id => { fourth_question.options.yes.first.id => 0 }
           )
-        end.to raise_error Errors::VotingError, 'At most 2 options can be selected, but you chose 3'
+        end.to raise_error Errors::VotingError, 'Max number of options to select is 2, but you selected 3'
       end
     end
   end

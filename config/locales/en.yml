@@ -80,7 +80,7 @@ en:
   errors:
     invalid_authentication_code: Code is invalid or expired
     invalid_number_votes: You must submit %{votes} votes in each question
-    missing_votes_for_question: Votes are missing for some of the questions
+    missing_votes_for_question: Votes for some of the questions are missing
     missing_option: Some of the options could not be found
     already_voted: You have already voted
     multiselect:
