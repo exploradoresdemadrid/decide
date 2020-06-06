@@ -22,6 +22,7 @@ gem 'btgen'
 gem 'chartkick'
 
 gem 'devise'
+gem 'devise-i18n'
 gem 'devise-jwt'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'zero-rails_openapi'

@@ -1,6 +1,5 @@
 <%= simple_form_for voting, :url => voting_vote_path(voting), method: :post, layout: :horizontal do |f| %>
   <%= alert_box error, context: :danger if error.present? %>
   <%= voting_questions_form(voting, f) %>
-  <%= alert_box error, context: :danger if error.present? %>
   <%= f.submit 'Emitir votos' %>
 <% end %>

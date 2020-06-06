@@ -22,11 +22,11 @@ class VoteSubmissionService
     verify_options_belong_to_question!
 
     unless response.size == voting.questions.count
-      raise Errors::VotingError, 'Votes for some of the questions are missing'
+      raise Errors::VotingError, I18n.t('errors.missing_votes_for_question')
     end
 
     unless response.values.all? { |question_responses| question_responses.values.sum == group.available_votes }
-      raise Errors::VotingError, "Number of votes submitted does not match available votes: #{group.available_votes}"
+      raise Errors::VotingError, I18n.t('errors.invalid_number_votes', votes: group.available_votes)
     end
 
     ActiveRecord::Base.transaction do
@@ -36,7 +36,7 @@ class VoteSubmissionService
       VoteSubmission.create!(group: group, voting: voting, votes_submitted: group.available_votes)
     end
   rescue ActiveRecord::InvalidForeignKey, ActiveRecord::NotNullViolation
-    raise Errors::VotingError, 'One of the options could not be found'
+    raise Errors::VotingError, I18n.t('errors.missing_option')
   rescue ActiveRecord::RecordInvalid => e
     raise Errors::VotingError, e.message.split(':').last.strip
   end
@@ -51,7 +51,7 @@ class VoteSubmissionService
 
   def verify_group_already_voted!
     if VoteSubmission.where(group: group, voting: voting).any?
-      raise Errors::VotingError, 'The group has already voted'
+      raise Errors::VotingError, I18n.t('errors.already_voted')
     end
   end
 

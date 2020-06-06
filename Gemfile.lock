@@ -104,6 +104,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.9.1)
+      devise (>= 4.7.1)
     devise-jwt (0.6.0)
       devise (~> 4.0)
       warden-jwt_auth (~> 0.4)
@@ -317,6 +319,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 5.0)
   devise
+  devise-i18n
   devise-jwt
   dotenv-rails
   factory_bot_rails

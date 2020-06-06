@@ -77,3 +77,11 @@ en:
   no_votings: There is no active voting at the moment
   you_voted: You voted
   total_votes: Votes to submit
+  errors:
+    invalid_authentication_code: Code is invalid or expired
+    invalid_number_votes: You must submit %{votes} votes in each question
+    missing_votes_for_question: Votes for some of the questions are missing
+    missing_option: Some of the options could not be found
+    already_voted: You have already voted
+    multiselect:
+      options_exceeded: Max number of options to select is %{max}, but you selected %{selected}
