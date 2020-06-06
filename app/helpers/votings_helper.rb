@@ -19,19 +19,21 @@ module VotingsHelper
 
   def simple_questions_form(voting, f)
     voting.questions.map do |question|
-      content_tag(:h4, question.title) +
-        content_tag(:p, question.description) +
-        question_input_form(f, question)
+      content_tag(:div, class: 'question') do
+        content_tag(:h4, question.title) +
+          content_tag(:p, question.description) +
+          question_input_form(f, question)
+      end
     end.inject(:+)
   end
 
   def multiselect_questions_form(voting, f)
     content_tag(:h4, t('options')) +
-    voting.questions.map do |question|
-      f.check_box :options,
-                  { label: question.title, name: "votes[#{question.id}][#{question.options.yes.first.id}]" },
-                  current_group.available_votes, 0
-    end.inject(:+)
+      voting.questions.map do |question|
+        f.check_box :options,
+                    { label: question.title, name: "votes[#{question.id}][#{question.options.yes.first.id}]" },
+                    current_group.available_votes, 0
+      end.inject(:+)
   end
 
   def types_for_multiselect
@@ -41,13 +43,7 @@ module VotingsHelper
   end
 
   def secret_voting_alert(voting)
-    alert_box do
-      if voting.secret?
-        t('is_secret')
-      else
-        t('is_not_secret')
-      end
-    end
+    alert_box(dismissible: true) { t(voting.secret? ? 'is_secret' : 'is_not_secret') }
   end
 
   def voting_column_chart(voting)
@@ -57,7 +53,7 @@ module VotingsHelper
                     .where('questions.voting_id' => voting.id)
                     .group('questions.title')
                     .count('votes.id')
-                    .sort_by{|_, v| -v}
+                    .sort_by { |_, v| -v }
     column_chart results, download: true
   end
 end
