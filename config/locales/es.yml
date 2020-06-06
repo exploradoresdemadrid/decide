@@ -47,6 +47,7 @@ es:
   you_voted: Has votado
   total_votes: Votos a emitir
   errors:
+    invalid_authentication_code: El código es incorrecto o ha expirado
     invalid_number_votes: Debes emitir %{votes} votos en cada pregunta
     missing_votes_for_question: Faltan votos para alguna de las preguntas 
     missing_option: No se ha podido encontrar alguna de las opciones
