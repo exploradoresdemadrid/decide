@@ -46,3 +46,10 @@ es:
   no_votings: No hay ninguna votación activa
   you_voted: Has votado
   total_votes: Votos a emitir
+  errors:
+    invalid_number_votes: Debes emitir %{votes} votos en cada pregunta
+    missing_votes_for_question: Faltan votos para alguna de las preguntas 
+    missing_option: No se ha podido encontrar alguna de las opciones
+    already_voted: Ya has votado
+    multiselect:
+      options_exceeded: El número máximo de opciones a elegir es %{max}, pero seleccionaste %{selected}

@@ -26,7 +26,7 @@ class MultiselectVoting < Voting
 
     options_selected_count = votes.count { |_, option| option.values.first.positive? }
     if options_selected_count > max_options
-      raise Errors::VotingError, "At most #{max_options} options can be selected, but you chose #{options_selected_count}"
+      raise Errors::VotingError, I8n.t('errors.multiselect.options_exceeded', max: max_options, selected: options_selected_count)
     end
   end
 
