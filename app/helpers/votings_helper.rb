@@ -41,13 +41,7 @@ module VotingsHelper
   end
 
   def secret_voting_alert(voting)
-    alert_box do
-      if voting.secret?
-        t('is_secret')
-      else
-        t('is_not_secret')
-      end
-    end
+    alert_box { t(voting.secret? ? 'is_secret' : 'is_not_secret') }
   end
 
   def voting_column_chart(voting)
