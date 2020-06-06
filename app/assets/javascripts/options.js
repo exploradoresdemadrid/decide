@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function (event) {
+document.addEventListener('turbolinks:load', function (event) {
   function updateCounterFromRange (range) {
     $(range).parent().find('.counter').text(range.value)
 
