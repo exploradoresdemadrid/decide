@@ -1,6 +1,9 @@
 /// <reference types="cypress" />
 
 context('Admin login', () => {
+  before(() => {
+    cy.clearCookies()
+  })
   beforeEach(() => {
     cy.visit('http://localhost:3000/users/sign_in')
   })
@@ -13,5 +16,10 @@ context('Admin login', () => {
   it('use invalid password', () => {
     cy.login('admin@example.com', 'invalidpass')
     cy.get('.alert.alert-danger').should('contain', 'Email o contraseña inválidos.')
+  })
+
+  it('logout', () => {
+    cy.login('admin@example.com', '12345678')
+    cy.logout()
   })
 })

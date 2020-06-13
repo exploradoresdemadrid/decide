@@ -67,7 +67,7 @@ jobs:
           name: Rails server
           command: bundle exec rails s
           background: true
-      - run: sleep 5 ; npm run cy:run
+      - run: sleep 5 ; npm run cy:run:recorded
   build:
     docker:
       - image: circleci/ruby:2.6.3-node-browsers
