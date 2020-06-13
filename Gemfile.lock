@@ -98,6 +98,9 @@ GEM
     colorize (0.8.1)
     concurrent-ruby (1.1.5)
     crass (1.0.5)
+    cypress-rails (0.3.0)
+      puma (>= 3.8.0)
+      railties (>= 5.2.0)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -299,6 +302,7 @@ DEPENDENCIES
   chartkick
   cocoon
   coffee-rails (~> 5.0)
+  cypress-rails
   devise
   devise-i18n
   dotenv-rails
