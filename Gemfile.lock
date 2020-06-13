@@ -82,7 +82,7 @@ GEM
       rails (>= 3.0.0)
     builder (3.2.4)
     byebug (11.0.1)
-    cancancan (3.0.1)
+    cancancan (3.1.0)
     case_transform (0.2)
       activesupport
     chartkick (3.3.1)
