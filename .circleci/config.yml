@@ -102,8 +102,6 @@ workflows:
       - test
       - cypress
       - build:
-          requires:
-            - test
           filters:
             branches:
               only:
@@ -112,6 +110,8 @@ workflows:
       - deploy:
           requires:
             - build
+            - test
+            - cypress
           filters:
             branches:
               only:
