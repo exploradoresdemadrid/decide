@@ -62,12 +62,12 @@ jobs:
           key: v1-dep-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+      - run: bundle exec rake db:reset
       - run:
-          command: bundle exec rails s &
-          environment:
-            RAILS_GROUPS: assets
-      - run:
-          command: npm run cy:run
+          name: Rails server
+          command: bundle exec rails s
+          background: true
+      - run: sleep 5 ; npm run cy:run
   build:
     docker:
       - image: circleci/ruby:2.6.3-node-browsers
