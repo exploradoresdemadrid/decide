@@ -52,6 +52,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
     steps:
       - checkout
+      - run: npm install
       - restore_cache:
           keys:
             - v1-dep-{{ checksum "Gemfile.lock" }}
