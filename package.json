@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "chart.js": "^2.9.3",
-    "chartkick": "^3.2.0"
+    "chartkick": "^3.2.0",
+    "cypress": "^4.8.0"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
@@ -12,5 +13,8 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1"
+  },
+  "scripts": {
+    "cy:run": "cypress run"
   }
 }
