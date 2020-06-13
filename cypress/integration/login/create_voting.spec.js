@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-context('Admin login', () => {
+context('Voting creation', () => {
   before(() => {
     cy.clearCookies()
     cy.visit('http://localhost:3000/users/sign_in')
