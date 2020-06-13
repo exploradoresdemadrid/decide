@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_03_104317) do
+ActiveRecord::Schema.define(version: 2020_06_13_112150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -18,19 +18,13 @@ ActiveRecord::Schema.define(version: 2020_01_03_104317) do
 
   create_table "groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.integer "number", null: false
+    t.integer "number"
     t.integer "available_votes", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "user_id"
     t.index ["name"], name: "index_groups_on_name", unique: true
-    t.index ["number"], name: "index_groups_on_number", unique: true
     t.index ["user_id"], name: "index_groups_on_user_id", unique: true
-  end
-
-  create_table "jwt_blacklist", force: :cascade do |t|
-    t.string "jti", null: false
-    t.index ["jti"], name: "index_jwt_blacklist_on_jti"
   end
 
   create_table "options", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -93,6 +87,8 @@ ActiveRecord::Schema.define(version: 2020_01_03_104317) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "secret", default: false, null: false
+    t.string "type", default: "SimpleVoting", null: false
+    t.integer "max_options"
   end
 
   add_foreign_key "groups", "users"
