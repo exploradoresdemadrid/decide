@@ -1,6 +1,9 @@
 /// <reference types="cypress" />
 
 context('Admin login', () => {
+  before(() => {
+    cy.clearCookies()
+  })
   beforeEach(() => {
     cy.visit('http://localhost:3000/users/sign_in')
   })
@@ -17,7 +20,6 @@ context('Admin login', () => {
 
   it('logout', () => {
     cy.login('admin@example.com', '12345678')
-    cy.contains('Cerrar sesión').click()
-    cy.get('.alert.alert-info').should('contain', 'Sesión finalizada.')
+    cy.logout()
   })
 })

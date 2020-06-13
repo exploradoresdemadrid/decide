@@ -1,22 +1,16 @@
 /// <reference types="cypress" />
 
 context('Group creation', () => {
-  const uuid = () => Cypress._.random(0, 1e6)
-
   before(() => {
     cy.clearCookies()
     cy.visit('http://localhost:3000/users/sign_in')
     cy.login('admin@example.com', '12345678')
   })
   beforeEach(() => {
-    Cypress.Cookies.preserveOnce('_decide_session')
-    cy.visit('http://localhost:3000')
-    cy.contains('Grupos').click()
+    const uuid = () => Cypress._.random(0, 1e6)
 
-    cy.contains('Nuevo grupo').click()
-    cy.contains('Name').click().type('Sample name ' + uuid())
-    cy.contains('Number').click().type('123')
-    cy.contains('Available votes').click().type('5')
+    Cypress.Cookies.preserveOnce('_decide_session')
+    cy.fillGroupForm('Sample name ' + uuid())
   })
 
   it('create group', () => {
