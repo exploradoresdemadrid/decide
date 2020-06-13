@@ -5,8 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable,
-         :trackable,
-         :jwt_authenticatable, jwt_revocation_strategy: JWTBlacklist
+         :trackable
 
   AUTH_TOKEN_LENGTH = 6
   AUTH_TOKEN_EXPIRATION_IN_DAYS = 7
