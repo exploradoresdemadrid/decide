@@ -3,8 +3,7 @@
 context('Voting creation', () => {
   before(() => {
     cy.clearCookies()
-    cy.visit('http://localhost:3000/users/sign_in')
-    cy.login('admin@example.com', '12345678')
+    cy.loginAsAdmin()
   })
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('_decide_session')
@@ -12,10 +11,7 @@ context('Voting creation', () => {
   })
 
   it('create simple voting', () => {
-    cy.contains('Nueva votación').click()
-    cy.contains('Title').click().type('Sample title')
-    cy.contains('Description').click().type('Sample description')
-    cy.contains('Enviar').click()
+    cy.createVoting('Sample title', {})
   })
 
   it('create secret voting', () => {
@@ -24,9 +20,7 @@ context('Voting creation', () => {
     cy.contains('Description').click().type('Sample description')
     cy.contains('Secret').click()
     cy.contains('Enviar').click()
-  })
 
-  afterEach(() => {
     cy.get('.alert.alert-info').should('contain', 'Voting was successfully created.')
   })
 })

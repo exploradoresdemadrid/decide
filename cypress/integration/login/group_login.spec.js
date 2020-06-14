@@ -3,8 +3,7 @@ context('Group login', () => {
   const groupName = 'Sample name ' + uuid()
 
   before(() => {
-    cy.visit('http://localhost:3000/users/sign_in')
-    cy.login('admin@example.com', '12345678')
+    cy.loginAsAdmin()
     cy.createGroup(groupName)
   })
 
