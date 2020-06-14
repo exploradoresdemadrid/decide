@@ -26,6 +26,15 @@ Cypress.Commands.add('fillGroupForm', (name) => {
   cy.contains('Available votes').click().type('5')
 })
 
+Cypress.Commands.add('createVoting', (name) => {
+  cy.contains('Nueva votación').click()
+  cy.contains('Title').click().type(name)
+  cy.contains('Description').click().type('Sample description')
+  cy.contains('Enviar').click()
+
+  cy.get('.alert.alert-info').should('contain', 'Voting was successfully created.')
+})
+
 Cypress.Commands.add('loginAsGroup', (groupName) => {
   cy.get('table').contains('td', groupName).siblings(':nth-of-type(4)').first().invoke('text').then((authToken) => {
     cy.logout();
