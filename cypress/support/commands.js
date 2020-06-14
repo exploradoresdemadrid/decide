@@ -60,6 +60,11 @@ Cypress.Commands.add('loginAsGroup', (groupName) => {
   })
 })
 
+Cypress.Commands.add('loginAsAdmin', () => {
+  cy.visit('http://localhost:3000/users/sign_in')
+  cy.login('admin@example.com', '12345678')
+})
+
 Cypress.Commands.add('loginWithCode', (authToken) => {
   cy.visit('http://localhost:3000')
   cy.get('#user_auth_token').type(authToken)

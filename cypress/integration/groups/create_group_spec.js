@@ -4,7 +4,7 @@ context('Group creation', () => {
   before(() => {
     cy.clearCookies()
     cy.visit('http://localhost:3000/users/sign_in')
-    cy.login('admin@example.com', '12345678')
+    cy.loginAsAdmin()
   })
   beforeEach(() => {
     const uuid = () => Cypress._.random(0, 1e6)

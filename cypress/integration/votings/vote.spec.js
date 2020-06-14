@@ -1,15 +1,14 @@
 /// <reference types="cypress" />
 
 context('Vote submission', () => {
-  before(() => {
-    const uuid = () => Cypress._.random(0, 1e6)
-    const currentUUID = uuid()
-    const votingTitle = 'Voting ' + currentUUID
-    const groupName = 'Group ' + currentUUID 
+  const uuid = () => Cypress._.random(0, 1e6)
+  const currentUUID = uuid()
+  const votingTitle = 'Voting ' + currentUUID
+  const groupName = 'Group ' + currentUUID 
 
+  before(() => {
     cy.clearCookies()
-    cy.visit('http://localhost:3000/users/sign_in')
-    cy.login('admin@example.com', '12345678')
+    cy.loginAsAdmin()
     cy.createVoting(votingTitle, { status: 'open' })
     cy.createQuestion(votingTitle, {})
     cy.createGroup(groupName)
@@ -56,5 +55,26 @@ context('Vote submission', () => {
     cy.get('body').contains('Emitir votos').click()
 
     cy.get('.alert.alert-danger').should('contain', 'Tu voto ha sido enviado. En cuanto finalice la votación podrás ver los resultados.')
+  })
+
+  it('stay on the same page on reload', () => {
+    cy.contains('Recargar').click()
+
+    cy.get('.alert.alert-danger').should('contain', 'Tu voto ha sido enviado. En cuanto finalice la votación podrás ver los resultados.')
+  })
+
+  it('shows results once voting is finished', () => {
+    cy.logout()
+    cy.loginAsAdmin()
+
+    cy.contains(votingTitle).click()
+    cy.wait(2000)
+
+    cy.contains('a', 'Editar').click()
+    cy.get('#voting_status').select('finished')
+    cy.contains('Enviar').click()
+
+    cy.get('.panel-heading').first().should('contain', 'Resultados')
+    cy.get('.panel-heading').last().should('contain', 'Diagrama de barras')
   })
 })

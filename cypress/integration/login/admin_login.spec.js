@@ -9,7 +9,7 @@ context('Admin login', () => {
   })
 
   it('use valid password', () => {
-    cy.login('admin@example.com', '12345678')
+    cy.loginAsAdmin()
     cy.get('.alert.alert-info').should('contain', 'Sesión iniciada.')
   })
 
@@ -19,7 +19,7 @@ context('Admin login', () => {
   })
 
   it('logout', () => {
-    cy.login('admin@example.com', '12345678')
+    cy.loginAsAdmin()
     cy.logout()
   })
 })
