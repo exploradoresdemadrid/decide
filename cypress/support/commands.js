@@ -26,13 +26,31 @@ Cypress.Commands.add('fillGroupForm', (name) => {
   cy.contains('Available votes').click().type('5')
 })
 
-Cypress.Commands.add('createVoting', (name) => {
+Cypress.Commands.add('createVoting', (name, { status = 'draft' }) => {
   cy.contains('Nueva votación').click()
   cy.contains('Title').click().type(name)
   cy.contains('Description').click().type('Sample description')
+  cy.get('#voting_status').select(status)
   cy.contains('Enviar').click()
 
   cy.get('.alert.alert-info').should('contain', 'Voting was successfully created.')
+})
+
+Cypress.Commands.add('createQuestion', (votingName, { title = 'Sample title', options = ['Yes', 'No'] }) => {
+  cy.visit('http://localhost:3000/votings')
+  cy.contains(votingName).click()
+  cy.contains('a', 'Preguntas').click()
+  cy.contains('Nueva pregunta').click()
+
+  cy.contains('Title').click().type(title)
+
+  options.forEach((optionTitle) => {
+    cy.contains('Añadir opción').click()
+    cy.get('fieldset fieldset:last-of-type input[type="text"]').click().type(optionTitle)
+  })
+
+  cy.contains('Enviar').click()
+  cy.get('.alert.alert-info').should('contain', 'Question was successfully created.')
 })
 
 Cypress.Commands.add('loginAsGroup', (groupName) => {

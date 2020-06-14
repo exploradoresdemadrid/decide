@@ -12,7 +12,7 @@ context('Voting creation', () => {
   })
 
   it('create simple voting', () => {
-    cy.createVoting('Sample title')
+    cy.createVoting('Sample title', {})
   })
 
   it('create secret voting', () => {
