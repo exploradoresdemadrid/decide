@@ -9,6 +9,8 @@ class Voting < ApplicationRecord
 
   validates_presence_of :title, :status
 
+  scope :published, -> { where.not(status: :draft) }
+
   def self.human_class_name
     name.underscore.gsub('_', ' ').split.first.capitalize
   end

@@ -11,7 +11,7 @@ class Ability
       can :manage, Question
       can :manage, Voting
     else
-      cannot :index, Voting, status: :draft
+      can :index, :read, Voting, Voting.published
     end
   end
 end
