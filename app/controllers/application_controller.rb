@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def current_organization
+    current_user.organization
+  end
+
   def after_sign_in_path_for(resource)
     stored_location_for(resource) || votings_path
   end

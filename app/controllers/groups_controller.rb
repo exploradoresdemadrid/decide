@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
   def edit; end
 
   def create
-    @group = Group.new(group_params)
+    @group = Group.new(group_params.merge(organization: current_organization))
 
     respond_to do |format|
       if @group.save
