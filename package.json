@@ -4,7 +4,8 @@
   "dependencies": {
     "chart.js": "^2.9.3",
     "chartkick": "^3.2.0",
-    "cypress": "^4.8.0"
+    "cypress": "^4.8.0",
+    "snyk": "^1.346.0"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
@@ -17,5 +18,6 @@
   "scripts": {
     "cy:run:recorded": "cypress run --record",
     "cy:run": "cypress run"
-  }
+  },
+  "snyk": true
 }
