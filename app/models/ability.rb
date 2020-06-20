@@ -11,10 +11,10 @@ class Ability
     if user.superadmin?
       can :manage, :all
     elsif user.admin?
+      can :manage, Group
+      can :manage, Question
+      can :manage, Voting
     else
-      cannot :index, Group
-      cannot :index, Question
-      cannot %i[edit destroy create], Voting
       cannot :index, Voting, status: :draft
     end
   end
