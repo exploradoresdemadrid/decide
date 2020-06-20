@@ -5,6 +5,7 @@ FactoryBot.define do
     sequence(:title) { |n| "Title of voting #{n}" }
     sequence(:description) { |n| "Description of voting #{n}" }
     status { :open }
+    organization
 
     trait(:invalid) { title { nil } }
 

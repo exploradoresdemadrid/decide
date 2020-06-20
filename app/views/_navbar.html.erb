@@ -1,5 +1,6 @@
 <%= navbar do %>
   <%= vertical do %>
+    <%= link_to t('organizations'), organizations_path if current_user && can?(:index, Organization) %>
     <%= link_to t('votings'), votings_path if current_user %>
     <%= link_to t('groups'), groups_path if current_user && can?(:index, Group) %>
     <%= link_to t('sign_out') , destroy_user_session_path, method: :delete if current_user %>

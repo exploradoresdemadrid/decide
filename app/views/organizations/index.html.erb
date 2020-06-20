@@ -1,0 +1,16 @@
+<h1>Organizations</h1>
+
+<%= bootstrap_table do |table| %>
+  <% table.headers = [t('name'), t('edit'), t('destroy')] %>
+  <% @organizations.each do |org| %>
+    <% table.rows << [
+      org.name,
+      link_to(t('edit'), edit_organization_path(org)),
+      link_to(t('destroy'), org, method: :delete, data: { confirm: 'Are you sure?' })
+    ] %>
+  <% end %>
+<% end %>
+
+<br>
+
+<%= link_to 'New Organization', new_organization_path %>

@@ -4,18 +4,16 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :manage, :all
-    cannot [:manage], Question do |question|
-      !question.voting.draft?
-    end
+    current_org_id = user.organization_id
 
-    if user.admin?
-      cannot :vote, Voting
+    if user.superadmin?
+      can :manage, :all
+    elsif user.admin?
+      can :manage, Group, organization_id: current_org_id
+      can :manage, Question, voting: { organization_id: current_org_id }
+      can :manage, Voting, organization_id: current_org_id
     else
-      cannot :index, Group
-      cannot :index, Question
-      cannot %i[edit destroy create], Voting
-      cannot :index, Voting, status: :draft
+      can %i[index show vote], Voting, id: Voting.published.pluck(:id), organization_id: current_org_id
     end
   end
 end

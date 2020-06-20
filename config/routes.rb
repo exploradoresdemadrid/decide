@@ -24,5 +24,8 @@ Rails.application.routes.draw do
     get 'current', on: :collection
     post 'reset_token', on: :collection
   end
+
+  resources :organizations
+
   root to: 'sessions#new'
 end
