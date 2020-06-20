@@ -8,15 +8,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-raise 'Running seeds in non-development environment' unless Rails.env.development?
+unless Rails.env.development?
+  raise 'Running seeds in non-development environment'
+end
 
 Voting.destroy_all
 Group.destroy_all
 User.destroy_all
 
-admin = User.find_or_create_by!(email: 'admin@example.com') do |user|
-  user.password = '12345678'
-  user.role = :admin
+%i[admin superadmin].each do |role|
+  User.find_or_create_by!(email: "#{role}@example.com") do |user|
+    user.password = '12345678'
+    user.role = role
+  end
 end
 
 MAX_VOTES = 6

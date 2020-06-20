@@ -65,6 +65,11 @@ Cypress.Commands.add('loginAsAdmin', () => {
   cy.login('admin@example.com', '12345678')
 })
 
+Cypress.Commands.add('loginAsSuperadmin', () => {
+  cy.visit('http://localhost:3000/users/sign_in')
+  cy.login('superadmin@example.com', '12345678')
+})
+
 Cypress.Commands.add('loginWithCode', (authToken) => {
   cy.visit('http://localhost:3000')
   cy.get('#user_auth_token').type(authToken)
