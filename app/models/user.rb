@@ -15,15 +15,14 @@ class User < ApplicationRecord
 
   before_create :assign_auth_token
 
+  belongs_to :organization
   has_one :group
+
+  enum role: { voter: 0, admin: 1, superadmin: 2 }
 
   def reset_token
     assign_auth_token
     save!
-  end
-
-  def admin?
-    group.nil?
   end
 
   private
