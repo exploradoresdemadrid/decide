@@ -11,7 +11,7 @@ class Ability
       can :manage, Question
       can :manage, Voting
     else
-      can :index, Voting, id: Voting.published.pluck(:id)
+      can %i[index show], Voting, id: Voting.published.pluck(:id)
     end
   end
 end
