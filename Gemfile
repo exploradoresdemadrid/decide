@@ -23,8 +23,6 @@ gem 'chartkick'
 
 gem 'devise', '>= 4.7.1'
 gem 'devise-i18n', '>= 1.9.1'
-gem 'active_model_serializers', '~> 0.10.10'
-gem 'zero-rails_openapi', '>= 2.1.2'
 gem 'rack-cors'
 
 gem 'cocoon'
