@@ -34,6 +34,13 @@ Cypress.Commands.add('fillOrganizationForm', (name) => {
   cy.contains('Name').click().type(name)
 })
 
+Cypress.Commands.add('createOrganization', (name) => {
+  cy.fillOrganizationForm(name)
+  cy.contains('Crear Organization').click()
+
+  cy.get('.alert.alert-info').should('contain', 'Organization was successfully created.')
+})
+
 Cypress.Commands.add('createVoting', (name, { status = 'draft' }) => {
   cy.contains('Nueva votación').click()
   cy.contains('Title').click().type(name)
@@ -70,12 +77,12 @@ Cypress.Commands.add('loginAsGroup', (groupName) => {
 
 Cypress.Commands.add('loginAsAdmin', () => {
   cy.visit('http://localhost:3000/users/sign_in')
-  cy.login('admin@example.com', '12345678')
+  cy.login('admin_edm@example.com', '12345678')
 })
 
 Cypress.Commands.add('loginAsSuperadmin', () => {
   cy.visit('http://localhost:3000/users/sign_in')
-  cy.login('superadmin@example.com', '12345678')
+  cy.login('superadmin_edm@example.com', '12345678')
 })
 
 Cypress.Commands.add('loginWithCode', (authToken) => {
