@@ -1,26 +1,15 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Organizations</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @organizations.each do |organization| %>
-      <tr>
-        <td><%= organization.name %></td>
-        <td><%= link_to 'Show', organization %></td>
-        <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
-        <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= bootstrap_table do |table| %>
+  <% table.headers = [t('name'), t('edit'), t('destroy')] %>
+  <% @organizations.each do |org| %>
+    <% table.rows << [
+      org.name,
+      link_to(t('edit'), edit_organization_path(org)),
+      link_to(t('destroy'), org, method: :delete, data: { confirm: 'Are you sure?' })
+    ] %>
+  <% end %>
+<% end %>
 
 <br>
 
