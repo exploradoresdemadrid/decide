@@ -26,6 +26,14 @@ Cypress.Commands.add('fillGroupForm', (name) => {
   cy.contains('Available votes').click().type('5')
 })
 
+Cypress.Commands.add('fillOrganizationForm', (name) => {
+  cy.visit('http://localhost:3000')
+  cy.contains('Organizations').click()
+
+  cy.contains('New Organization').click()
+  cy.contains('Name').click().type(name)
+})
+
 Cypress.Commands.add('createVoting', (name, { status = 'draft' }) => {
   cy.contains('Nueva votación').click()
   cy.contains('Title').click().type(name)
