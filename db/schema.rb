@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_111744) do
+ActiveRecord::Schema.define(version: 2020_06_20_130021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -23,7 +23,9 @@ ActiveRecord::Schema.define(version: 2020_06_20_111744) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "user_id"
+    t.uuid "organization_id"
     t.index ["name"], name: "index_groups_on_name", unique: true
+    t.index ["organization_id"], name: "index_groups_on_organization_id"
     t.index ["user_id"], name: "index_groups_on_user_id", unique: true
   end
 
@@ -66,8 +68,10 @@ ActiveRecord::Schema.define(version: 2020_06_20_111744) do
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.integer "role", default: 0, null: false
+    t.uuid "organization_id"
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["organization_id"], name: "index_users_on_organization_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -96,13 +100,18 @@ ActiveRecord::Schema.define(version: 2020_06_20_111744) do
     t.boolean "secret", default: false, null: false
     t.string "type", default: "SimpleVoting", null: false
     t.integer "max_options"
+    t.uuid "organization_id"
+    t.index ["organization_id"], name: "index_votings_on_organization_id"
   end
 
+  add_foreign_key "groups", "organizations"
   add_foreign_key "groups", "users"
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "votings"
+  add_foreign_key "users", "organizations"
   add_foreign_key "vote_submissions", "groups"
   add_foreign_key "vote_submissions", "votings"
   add_foreign_key "votes", "groups"
   add_foreign_key "votes", "options"
+  add_foreign_key "votings", "organizations"
 end

@@ -15,11 +15,15 @@ end
 Voting.destroy_all
 Group.destroy_all
 User.destroy_all
+Organization.destroy_all
+
+org = Organization.find_or_create_by(name: 'Exploradores de Madrid')
 
 %i[admin superadmin].each do |role|
   User.find_or_create_by!(email: "#{role}@example.com") do |user|
     user.password = '12345678'
     user.role = role
+    user.organization = org
   end
 end
 
@@ -85,12 +89,14 @@ groups = [
   Group.find_or_create_by!(number: number) do |group|
     group.name = name.downcase.capitalize
     group.available_votes = 1 + rand(MAX_VOTES - 1)
+    group.organization = org
   end
 end
 
 public_voting = Voting.find_or_create_by!(title: 'Weather voting') do |voting|
   voting.description = 'This is not a secret voting'
   voting.secret = false
+  voting.organization = org
 end
 
 public_voting.open!

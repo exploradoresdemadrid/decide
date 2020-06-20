@@ -5,6 +5,7 @@ FactoryBot.define do
     sequence(:name) { |n| "Group_#{n}" }
     sequence(:number) { |n| n }
     available_votes { 1 }
+    organization
 
     trait(:invalid) { name { nil } }
   end
