@@ -5,7 +5,7 @@ class VotingsController < ApplicationController
 
   # GET /votings
   def index
-    @votings = Voting.accessible_by(current_ability)
+    @votings = Voting.accessible_by(current_ability).includes(:questions)
 
     respond_to do |format|
       format.html
