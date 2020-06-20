@@ -9,7 +9,6 @@ class VotingsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @votings, adapter: :json }
     end
   end
 
@@ -17,7 +16,6 @@ class VotingsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.json { render json: @voting, serializer: VotingDetailedSerializer }
     end
   end
 
@@ -60,12 +58,10 @@ class VotingsController < ApplicationController
     VoteSubmissionService.new(current_user.group, voting, params.require(:votes).permit!.to_h).vote!
     respond_to do |format|
       format.html { redirect_to voting_path(voting) }
-      format.json { head :created }
     end
   rescue Errors::VotingError => e
     respond_to do |format|
       format.html { redirect_to voting_path(voting), error: e.message }
-      format.json { render json: { errors: [e.message] }, status: :bad_request }
     end
   end
 

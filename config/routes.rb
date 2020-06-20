@@ -3,16 +3,6 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  namespace :api do
-    namespace :v1 do
-      namespace :users do
-        devise_scope :user do
-          post 'login', to: 'sessions#create'
-        end
-      end
-    end
-  end
-
   resources :sessions, only: :new
 
   resources :votings do
@@ -21,7 +11,6 @@ Rails.application.routes.draw do
   end
 
   resources :groups do
-    get 'current', on: :collection
     post 'reset_token', on: :collection
   end
 
