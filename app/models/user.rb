@@ -26,6 +26,10 @@ class User < ApplicationRecord
     group.nil?
   end
 
+  def superadmin?
+    true
+  end
+
   private
 
   def assign_auth_token
