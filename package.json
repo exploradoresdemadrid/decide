@@ -17,9 +17,7 @@
   },
   "scripts": {
     "cy:run:recorded": "cypress run --record",
-    "cy:run": "cypress run",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "cy:run": "cypress run"
   },
   "snyk": true
 }
