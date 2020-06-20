@@ -31,6 +31,7 @@ context('Organization visibility', () => {
 
   it('voter from one org can see their votings but not others', () => {
     cy.loginAsSuperadmin()
+    cy.visit('http://localhost:3000/groups')
     cy.loginAsGroup('Group 1 Exploradores de Madrid')
     cy.get('table').should('contain', 'Exploradores de Madrid - Weather voting')
     cy.get('table').should('not.contain', 'Sample organization - Weather voting')

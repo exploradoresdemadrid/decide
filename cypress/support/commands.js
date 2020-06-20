@@ -69,7 +69,6 @@ Cypress.Commands.add('createQuestion', (votingName, { title = 'Sample title', op
 })
 
 Cypress.Commands.add('loginAsGroup', (groupName) => {
-  cy.visit('http://localhost:3000/groups')
   cy.get('table').contains('td', groupName).siblings(':nth-of-type(4)').first().invoke('text').then((authToken) => {
     cy.logout();
     cy.loginWithCode(authToken)
