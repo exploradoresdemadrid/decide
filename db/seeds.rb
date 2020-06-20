@@ -16,6 +16,7 @@ User.destroy_all
 
 admin = User.find_or_create_by!(email: 'admin@example.com') do |user|
   user.password = '12345678'
+  user.role = :admin
 end
 
 MAX_VOTES = 6

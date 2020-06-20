@@ -17,17 +17,11 @@ class User < ApplicationRecord
 
   has_one :group
 
+  enum role: { voter: 0, admin: 1, superadmin: 2 }
+
   def reset_token
     assign_auth_token
     save!
-  end
-
-  def admin?
-    group.nil?
-  end
-
-  def superadmin?
-    true
   end
 
   private
