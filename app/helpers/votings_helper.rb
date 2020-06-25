@@ -6,7 +6,7 @@ module VotingsHelper
   end
 
   def groups_without_vote_submitted(voting)
-    string_list(Group.where.not(id: voting.groups.select(:id)).pluck(:name))
+    string_list(voting.organization.groups.where.not(id: voting.groups.select(:id)).pluck(:name))
   end
 
   def voting_questions_form(voting, f)
