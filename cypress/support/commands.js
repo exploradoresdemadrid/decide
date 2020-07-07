@@ -80,6 +80,11 @@ Cypress.Commands.add('loginAsAdmin', () => {
   cy.login('admin_edm@example.com', '12345678')
 })
 
+Cypress.Commands.add('loginAsSecondAdmin', () => {
+  cy.visit('http://localhost:3000/users/sign_in')
+  cy.login('admin_sample@example.com', '12345678')
+})
+
 Cypress.Commands.add('loginAsSuperadmin', () => {
   cy.visit('http://localhost:3000/users/sign_in')
   cy.login('superadmin_edm@example.com', '12345678')
