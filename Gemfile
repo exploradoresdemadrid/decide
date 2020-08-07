@@ -19,7 +19,7 @@ gem 'bootstrap-sass'
 gem 'jquery-rails', '>= 4.4.0'
 gem 'bh', '>= 1.3.6'
 gem 'btgen', '>= 0.1.0'
-gem 'chartkick'
+gem 'chartkick', '>= 3.4.0'
 
 gem 'devise', '>= 4.7.1'
 gem 'devise-i18n', '>= 1.9.1'
