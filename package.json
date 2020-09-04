@@ -5,7 +5,7 @@
     "chart.js": "^2.9.3",
     "chartkick": "^3.2.0",
     "cypress": "^4.11.0",
-    "snyk": "^1.364.2"
+    "snyk": "^1.389.0"
   },
   "devDependencies": {
     "eslint": "^7.5.0",
