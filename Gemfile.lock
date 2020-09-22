@@ -90,7 +90,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
-    cypress-rails (0.3.0)
+    cypress-rails (0.4.0)
       puma (>= 3.8.0)
       railties (>= 5.2.0)
     devise (4.7.3)
