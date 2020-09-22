@@ -105,7 +105,7 @@ workflows:
           filters:
             branches:
               only:
-                - beta
+                - master
       - deploy:
           requires:
             - build
@@ -114,4 +114,4 @@ workflows:
           filters:
             branches:
               only:
-                - beta
+                - master
