@@ -151,7 +151,7 @@ GEM
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    puma (4.3.5)
+    puma (5.0.0)
       nio4r (~> 2.0)
     rack (2.2.3)
     rack-cors (1.1.1)
@@ -302,7 +302,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.3)
   pg
   pry
-  puma (~> 4.3)
+  puma (~> 5.0)
   rack-cors
   rails (~> 6.0.3)
   rails-i18n (>= 6.0.0)
