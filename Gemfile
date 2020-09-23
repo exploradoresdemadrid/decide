@@ -36,7 +36,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails', '>= 6.0.0'
   gem 'pry'
-  gem 'rspec-rails', '~> 4.0.0.0'
+  gem 'rspec-rails', '~> 4.0.1'
   gem 'rubocop'
   gem 'dotenv-rails', '>= 2.7.5'
   gem 'cypress-rails', '>= 0.3.0'
