@@ -70,7 +70,7 @@ jobs:
       - run: sleep 5 ; npm run cy:run:recorded
   build:
     docker:
-      - image: circleci/ruby:2.6.3-node-browsers
+      - image: circleci/ruby:2.7.1-node-browsers
     steps:
       - checkout
       - run:
