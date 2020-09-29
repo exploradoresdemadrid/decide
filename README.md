@@ -1,6 +1,7 @@
 # Decide
 
 [![CircleCI](https://circleci.com/gh/exploradoresdemadrid/decide.svg?style=svg)](https://circleci.com/gh/exploradoresdemadrid/decide)
+[![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/2ojcg1/runs)
 
 ## Instructions for development
 
