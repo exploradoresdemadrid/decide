@@ -42,7 +42,7 @@ Cypress.Commands.add('createOrganization', (name) => {
 })
 
 Cypress.Commands.add('createVoting', (name, { status = 'draft' }) => {
-  cy.contains('Nueva votación').click()
+  cy.contains('Nueva urna virtual').click()
   cy.contains('Title').click().type(name)
   cy.contains('Description').click().type('Sample description')
   cy.get('#voting_status').select(status)

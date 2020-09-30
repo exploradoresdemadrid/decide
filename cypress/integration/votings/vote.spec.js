@@ -23,7 +23,7 @@ context('Vote submission', () => {
     cy.get('.total-votes-counter').should('contain', '0/5')
     cy.contains('Emitir votos').click()
 
-    cy.get('.alert.alert-danger').should('contain', 'Debes emitir 5 votos en cada pregunta')
+    cy.get('.alert.alert-danger').should('contain', 'Debes enviar 5 papeletas en cada pregunta')
     
   })
 
@@ -34,7 +34,7 @@ context('Vote submission', () => {
     cy.get('.total-votes-counter').should('contain', '8/5')
     cy.get('body').contains('Emitir votos').click()
 
-    cy.get('.alert.alert-danger').should('contain', 'Debes emitir 5 votos en cada pregunta')
+    cy.get('.alert.alert-danger').should('contain', 'Debes enviar 5 papeletas en cada pregunta')
   })
 
   it('submit less votes', () => {
@@ -44,7 +44,7 @@ context('Vote submission', () => {
     cy.get('.total-votes-counter').should('contain', '3/5')
     cy.get('body').contains('Emitir votos').click()
 
-    cy.get('.alert.alert-danger').should('contain', 'Debes emitir 5 votos en cada pregunta')
+    cy.get('.alert.alert-danger').should('contain', 'Debes enviar 5 papeletas en cada pregunta')
   })
 
   it('submit available votes', () => {
@@ -54,13 +54,13 @@ context('Vote submission', () => {
     cy.get('.total-votes-counter').should('contain', '5/5')
     cy.get('body').contains('Emitir votos').click()
 
-    cy.get('.alert.alert-danger').should('contain', 'Tu voto ha sido enviado. En cuanto finalice la votación podrás ver los resultados.')
+    cy.get('.alert.alert-danger').should('contain', 'Tu papeleta ha sido enviada. En cuanto se cierre la urna virtual podrás ver los resultados.')
   })
 
   it('stay on the same page on reload', () => {
     cy.contains('Recargar').click()
 
-    cy.get('.alert.alert-danger').should('contain', 'Tu voto ha sido enviado. En cuanto finalice la votación podrás ver los resultados.')
+    cy.get('.alert.alert-danger').should('contain', 'Tu papeleta ha sido enviada. En cuanto se cierre la urna virtual podrás ver los resultados.')
   })
 
   it('shows results once voting is finished', () => {
