@@ -1,17 +1,17 @@
+---
 es:
   title: "Título"
   description: "Descripción"
   status: "Estado"
   secret: "Secreto"
   submit: "Enviar"
-  votings: "Votaciones"
   groups: "Grupos"
   sign_out: "Cerrar sesión"
   participation: "Participación"
   results: "Resultados"
-  votes: "Votos"
-  votes_submitted: "Votos emitidos"
-  pending_votes: "Votos pendientes"
+  votes: "Papeletas"
+  votes_submitted: "Papeletas emitidas"
+  pending_votes: "Papeletas pendientes"
   links: "Enlaces"
   edit: "Editar"
   back: "Atrás"
@@ -26,31 +26,30 @@ es:
   no_options: "Ninguna opción ha sido especificada"
   add_option: "Añadir opción"
   remove: "Eliminar"
-  new_voting: "Nueva votación"
-  questions: "Preguntas"
-  votings: "Votaciones"
+  new_voting: "Nueva urna virtual"
+  votings: "Urnas Virtuales"
   edit_questions: "Editar preguntas"
   name: "Nombre"
   number: "Número"
-  available_votes: "Votos disponibles"
+  available_votes: "Papeletas disponibles"
   auth_token: "Token de autenticación"
   last_login: "Última conexión"
   new_group: "Nuevo grupo"
   reset_tokens: "Reiniciar claves"
   edit_group: "Editar grupo"
-  is_secret: "Esta votación es secreta. Los votos emitidos no se asociarán a su grupo."
-  is_not_secret: "Esta votación no es secreta. Los votos emitidos se asociarán a su grupo y serán visible en los resultados."
-  already_voted_message: Tu voto ha sido enviado. En cuanto finalice la votación podrás ver los resultados.
+  is_secret: "Esta urna virtual es secreta. Las papeletas enviadas no se asociarán a su grupo."
+  is_not_secret: "Esta urna virtual no es secreta. Las papeletas emitidas se asociarán a su grupo y serán visible en los resultados."
+  already_voted_message: Tu papeleta ha sido enviada. En cuanto se cierre la urna virtual podrás ver los resultados.
   percentage: Porcentaje
   supporting_groups: Apoyos
-  no_votings: No hay ninguna votación activa
-  you_voted: Has votado
-  total_votes: Votos a emitir
+  no_votings: No hay ninguna urna virtual activa
+  you_voted: Has enviado tu papeleta
+  total_votes: Papeletas a enviar
   errors:
     invalid_authentication_code: El código es incorrecto o ha expirado
-    invalid_number_votes: Debes emitir %{votes} votos en cada pregunta
-    missing_votes_for_question: Faltan votos para alguna de las preguntas 
+    invalid_number_votes: Debes enviar %{votes} papeletas en cada pregunta
+    missing_votes_for_question: Faltan papeletas para alguna de las preguntas
     missing_option: No se ha podido encontrar alguna de las opciones
-    already_voted: Ya has votado
+    already_voted: Ya has enviado tu papeleta
     multiselect:
       options_exceeded: El número máximo de opciones a elegir es %{max}, pero seleccionaste %{selected}
