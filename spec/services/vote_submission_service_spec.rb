@@ -130,7 +130,7 @@ RSpec.describe VoteSubmissionService, type: :service do
       include_examples 'raises an error', 'Option must exist'
     end
 
-    %i[draft finished].each do |status|
+    %i[draft finished ready].each do |status|
       subject { described_class.new(group, voting, question_1.id => { option_1_1.id => 1, option_1_2.id => 1 }) }
 
       context "when voting is in #{status} status" do
