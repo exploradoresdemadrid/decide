@@ -9,7 +9,7 @@ context('Vote submission', () => {
   before(() => {
     cy.clearCookies()
     cy.loginAsAdmin()
-    cy.createVoting(votingTitle, { status: 'open' })
+    cy.createVoting(votingTitle, { status: 'ready' })
     cy.createQuestion(votingTitle, {})
     cy.createGroup(groupName)
     cy.loginAsGroup(groupName)
@@ -18,13 +18,29 @@ context('Vote submission', () => {
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('_decide_session')
   })
+  it('ready status', () => {
+    cy.get('.alert.alert-warning').should('contain', 'Por ahora no puedes votar, solo visualizar la pregunta')
+    cy.get('.question').should('contain', 'Sample title')
+    cy.contains('Emitir votos').should('be.disabled')
+  })
 
   it('empty vote submission', () => {
+    cy.logout()
+    cy.loginAsAdmin()
+    cy.contains(votingTitle).click()
+    cy.wait(2000)
+    cy.contains('Editar').click()
+    cy.get('#voting_status').select('open')
+    cy.contains('Enviar').click()
+
+
+    cy.contains('Grupos').click()
+    cy.loginAsGroup(groupName)
+    cy.contains(votingTitle).click()
+
     cy.get('.total-votes-counter').should('contain', '0/5')
     cy.contains('Emitir votos').click()
-
     cy.get('.alert.alert-danger').should('contain', 'Debes enviar 5 papeletas en cada pregunta')
-    
   })
 
   it('submit extra votes', () => {
