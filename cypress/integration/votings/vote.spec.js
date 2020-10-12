@@ -19,7 +19,7 @@ context('Vote submission', () => {
     Cypress.Cookies.preserveOnce('_decide_session')
   })
   it('ready status', () => {
-    cy.get('.alert.alert-warning').should('contain', 'Por ahora no puedes votar, solo visualizar la pregunta')
+    cy.get('.alert.alert-warning').should('contain', 'Todavía no puedes enviar tus papeletas. Debes esperar a que se abra la urna virtual.')
     cy.get('.question').should('contain', 'Sample title')
     cy.contains('Emitir votos').should('be.disabled')
   })
