@@ -1,5 +1,6 @@
 <%= simple_form_for voting, :url => voting_vote_path(voting), method: :post, layout: :horizontal do |f| %>
   <%= alert_box error, context: :danger if error.present? %>
+  <%= alert_box "Por ahora no puedes votar, solo visualizar la pregunta", context: :warning if @voting.ready?%>
   <%= voting_questions_form(voting, f) %>
-  <%= f.submit 'Emitir votos' %>
+  <%= f.submit 'Emitir votos', disabled: @voting.ready? %>
 <% end %>
