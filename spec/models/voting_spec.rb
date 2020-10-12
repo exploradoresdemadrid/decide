@@ -12,7 +12,7 @@ RSpec.describe Voting, type: :model do
 
     describe 'status' do
       it { should validate_presence_of(:status) }
-      it { should define_enum_for(:status).with_values(%i[draft open finished]) }
+      it { should define_enum_for(:status).with_values(%i[draft open finished ready]) }
     end
   end
 end
