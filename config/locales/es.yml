@@ -47,6 +47,7 @@ es:
   total_votes: Papeletas a enviar
   errors:
     invalid_authentication_code: El código es incorrecto o ha expirado
+    voting_not_open: Todavía no puedes enviar tus papeletas. Debes esperar a que se abra la urna virtual.
     invalid_number_votes: Debes enviar %{votes} papeletas en cada pregunta
     missing_votes_for_question: Faltan papeletas para alguna de las preguntas
     missing_option: No se ha podido encontrar alguna de las opciones

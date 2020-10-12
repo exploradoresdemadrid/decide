@@ -79,6 +79,7 @@ en:
   total_votes: Votes to submit
   errors:
     invalid_authentication_code: Code is invalid or expired
+    voting_not_open: You cannot vote yet. You must wait for the question to be opened.
     invalid_number_votes: You must submit %{votes} votes in each question
     missing_votes_for_question: Votes for some of the questions are missing
     missing_option: Some of the options could not be found
