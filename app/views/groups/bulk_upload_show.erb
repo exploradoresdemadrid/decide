@@ -1,0 +1,7 @@
+<h1> <%= t('bulk_upload') %> </h1>
+
+<%= form_for(:group, layout: :basic) do |f| %>
+  <%= f.text_area :import %>
+
+  <%= f.submit t('submit') %>
+<% end %>
