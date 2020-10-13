@@ -49,8 +49,7 @@ class GroupsController < ApplicationController
     redirect_to groups_url, notice: 'The Groups Tokens have been updated.'
   end
 
-  def bulk_upload_show
-  end
+  def bulk_upload_show; end
 
   def bulk_upload_create
     groups = CsvGroupImporter.new(current_organization, bulk_upload_params[:import]).import!
