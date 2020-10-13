@@ -77,6 +77,8 @@ en:
   no_votings: There is no active voting at the moment
   you_voted: You voted
   total_votes: Votes to submit
+  upload_CSV: Import CSV
+  groups_updated: "%{count} groups have been updated."
   errors:
     invalid_authentication_code: Code is invalid or expired
     voting_not_open: You cannot vote yet. You must wait for the question to be opened.

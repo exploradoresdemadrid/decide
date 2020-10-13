@@ -49,9 +49,25 @@ class GroupsController < ApplicationController
     redirect_to groups_url, notice: 'The Groups Tokens have been updated.'
   end
 
+  def bulk_upload_show; end
+
+  def bulk_upload_create
+    groups = CsvGroupImporter.new(current_organization, bulk_upload_params[:import]).import!
+
+    respond_to do |format|
+      format.html { redirect_to groups_url, notice: t('groups_updated', count: groups.count) }
+    end
+  rescue CsvGroupImporter::CSVParseError => e
+    redirect_to :bulk_upload_show_groups, alert: e.message
+  end
+
   private
 
   def group_params
     params.require(:group).permit(:name, :number, :available_votes)
+  end
+
+  def bulk_upload_params
+    params.require(:group).permit(:import)
   end
 end

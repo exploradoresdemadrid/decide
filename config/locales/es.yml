@@ -45,6 +45,8 @@ es:
   no_votings: No hay ninguna urna virtual activa
   you_voted: Has enviado tu papeleta
   total_votes: Papeletas a enviar
+  upload_CSV: Importar CSV
+  groups_updated: "Se han actualizado %{count} grupos."
   errors:
     invalid_authentication_code: El código es incorrecto o ha expirado
     voting_not_open: Todavía no puedes enviar tus papeletas. Debes esperar a que se abra la urna virtual.
