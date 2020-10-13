@@ -57,6 +57,8 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to groups_url, notice: t('groups_updated', count: groups.count) }
     end
+  rescue CsvGroupImporter::CSVParseError => e
+    redirect_to :bulk_upload_show_groups, alert: e.message
   end
 
   private
