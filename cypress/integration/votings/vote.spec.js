@@ -83,4 +83,11 @@ context('Vote submission', () => {
     cy.get('.panel-heading').first().should('contain', 'Resultados')
     cy.get('.panel-heading').last().should('contain', 'Diagrama de barras')
   })
+
+  it('shows results once voting is archived', () => {
+    cy.updateVotingStatus(votingTitle, 'archived')
+
+    cy.get('.panel-heading').first().should('contain', 'Resultados')
+    cy.get('.panel-heading').last().should('contain', 'Diagrama de barras')
+  })
 })
