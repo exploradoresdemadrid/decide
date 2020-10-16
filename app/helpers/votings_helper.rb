@@ -1,6 +1,22 @@
 # frozen_string_literal: true
 
 module VotingsHelper
+  def votings_table(votings)
+    bootstrap_table do |table|
+      table.headers = [t('title'), t('status')]
+      table.headers << t('edit') if can?(:edit, Voting)
+      table.headers << t('destroy') if can?(:destroy, Voting)
+
+      votings.each do |voting|
+        row = [link_to(voting.title, voting), voting.status.capitalize ]
+        row << link_to(t('edit'), edit_voting_path(voting)) if can?(:edit, Voting)
+        row << link_to(t('destroy'), voting, method: :delete, data: { confirm: 'Are you sure?' }) if can?(:destroy, Voting)
+
+        table.rows << row
+      end
+    end
+  end
+
   def groups_with_vote_submitted(voting)
     string_list(voting.groups.pluck(:name))
   end

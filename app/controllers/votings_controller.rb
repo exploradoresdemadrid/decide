@@ -5,8 +5,9 @@ class VotingsController < ApplicationController
 
   # GET /votings
   def index
-    @votings = Voting.accessible_by(current_ability).includes(:questions)
-
+    all_votings = Voting.accessible_by(current_ability).includes(:questions)
+    @non_archived_votings = all_votings.where.not(status: :archived)
+    @archived_votings = @votings.archived
     respond_to do |format|
       format.html
     end

@@ -1,20 +1,11 @@
 <h1><%= t('votings')%></h1>
 
-<%= bootstrap_table do |table| %>
-  <% 
+<%= votings_table(@non_archived_votings) %>
 
-  table.headers = [t('title'), t('status')]
-  table.headers << t('edit') if can?(:edit, Voting)
-  table.headers << t('destroy') if can?(:destroy, Voting)
-
-  @votings.each do |voting| 
-      row = [ link_to(voting.title, voting), voting.status.capitalize ]
-      row << link_to( t('edit'), edit_voting_path(voting)) if can?(:edit, Voting)
-      row << link_to( t('destroy'), voting, method: :delete, data: { confirm: 'Are you sure?' }) if can?(:destroy, Voting)
-
-      table.rows << row
-     end %>
-<% end if @votings.any? %>
+<h2 data-toggle="collapse" href="#collapseExample">Votaciones archivadas</h2>
+<div id="collapseExample" class="collapse">
+  <%= votings_table(@archived_votings) %>
+</div>
 
 <%= alert_box t('no_votings') if @votings.none? %>
 <br>
