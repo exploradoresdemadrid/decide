@@ -8,7 +8,7 @@
   <%= @voting.description %>
 <% end %>
 
-<% if @voting.finished? %>
+<% if @voting.finished? || @voting.archived? %>
   <h2><%= t('results') %></h2>
 
   <% if @voting.is_a?(MultiselectVoting) %>
