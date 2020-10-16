@@ -51,6 +51,15 @@ Cypress.Commands.add('createVoting', (name, { status = 'draft' }) => {
   cy.get('.alert.alert-info').should('contain', 'Voting was successfully created.')
 })
 
+Cypress.Commands.add('updateVotingStatus', (name, status) => {
+  cy.visit('http://localhost:3000/')
+  cy.contains(name).click()
+  cy.wait(2000)
+  cy.contains('Editar').click()
+  cy.get('#voting_status').select(status)
+  cy.contains('Enviar').click()
+})
+
 Cypress.Commands.add('createQuestion', (votingName, { title = 'Sample title', options = ['Yes', 'No'] }) => {
   cy.visit('http://localhost:3000/votings')
   cy.contains(votingName).click()

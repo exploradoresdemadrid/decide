@@ -27,12 +27,7 @@ context('Vote submission', () => {
   it('empty vote submission', () => {
     cy.logout()
     cy.loginAsAdmin()
-    cy.contains(votingTitle).click()
-    cy.wait(2000)
-    cy.contains('Editar').click()
-    cy.get('#voting_status').select('open')
-    cy.contains('Enviar').click()
-
+    cy.updateVotingStatus(votingTitle, 'open')
 
     cy.contains('Grupos').click()
     cy.loginAsGroup(groupName)
@@ -83,12 +78,7 @@ context('Vote submission', () => {
     cy.logout()
     cy.loginAsAdmin()
 
-    cy.contains(votingTitle).click()
-    cy.wait(2000)
-
-    cy.contains('a', 'Editar').click()
-    cy.get('#voting_status').select('finished')
-    cy.contains('Enviar').click()
+    cy.updateVotingStatus(votingTitle, 'finished')
 
     cy.get('.panel-heading').first().should('contain', 'Resultados')
     cy.get('.panel-heading').last().should('contain', 'Diagrama de barras')
