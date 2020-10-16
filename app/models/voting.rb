@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
 class Voting < ApplicationRecord
-  enum status: %i[draft open finished ready]
+  enum status: {
+    draft: 0,
+    open: 1,
+    ready: 3,
+    finished: 2,
+    archived: 4
+  }
 
   belongs_to :organization
   has_many :questions, dependent: :destroy
