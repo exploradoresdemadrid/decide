@@ -19,6 +19,8 @@ class Voting < ApplicationRecord
 
   scope :published, -> { where.not(status: :draft) }
 
+  before_save :spawn_timeout_worker
+
   def self.human_class_name
     name.underscore.gsub('_', ' ').split.first.capitalize
   end
@@ -32,4 +34,12 @@ class Voting < ApplicationRecord
   end
 
   def perform_voting_validations!(votes); end
+
+  private
+
+  def spawn_timeout_worker
+    return if timeout_in_seconds.to_i.zero?
+
+    VotingTimeoutUpdater.perform_in(timeout_in_seconds.second, id) if status_changed?(from: 'ready', to: 'open')
+  end
 end
