@@ -15,6 +15,7 @@ class Voting < ApplicationRecord
   has_many :groups, through: :vote_submissions
 
   validates_presence_of :title, :status
+  validates_numericality_of :timeout_in_seconds, only_integer: true, greater_than_or_equal_to: 0, allow_nil: true
 
   scope :published, -> { where.not(status: :draft) }
 
