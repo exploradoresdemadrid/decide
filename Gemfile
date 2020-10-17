@@ -46,6 +46,7 @@ end
 group :test do
   gem 'shoulda-matchers', '>= 4.1.2'
   gem 'simplecov', require: false
+  gem 'mock_redis'
 end
 
 group :development do
