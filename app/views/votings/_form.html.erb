@@ -16,7 +16,8 @@
   <%= label_tag :status%>
   <%= f.collection_select :status, Voting.statuses, :first, :first, {}, {:class => 'form-control'} %>
 
-  <%= f.number_field :timeout_in_seconds %>
+  <%= label_tag :timeout_in_seconds %>
+  <%= f.collection_select :timeout_in_seconds, timeout_in_seconds_for_select, :first, :last, {}, {:class => 'form-control'} %>
 
   <%= f.check_box :secret %>
   <br>
