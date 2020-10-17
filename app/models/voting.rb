@@ -38,8 +38,11 @@ class Voting < ApplicationRecord
   private
 
   def spawn_timeout_worker
+    self.finishes_at = nil
     return if timeout_in_seconds.to_i.zero?
+    return unless status_changed?(from: 'ready', to: 'open') || status_changed?(from: 'draft', to: 'open')
 
-    VotingTimeoutUpdater.perform_in(timeout_in_seconds.second, id) if status_changed?(from: 'ready', to: 'open')
+    VotingTimeoutUpdater.perform_in(timeout_in_seconds.seconds, id)
+    self.finishes_at = timeout_in_seconds.seconds.from_now
   end
 end

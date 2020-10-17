@@ -27,24 +27,48 @@ RSpec.describe Voting, type: :model do
 
         voting.open!
       end
+
+      it 'clears the finishes_at field' do
+        voting.update finishes_at: Time.now
+        voting.open!
+
+        expect(voting.finishes_at).to be_nil
+      end
     end
 
-    context 'when the timeout is configured' do
-      let(:voting) { create :voting, status: :ready, timeout_in_seconds: 60 }
+    RSpec.shared_examples 'spawn job' do
       it 'schedules a job to update the status' do
         expect(VotingTimeoutUpdater).to receive(:perform_in).with(60.seconds, voting.id)
 
         voting.open!
       end
+
+      it 'updates the finishes_at field accordingly' do
+        expect { voting.open! }.to(change { voting.finishes_at })
+      end
     end
 
-    context 'when the timeout is zero' do
-      let(:voting) { create :voting, status: :ready, timeout_in_seconds: 0 }
-      include_examples 'do not spawn job'
+    %i[draft ready].each do |from|
+      context "transition '#{from.capitalize}' -> 'Open'" do
+        context 'when the timeout is configured' do
+          let(:voting) { create :voting, status: from, timeout_in_seconds: 60 }
+          include_examples 'spawn job'
+        end
+
+        context 'when the timeout is zero' do
+          let(:voting) { create :voting, status: from, timeout_in_seconds: 0 }
+          include_examples 'do not spawn job'
+        end
+
+        context 'when the timeout is not configured' do
+          let(:voting) { create :voting, status: from, timeout_in_seconds: nil }
+          include_examples 'do not spawn job'
+        end
+      end
     end
 
-    context 'when the timeout is not configured' do
-      let(:voting) { create :voting, status: :ready, timeout_in_seconds: nil }
+    context "transition 'Finished' -> 'Open" do
+      let(:voting) { create :voting, status: :finished, timeout_in_seconds: 60 }
       include_examples 'do not spawn job'
     end
   end
