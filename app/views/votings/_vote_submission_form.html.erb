@@ -1,6 +1,29 @@
-<%= simple_form_for voting, :url => voting_vote_path(voting), method: :post, layout: :horizontal do |f| %>
-  <%= alert_box error, context: :danger if error.present? %>
-  <%= alert_box t('errors.voting_not_open'), context: :warning if @voting.ready?%>
-  <%= voting_questions_form(voting, f) %>
-  <%= f.submit 'Emitir votos', disabled: @voting.ready? %>
-<% end %>
+<div class="row">
+  <% if @voting.finishes_at %>
+    <div class="col-sm-3">
+      <%= content_tag :div, id: 'countdown-timer', data: {finishes_at: @voting.finishes_at} do %>
+        <table>
+        <tr><td colspan=3>Tiempo de votación</td></tr>
+          <tr>
+            <td id="countdown-min">01</td>
+            <td>:</td>
+            <td id="countdown-sec">36</td>
+          </tr>
+          <tr>
+            <td>minutes</td>
+            <td></td>
+            <td>seconds</td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="col-sm-9">
+    <%= simple_form_for voting, :url => voting_vote_path(voting), method: :post, layout: :horizontal do |f| %>
+      <%= alert_box error, context: :danger if error.present? %>
+      <%= alert_box t('errors.voting_not_open'), context: :warning if @voting.ready?%>
+      <%= voting_questions_form(voting, f) %>
+      <%= f.submit 'Emitir votos', disabled: @voting.ready? %>
+    <% end %>
+  </div>
+</div>
