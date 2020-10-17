@@ -16,7 +16,7 @@
     "eslint-plugin-standard": "^4.0.1"
   },
   "scripts": {
-    "cy:run:recorded": "cypress run --record",
+    "cy:run:recorded": "cypress run --record --parallel",
     "cy:run": "cypress run",
     "cy:open" : "cypress open"
   },
