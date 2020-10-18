@@ -3,8 +3,8 @@
 class Voting < ApplicationRecord
   enum status: {
     draft: 0,
-    open: 1,
     ready: 3,
+    open: 1,
     finished: 2,
     archived: 4
   }
