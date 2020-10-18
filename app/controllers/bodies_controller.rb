@@ -5,7 +5,7 @@ class BodiesController < ApplicationController
 
   # GET /bodies
   def index
-    @bodies = @organization.bodies
+    @bodies = @organization.bodies.accessible_by(current_ability)
   end
 
   # GET /bodies/1

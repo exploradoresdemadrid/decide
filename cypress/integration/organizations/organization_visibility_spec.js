@@ -9,18 +9,6 @@ context('Organization visibility', () => {
     cy.logout()
   })
 
-  it('superadmin can see all votings and groups', () => {
-    cy.loginAsSuperadmin()
-    cy.get('table').should('contain', 'Exploradores de Madrid - Weather voting')
-    cy.get('table').should('contain', 'Sample organization - Weather voting')
-
-    cy.visit('http://localhost:3000/')
-    cy.contains('Grupos').click()
-
-    cy.get('table').should('contain', 'Group 1 Exploradores de Madrid')
-    cy.get('table').should('contain', 'Group 1 Sample organization')
-  })
-
   it('admin from one org can see their votings but not others', () => {
     cy.loginAsAdmin()
     cy.get('table').should('contain', 'Exploradores de Madrid - Weather voting')

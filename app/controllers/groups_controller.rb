@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   load_and_authorize_resource :group, through: :organization
 
   def index
-    @groups = Group.accessible_by(current_ability).includes(:user).all
+    @groups = @organization.groups.accessible_by(current_ability).includes(:user).all
   end
 
   def show; end
