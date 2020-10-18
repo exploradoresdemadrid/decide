@@ -3,7 +3,7 @@
 module VotingsHelper
   def votings_table(organization, votings)
     bootstrap_table do |table|
-      table.headers = [t('title'), t('body'), t('status')]
+      table.headers = %w(title body status).map { |h| t("activerecord.attributes.voting.#{h}") }
       table.headers << t('edit') if can?(:edit, Voting)
       table.headers << t('destroy') if can?(:destroy, Voting)
 
@@ -11,7 +11,7 @@ module VotingsHelper
         row = []
         row << link_to(voting.title, organization_voting_path(organization, voting))
         row << voting.body&.name
-        row << voting.status.capitalize
+        row << t("activerecord.attributes.voting.statuses.#{voting.status}")
         row << link_to(t('edit'), edit_organization_voting_path(organization, voting)) if can?(:edit, Voting)
         row << link_to(t('destroy'), organization_voting_path(organization, voting), method: :delete, data: { confirm: 'Are you sure?' }) if can?(:destroy, Voting)
 
@@ -65,17 +65,16 @@ module VotingsHelper
     organization.bodies.pluck(:id, :name).to_h
   end
 
+  def statuses_for_select
+    Voting.statuses.keys.map { |k| [t("activerecord.attributes.voting.statuses.#{k}"), k] }.to_h
+  end
+
   def timeout_in_seconds_for_select
-    {
-      0 => 'Unlimited',
-      30 => '30 seconds',
-      60 => '1 minute',
-      300 => '5 minutes'
-    }
+    [0, 30, 60, 300].map { |n| [n, t("activerecord.attributes.voting.timeout_options.#{n}_seconds")] }.to_h
   end
 
   def secret_voting_alert(voting)
-    alert_box(dismissible: true) { t(voting.secret? ? 'is_secret' : 'is_not_secret') }
+    alert_box(dismissible: true) { t("messages.voting.#{voting.secret? ? 'is_secret' : 'is_not_secret'}") }
   end
 
   def voting_column_chart(voting)

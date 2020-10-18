@@ -24,7 +24,7 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(organization_params)
 
     if @organization.save
-      redirect_to @organization, notice: 'Organization was successfully created.'
+      redirect_to @organization, notice: t('activerecord.successful.messages.created', model: Organization.model_name.human).capitalize
     else
       render :new
     end
@@ -33,7 +33,7 @@ class OrganizationsController < ApplicationController
   # PATCH/PUT /organizations/1
   def update
     if @organization.update(organization_params)
-      redirect_to @organization, notice: 'Organization was successfully updated.'
+      redirect_to @organization, notice: t('activerecord.successful.messages.updated', model: Organization.model_name.human).capitalize
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class OrganizationsController < ApplicationController
   # DELETE /organizations/1
   def destroy
     @organization.destroy
-    redirect_to organizations_url, notice: 'Organization was successfully destroyed.'
+    redirect_to organizations_url, notice: t('activerecord.successful.messages.destroyed', model: Organization.model_name.human).capitalize
   end
 
   private

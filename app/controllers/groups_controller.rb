@@ -19,35 +19,32 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params.merge(organization: current_organization))
 
-    respond_to do |format|
-      if @group.save
-        format.html { redirect_to organization_groups_url(@organization), notice: 'Group was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @group.save
+      redirect_to organization_groups_path(@organization),
+                  notice: t('activerecord.successful.messages.created', model: Group.model_name.human).capitalize
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @group.update(group_params)
-        format.html { redirect_to organization_groups_url(@organization), notice: 'Group was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @group.update(group_params)
+      redirect_to organization_groups_url(@organization),
+                  notice: t('activerecord.successful.messages.updated', model: Group.model_name.human).capitalize
+    else
+      render :edit
     end
   end
 
   def destroy
     @group.destroy
-    respond_to do |format|
-      format.html { redirect_to organization_groups_url(@organization), notice: 'Group was successfully destroyed.' }
-    end
+    redirect_to organization_groups_url(@organization),
+                notice: t('activerecord.successful.messages.destroyed', model: Group.model_name.human).capitalize
   end
 
   def reset_token
     current_organization.users.with_group.each(&:reset_token)
-    redirect_to organization_groups_url(@organization), notice: 'The Groups Tokens have been updated.'
+    redirect_to organization_groups_url(@organization), notice: t('groups.tokens_updated')
   end
 
   def bulk_upload_show; end
@@ -55,9 +52,8 @@ class GroupsController < ApplicationController
   def bulk_upload_create
     groups = CsvGroupImporter.new(current_organization, bulk_upload_params[:import]).import!
 
-    respond_to do |format|
-      format.html { redirect_to organization_groups_url(@organization), notice: t('groups_updated', count: groups.count) }
-    end
+    redirect_to organization_groups_url(@organization), 
+                notice: t('activerecord.successful.messages.bulk_updated', count: groups.count, model: t('activerecord.models.group.many'))
   rescue CsvGroupImporter::CSVParseError => e
     redirect_to bulk_upload_show_organization_groups_url(@organization), alert: e.message
   end

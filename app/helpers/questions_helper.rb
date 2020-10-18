@@ -10,7 +10,7 @@ module QuestionsHelper
       end
     else
       alert_box context: :warning do
-        t('no_options')
+        t('options.none')
       end
     end
   end
@@ -21,8 +21,12 @@ module QuestionsHelper
     group_distribution = vote_distribution_by_group(question)
 
     bootstrap_table do |table|
-      table.headers = [t('option'), t('votes'), t('percentage')]
-      table.headers << t('supporting_groups') unless question.voting.secret?
+      table.headers = [
+        t('activerecord.models.option.one').capitalize,
+        t('activerecord.models.vote.many').capitalize,
+        t('results.percentage')
+      ]
+      table.headers << t('groups.supporters') unless question.voting.secret?
       table.rows = distribution.map do |(option, votes)|
         row = [
           option,
@@ -31,7 +35,7 @@ module QuestionsHelper
         ]
 
         unless question.voting.secret?
-          row << string_list(group_distribution[option]&.map { |(group_name, group_votes)| "#{group_name} (#{group_votes} #{t('votes')})" })
+          row << string_list(group_distribution[option]&.map { |(group_name, group_votes)| "#{group_name} (#{group_votes} #{t('activerecord.models.vote.many')})" })
         end
 
         row
