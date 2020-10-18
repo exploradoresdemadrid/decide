@@ -14,22 +14,22 @@ context('Group creation', () => {
   })
 
   it('create group', () => {
-    cy.contains('Enviar').click()
+    cy.contains('Submit').click()
 
     cy.get('.alert.alert-info').should('contain', 'Group was successfully created.')
   })
 
   it('return an error when name is missing', () => {
     cy.get('#group_name').clear()
-    cy.contains('Enviar').click()
+    cy.contains('Submit').click()
 
-    cy.get('span').should('contain', 'no puede estar en blanco')
+    cy.get('span').should('contain', 'can\'t be blank')
   })
 
   it('return an error when available votes is 0', () => {
     cy.get('#group_available_votes').clear().type('0')
-    cy.contains('Enviar').click()
+    cy.contains('Submit').click()
 
-    cy.get('span').should('contain', 'debe ser mayor que o igual a ')
+    cy.get('span').should('contain', 'must be greater than or equal to 1')
   })
 })

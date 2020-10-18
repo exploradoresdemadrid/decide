@@ -19,7 +19,7 @@ context('Vote submission', () => {
     Cypress.Cookies.preserveOnce('_decide_session')
   })
   it('ready status', () => {
-    cy.get('.alert.alert-warning').should('contain', 'Todavía no puedes enviar tus papeletas. Debes esperar a que se abra la urna virtual.')
+    cy.get('.alert.alert-warning').should('contain', 'You cannot vote yet. You must wait for the question to be opened.')
     cy.get('.question').should('contain', 'Sample title')
     cy.contains('Emitir votos').should('be.disabled')
   })
@@ -29,13 +29,13 @@ context('Vote submission', () => {
     cy.loginAsAdmin()
     cy.updateVotingStatus(votingTitle, 'open')
 
-    cy.contains('Grupos').click()
+    cy.contains('Groups').click()
     cy.loginAsGroup(groupName)
     cy.contains(votingTitle).click()
 
     cy.get('.total-votes-counter').should('contain', '0/5')
     cy.contains('Emitir votos').click()
-    cy.get('.alert.alert-danger').should('contain', 'Debes enviar 5 papeletas en cada pregunta')
+    cy.get('.alert.alert-danger').should('contain', 'You must submit 5 votes in each question')
   })
 
   it('submit extra votes', () => {
@@ -45,7 +45,7 @@ context('Vote submission', () => {
     cy.get('.total-votes-counter').should('contain', '8/5')
     cy.get('body').contains('Emitir votos').click()
 
-    cy.get('.alert.alert-danger').should('contain', 'Debes enviar 5 papeletas en cada pregunta')
+    cy.get('.alert.alert-danger').should('contain', 'You must submit 5 votes in each question')
   })
 
   it('submit less votes', () => {
@@ -55,7 +55,7 @@ context('Vote submission', () => {
     cy.get('.total-votes-counter').should('contain', '3/5')
     cy.get('body').contains('Emitir votos').click()
 
-    cy.get('.alert.alert-danger').should('contain', 'Debes enviar 5 papeletas en cada pregunta')
+    cy.get('.alert.alert-danger').should('contain', 'You must submit 5 votes in each question')
   })
 
   it('displays countdown timer before voting', () => {
@@ -69,7 +69,7 @@ context('Vote submission', () => {
     cy.get('.total-votes-counter').should('contain', '5/5')
     cy.get('body').contains('Emitir votos').click()
 
-    cy.get('.alert.alert-success').should('contain', 'Tu papeleta ha sido enviada. En cuanto se cierre la urna virtual podrás ver los resultados.')
+    cy.get('.alert.alert-success').should('contain', 'Your vote was submitted. You will be able to see the results as soon as the voting finishes.')
   })
 
   it('displays countdown timer after voting', () => {
@@ -82,14 +82,14 @@ context('Vote submission', () => {
 
     cy.updateVotingStatus(votingTitle, 'finished')
 
-    cy.get('.panel-heading').first().should('contain', 'Resultados')
-    cy.get('.panel-heading').last().should('contain', 'Diagrama de barras')
+    cy.get('.panel-heading').first().should('contain', 'Results')
+    cy.get('.panel-heading').last().should('contain', 'Bar chart')
   })
 
   it('shows results once voting is archived', () => {
     cy.updateVotingStatus(votingTitle, 'archived')
 
-    cy.get('.panel-heading').first().should('contain', 'Resultados')
-    cy.get('.panel-heading').last().should('contain', 'Diagrama de barras')
+    cy.get('.panel-heading').first().should('contain', 'Results')
+    cy.get('.panel-heading').last().should('contain', 'Bar chart')
   })
 })

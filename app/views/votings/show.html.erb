@@ -3,13 +3,13 @@
 <%= secret_voting_alert(@voting) if @voting.open? %>
 
 <% if @voting.description.present? %>
-  <h2><%= t('description') %></h2>
+  <h2><%= t('activerecord.attributes.voting.description') %></h2>
 
   <%= @voting.description %>
 <% end %>
 
 <% if @voting.finished? || @voting.archived? %>
-  <h2><%= t('results') %></h2>
+  <h2><%= t('results.results') %></h2>
 
   <% if @voting.is_a?(MultiselectVoting) %>
     <%= voting_column_chart(@voting) %>
@@ -22,22 +22,22 @@
 
 <% if @voting.open? || @voting.ready?  %>
   <% if current_group&.voted?(@voting) %>
-    <%= alert_box t('already_voted_message'), context: :success %>
+    <%= alert_box t('messages.voting.already_voted'), context: :success %>
     <%= render 'countdown_component', voting: @voting %>
   <% else %>
     <%= render 'vote_submission_form', voting: @voting if can?(:vote, @voting) %>
   <% end %>
 <% end %>
 
-<% if current_user.admin? %>
-  <h2><%= t('participation') %></h2>
-  <h3><%= t('votes_submitted') %></h3>
+<% if current_user.admin? || current_user.superadmin? %>
+  <h2><%= t('votes.participation') %></h2>
+  <h3><%= t('votes.submitted') %></h3>
   <%= groups_with_vote_submitted(@voting) %>
 
-  <h3><%= t('pending_votes') %></h3>
+  <h3><%= t('votes.pending') %></h3>
   <%= groups_without_vote_submitted(@voting) %>
 <% end %>
 
 <%= link_to t('edit'), edit_organization_voting_path(@organization, @voting) if can?(:edit, @voting) %>
 <%= link_to t('back'), organization_votings_path(@organization) %>
-<%= link_to t('questions'), organization_voting_questions_path(@organization, @voting) if can?(:index, Question) %>
+<%= link_to t('activerecord.attributes.voting.questions'), organization_voting_questions_path(@organization, @voting) if can?(:index, Question) %>

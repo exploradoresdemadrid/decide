@@ -18,13 +18,13 @@ context('Question creation', () => {
 
   it('create questions in a voting', () => {
     cy.contains(votingTitle).click()
-    cy.contains('Preguntas').click()
-    cy.contains('Nueva pregunta').click()
+    cy.contains('Questions').click()
+    cy.contains('New question').click()
 
-    cy.contains('Title').click().type('Sample title')
-    cy.contains('Añadir opción').click()
+    cy.get('#new_question').contains('Title').click().type('Sample title')
+    cy.contains('Add option').click()
     cy.get('.options-form input.form-control').type('Option 1')
-    cy.contains('Enviar').click()
+    cy.contains('Submit').click()
 
     cy.get('#notice').should('contain', 'Question was successfully created.')
     cy.get('#questions_index').should('contain', 'Sample title')
@@ -32,10 +32,10 @@ context('Question creation', () => {
   })
 
   it('Add option to an existing question', () => {
-    cy.get('#questions_index').contains('td', 'Sample title').parent().contains('Editar').click()
-    cy.contains('Añadir opción').click()
+    cy.get('#questions_index').contains('td', 'Sample title').parent().contains('Edit').click()
+    cy.contains('Add option').click()
     cy.get('.options-form input.form-control').last().type('Option 2')
-    cy.contains('Enviar').click()
+    cy.contains('Submit').click()
 
     cy.get('#notice').should('contain', 'Question was successfully updated.')
     cy.get('#questions_index').should('contain', 'Sample title')
@@ -44,9 +44,9 @@ context('Question creation', () => {
   })
 
   it('Remove an option to an existing question', () => {
-    cy.get('#questions_index').contains('td', 'Sample title').parent().contains('Editar').click()
-    cy.get('.remove_fields').contains('Eliminar').click()
-    cy.contains('Enviar').click()
+    cy.get('#questions_index').contains('td', 'Sample title').parent().contains('Edit').click()
+    cy.get('.remove_fields').contains('Destroy').click()
+    cy.contains('Submit').click()
 
     cy.get('#notice').should('contain', 'Question was successfully updated.')
     cy.get('#questions_index').should('contain', 'Sample title')

@@ -6,7 +6,7 @@
   <%= f.text_field :available_votes %>
 
   <% if @group.persisted? %>
-    <h3>Votes available</h3>
+    <h3><%= t('activerecord.attributes.group.available_votes') %></h3>
     <div class="options-form">
       <% @group.bodies_groups.each_with_index do |bg, index| %>
         <%= f.fields_for bg do |bg_f| %>

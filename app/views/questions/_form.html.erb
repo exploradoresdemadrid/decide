@@ -3,12 +3,12 @@
   <%= f.text_field :description %>
   <%= f.hidden_field :voting_id, value: @voting.id %>
 
-  <h4>Options</h4>
+  <h4><%= t('activerecord.attributes.question.options') %></h4>
   <div class="options-form">
     <%= f.fields_for :options do |option| %>
       <%= render 'option_fields', f: option %>
     <% end %>
-    <%= link_to_add_association t('add_option'), f, :options, {
+    <%= link_to_add_association t('options.add'), f, :options, {
       'data-association-insertion-method' => 'append',
       'data-association-insertion-node' => '.options-form > fieldset > .panel-body',
       wrapper: 'bootstrap'

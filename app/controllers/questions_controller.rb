@@ -26,7 +26,8 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to organization_voting_questions_path(@organization, @voting), notice: 'Question was successfully created.'
+      redirect_to organization_voting_questions_path(@organization, @voting),
+                  notice: t('activerecord.successful.messages.created', model: Question.model_name.human).capitalize
     else
       render :new
     end
@@ -35,7 +36,8 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   def update
     if @question.update(question_params)
-      redirect_to organization_voting_questions_path(@organization, @voting), notice: 'Question was successfully updated.'
+      redirect_to organization_voting_questions_path(@organization, @voting),
+                  notice: t('activerecord.successful.messages.updated', model: Question.model_name.human).capitalize
     else
       render :edit
     end
@@ -44,7 +46,8 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   def destroy
     @question.destroy
-    redirect_to organization_voting_questions_path(@organization, @voting), notice: 'Question was successfully destroyed.'
+    redirect_to organization_voting_questions_path(@organization, @voting),
+                notice: t('activerecord.successful.messages.destroyed', model: Question.model_name.human).capitalize
   end
 
   private

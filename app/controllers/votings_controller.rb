@@ -34,7 +34,8 @@ class VotingsController < ApplicationController
     @voting = get_model(voting_params[:type]).new(voting_params.merge(organization: current_organization))
 
     if @voting.save
-      redirect_to organization_voting_url(@organization, @voting), notice: 'Voting was successfully created.'
+      redirect_to organization_voting_path(@organization, @voting),
+                  notice: t('activerecord.successful.messages.created', model: Voting.model_name.human).capitalize
     else
       render :new
     end
@@ -43,7 +44,8 @@ class VotingsController < ApplicationController
   # PATCH/PUT /votings/1
   def update
     if @voting.update(voting_params)
-      redirect_to organization_voting_url(@organization, @voting), notice: 'Voting was successfully updated.'
+      redirect_to organization_voting_path(@organization, @voting),
+                  notice: t('activerecord.successful.messages.updated', model: Voting.model_name.human).capitalize
     else
       render :edit
     end
@@ -52,7 +54,8 @@ class VotingsController < ApplicationController
   # DELETE /votings/1
   def destroy
     @voting.destroy
-    redirect_to organization_votings_url(@organization), notice: 'Voting was successfully destroyed.'
+    redirect_to organization_votings_url(@organization),
+    notice: t('activerecord.successful.messages.destroyed', model: Voting.model_name.human).capitalize
   end
 
   def vote

@@ -19,7 +19,7 @@ module OptionsHelper
   def total_votes_counter
     content_tag(:hr) +
       content_tag(:div, class: 'vote-summary') do
-        content_tag(:label, t('total_votes'), class: 'col-md-10 col-sm-10 col-10') +
+        content_tag(:label, t('votes.total'), class: 'col-md-10 col-sm-10 col-10') +
           content_tag(:span, "0/#{current_group&.available_votes || 0}", class: 'total-votes-counter col-2', data: {total: current_group&.available_votes || 0})
       end
   end

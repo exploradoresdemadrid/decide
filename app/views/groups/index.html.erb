@@ -1,14 +1,20 @@
-<h1> <%= t('groups') %> </h1>
+<%= index_title(Group) %>
 
 <%= bootstrap_table(id: 'groups_index') do |table| %>
-  <% table.headers = [t('name'), t('number'), *@organization.bodies.pluck(:name), t('auth_token'), t('last_login'), t('edit'), t('destroy')] %>
+  <% table.headers = [
+    *%w(name number).map { |h| t("activerecord.attributes.group.#{h}") },
+    *@organization.bodies.pluck(:name),
+    *%w(auth_token last_login).map { |h| t("activerecord.attributes.group.#{h}") },
+    t('edit'),
+    t('destroy')
+    ] %>
   <% @groups.each do |group| %>
     <% table.rows << [
       group.name,
       group.number,
       *@organization.bodies.map{|b| group.votes_in_body(b)},
       group.user.auth_token,
-      group.user.last_sign_in_at ? distance_of_time_in_words(group.user.last_sign_in_at, Time.now) : 'Never',
+      group.user.last_sign_in_at ? distance_of_time_in_words(group.user.last_sign_in_at, Time.now) : t('never'),
       link_to( t('edit'), edit_organization_group_path(@organization, group)),
       link_to(t('destroy'), organization_group_path(@organization, group), method: :delete, data: { confirm: 'Are you sure?' })
     ] %>
@@ -17,8 +23,8 @@
 
 <br>
 
-<%= link_to t('new_group'), new_organization_group_path(@organization) %>
-<%= link_to t('upload_CSV'), bulk_upload_show_organization_groups_path(@organization) %>
+<%= link_to t('groups.new'), new_organization_group_path(@organization) %>
+<%= link_to t('groups.import'), bulk_upload_show_organization_groups_path(@organization) %>
 
 <%= form_tag reset_token_organization_groups_path(@organization) do %>
   <%= submit_tag "Reset Tokens" %>

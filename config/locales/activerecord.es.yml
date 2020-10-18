@@ -1,0 +1,65 @@
+es:
+  activerecord:
+    attributes:
+      body: 
+        name: Nombre
+        default_votes: Votos por defecto
+      group:
+        name: Nombre
+        number: Número
+        available_votes: Votos disponibles
+        auth_token: Token de acceso
+        last_login: Último inicio de sesión
+      question:
+        title: Título
+        description: Descripción
+        options: Opciones
+      organization:
+        name: Nombre
+      voting:
+        body: Órgano
+        description: Descripción
+        questions: Preguntas
+        status: Estado
+        statuses:
+          draft: Borrador
+          ready: Preparada
+          open: Abierta
+          finished: Finalizada
+          archived: Archivada
+        title: Título
+        timeout_in_seconds: Tiempo para responder
+        timeout_options: 
+          0_seconds: Sin límite
+          30_seconds: 30 segundos
+          60_seconds: 1 minuto
+          300_seconds: 5 minutos
+        secret: Secreta
+    models:
+      body:
+        one: órgano
+        many: órganos
+      group:
+        one: grupo
+        many: grupos
+      question:
+        one: pregunta
+        many: preguntas
+      option:
+        one: opción
+        many: opciones
+      organization:
+        one: organización
+        many: organizaciones
+      vote:
+        one: papeleta
+        many: papeletas
+      voting:
+        one: urna virtual
+        many: urnas virtuales
+    successful:
+      messages:
+        destroyed: "%{model} se ha eliminado correctamente."
+        created: "%{model} se ha creado correctamente."
+        updated: "%{model} se ha actualizado correctamente."
+        bulk_updated: "%{count} %{model} se han actualizado correctamente."

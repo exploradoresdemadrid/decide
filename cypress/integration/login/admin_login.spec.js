@@ -10,25 +10,25 @@ context('Admin login', () => {
 
   it('use valid admin password', () => {
     cy.loginAsAdmin()
-    cy.get('.alert.alert-info').should('contain', 'Sesión iniciada.')
+    cy.get('.alert.alert-info').should('contain', 'Signed in successfully.')
     cy.get('.navbar-header').should('not.contain', 'Organizations')
-    cy.get('.navbar-header').should('contain', 'Urnas Virtuales')
-    cy.get('.navbar-header').should('contain', 'Grupos')
-    cy.get('.navbar-header').should('contain', 'Cerrar sesión')
+    cy.get('.navbar-header').should('contain', 'Votings')
+    cy.get('.navbar-header').should('contain', 'Groups')
+    cy.get('.navbar-header').should('contain', 'Sign out')
   })
 
   it('use valid superadmin password', () => {
     cy.loginAsSuperadmin()
-    cy.get('.alert.alert-info').should('contain', 'Sesión iniciada.')
+    cy.get('.alert.alert-info').should('contain', 'Signed in successfully.')
     cy.get('.navbar-header').should('contain', 'Organizations')
-    cy.get('.navbar-header').should('contain', 'Urnas Virtuales')
-    cy.get('.navbar-header').should('contain', 'Grupos')
-    cy.get('.navbar-header').should('contain', 'Cerrar sesión')
+    cy.get('.navbar-header').should('contain', 'Votings')
+    cy.get('.navbar-header').should('contain', 'Groups')
+    cy.get('.navbar-header').should('contain', 'Sign out')
   })
 
   it('use invalid password', () => {
     cy.login('admin@example.com', 'invalidpass')
-    cy.get('.alert.alert-danger').should('contain', 'Email o contraseña inválidos.')
+    cy.get('.alert.alert-danger').should('contain', 'Invalid Email or password.')
   })
 
   it('logout', () => {

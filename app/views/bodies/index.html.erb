@@ -1,7 +1,7 @@
-<h1>Bodies</h1>
+<%= index_title(Body) %>
 
 <%= bootstrap_table(id: 'bodies_index') do |table| %>
-  <% table.headers = [t('body'), t('edit'), t('destroy')] %>
+  <% table.headers = [t('activerecord.attributes.body.name'), t('edit'), t('destroy')] %>
   <% @bodies.each do |body| %>
     <% table.rows << [
       body.name,
@@ -13,4 +13,4 @@
 
 <br>
 
-<%= link_to 'New Body', new_organization_body_path(@organization) %>
+<%= link_to t('bodies.new'), new_organization_body_path(@organization) %>
