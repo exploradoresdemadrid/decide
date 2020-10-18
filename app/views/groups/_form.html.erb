@@ -3,7 +3,7 @@
   <%= f.text_field :name %>
   <%= f.number_field :number %>
 
-  <%= f.hidden_field :available_votes, value: 1 %>
+  <%= f.text_field :available_votes, value: 1 %>
 
   <% if @group.persisted? %>
     <h3>Votes available</h3>
