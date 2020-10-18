@@ -1,13 +1,15 @@
 <div class="row">
   <% if @voting.finishes_at %>
     <div class="col-sm-3">
-      <%= content_tag :div, id: 'countdown-timer', data: {finishes_at: @voting.finishes_at} do %>
-        <table>
-        <tr><td colspan=3>Tiempo de votación</td></tr>
+      <%= content_tag :div, class: 'countdown-timer', data: {finishes_at: @voting.finishes_at&.to_s(:rfc822)} do %>
+        <table summary="This table displays the time remaining until the voting is closed automatically">
           <tr>
-            <td id="countdown-min">01</td>
+            <th colspan=3>Tiempo de votación</th>
+          </tr>
+          <tr>
+            <td class="countdown-min">--</td>
             <td>:</td>
-            <td id="countdown-sec">36</td>
+            <td class="countdown-sec">--</td>
           </tr>
           <tr>
             <td>minutes</td>
