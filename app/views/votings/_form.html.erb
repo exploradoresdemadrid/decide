@@ -14,7 +14,7 @@
   <% end %>
 
   <%= label_tag :status%>
-  <%= f.collection_select :status, Voting.statuses, :first, :first, {}, {:class => 'form-control'} %>
+  <%= f.collection_select :status, Voting.statuses.transform_keys(&:capitalize), :first, :first, {}, {:class => 'form-control'} %>
 
   <%= label_tag :timeout_in_seconds %>
   <%= f.collection_select :timeout_in_seconds, timeout_in_seconds_for_select, :first, :last, {}, {:class => 'form-control'} %>
