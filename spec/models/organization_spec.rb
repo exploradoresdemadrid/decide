@@ -12,10 +12,10 @@ RSpec.describe Organization, type: :model do
 
   describe 'callbacks' do
     describe 'decision-making bodies' do
-      let(:organization) { create :organization }
+      let(:organization) { create :organization, name: 'Foo Organization' }
 
-      it 'creates a default body with name "Default"' do
-        expect(organization.bodies.pluck(:name)).to contain_exactly('Default')
+      it 'creates a default body with name of the organization' do
+        expect(organization.bodies.pluck(:name)).to contain_exactly('Foo Organization')
       end
 
       it 'configures the default votes as 1' do

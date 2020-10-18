@@ -14,6 +14,6 @@ class Organization < ApplicationRecord
   private
 
   def create_default_body
-    bodies.create!(name: 'Default', default_votes: 1)
+    bodies.create!(name: name, default_votes: 1)
   end
 end
