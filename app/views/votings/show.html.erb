@@ -22,7 +22,7 @@
 
 <% if @voting.open? || @voting.ready?  %>
   <% if current_group&.voted?(@voting) %>
-    <%= alert_box t('already_voted_message'), context: :danger %>
+    <%= alert_box t('already_voted_message'), context: :success %>
     <%= render 'countdown_component', voting: @voting %>
   <% else %>
     <%= render 'vote_submission_form', voting: @voting if can?(:vote, @voting) %>

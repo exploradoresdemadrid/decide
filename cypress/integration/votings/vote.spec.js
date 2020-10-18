@@ -69,7 +69,7 @@ context('Vote submission', () => {
     cy.get('.total-votes-counter').should('contain', '5/5')
     cy.get('body').contains('Emitir votos').click()
 
-    cy.get('.alert.alert-danger').should('contain', 'Tu papeleta ha sido enviada. En cuanto se cierre la urna virtual podrás ver los resultados.')
+    cy.get('.alert.alert-success').should('contain', 'Tu papeleta ha sido enviada. En cuanto se cierre la urna virtual podrás ver los resultados.')
   })
 
   it('displays countdown timer after voting', () => {
