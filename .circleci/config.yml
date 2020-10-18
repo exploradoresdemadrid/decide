@@ -50,6 +50,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_DB: decide_development
           POSTGRES_PASSWORD: postgres
+      - image: circleci/redis:6-alpine
     steps:
       - checkout
       - run: npm install
