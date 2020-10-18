@@ -1,6 +1,6 @@
 <h1> <%= t('questions')%></h1>
 
-<%= bootstrap_table do |table| %>
+<%= bootstrap_table(id: 'questions_index') do |table| %>
   <% table.headers = [t('title'), t('description'), t('options'), t('edit'), t('destroy')] %>
   <% @questions.each do |question| %>
     <% table.rows << [
