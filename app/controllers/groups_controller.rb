@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class GroupsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :organization
+  load_and_authorize_resource :group, through: :organization
 
   def index
     @groups = Group.accessible_by(current_ability).includes(:user).all
@@ -20,7 +21,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
-        format.html { redirect_to groups_path, notice: 'Group was successfully created.' }
+        format.html { redirect_to organization_groups_url(@organization), notice: 'Group was successfully created.' }
       else
         format.html { render :new }
       end
@@ -30,7 +31,7 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to groups_path, notice: 'Group was successfully updated.' }
+        format.html { redirect_to organization_groups_url(@organization), notice: 'Group was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -40,13 +41,13 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
+      format.html { redirect_to organization_groups_url(@organization), notice: 'Group was successfully destroyed.' }
     end
   end
 
   def reset_token
     current_organization.users.with_group.each(&:reset_token)
-    redirect_to groups_url, notice: 'The Groups Tokens have been updated.'
+    redirect_to organization_groups_url(@organization), notice: 'The Groups Tokens have been updated.'
   end
 
   def bulk_upload_show; end
@@ -55,10 +56,10 @@ class GroupsController < ApplicationController
     groups = CsvGroupImporter.new(current_organization, bulk_upload_params[:import]).import!
 
     respond_to do |format|
-      format.html { redirect_to groups_url, notice: t('groups_updated', count: groups.count) }
+      format.html { redirect_to organization_groups_url(@organization), notice: t('groups_updated', count: groups.count) }
     end
   rescue CsvGroupImporter::CSVParseError => e
-    redirect_to :bulk_upload_show_groups, alert: e.message
+    redirect_to bulk_upload_show_organization_groups_url(@organization), alert: e.message
   end
 
   private

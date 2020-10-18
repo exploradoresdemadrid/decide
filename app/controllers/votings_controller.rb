@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class VotingsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :organization
+  load_and_authorize_resource :voting, through: :organization
 
   # GET /votings
   def index
@@ -33,7 +34,7 @@ class VotingsController < ApplicationController
     @voting = get_model(voting_params[:type]).new(voting_params.merge(organization: current_organization))
 
     if @voting.save
-      redirect_to @voting, notice: 'Voting was successfully created.'
+      redirect_to organization_voting_url(@organization, @voting), notice: 'Voting was successfully created.'
     else
       render :new
     end
@@ -42,7 +43,7 @@ class VotingsController < ApplicationController
   # PATCH/PUT /votings/1
   def update
     if @voting.update(voting_params)
-      redirect_to @voting, notice: 'Voting was successfully updated.'
+      redirect_to organization_voting_url(@organization, @voting), notice: 'Voting was successfully updated.'
     else
       render :edit
     end
@@ -51,18 +52,18 @@ class VotingsController < ApplicationController
   # DELETE /votings/1
   def destroy
     @voting.destroy
-    redirect_to votings_url, notice: 'Voting was successfully destroyed.'
+    redirect_to organization_votings_url(@organization), notice: 'Voting was successfully destroyed.'
   end
 
   def vote
     voting = Voting.find(params[:voting_id])
     VoteSubmissionService.new(current_user.group, voting, params.require(:votes).permit!.to_h).vote!
     respond_to do |format|
-      format.html { redirect_to voting_path(voting) }
+      format.html { redirect_to organization_voting_path(@organization, voting) }
     end
   rescue Errors::VotingError => e
     respond_to do |format|
-      format.html { redirect_to voting_path(voting), error: e.message }
+      format.html { redirect_to organization_voting_path(@organization, voting), error: e.message }
     end
   end
 

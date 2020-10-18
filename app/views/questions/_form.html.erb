@@ -1,4 +1,4 @@
-<%= form_for([@voting, @question], layout: :horizontal) do |f| %>
+<%= form_for([@organization, @voting, @question], layout: :horizontal) do |f| %>
   <%= f.text_field :title %>
   <%= f.text_field :description %>
   <%= f.hidden_field :voting_id, value: @voting.id %>

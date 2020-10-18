@@ -7,7 +7,7 @@ context('Voting creation', () => {
   })
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('_decide_session')
-    cy.visit('http://localhost:3000/votings')
+    cy.visit('http://localhost:3000/')
   })
 
   it('create simple voting', () => {
