@@ -1,5 +1,5 @@
-<h1> <%= t('new_group') %></h1>
+<%= new_title(Group) %>
 
 <%= render 'form', group: @group %>
 
-<%= link_to t('back'), groups_path %>
+<%= link_to t('back'), organization_groups_path(@organization) %>

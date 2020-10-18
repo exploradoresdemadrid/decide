@@ -2,8 +2,8 @@
 
 class SessionsController < ApplicationController
   skip_before_action :authenticate_user!
-  
+
   def new
-    redirect_to votings_path if current_user.present?
+    redirect_to organization_votings_path(current_user.organization) if current_user.present?
   end
 end

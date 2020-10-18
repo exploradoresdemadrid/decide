@@ -1,0 +1,6 @@
+<%= edit_title(Body) %>
+
+<%= render 'form', body: @body %>
+
+<%= link_to 'Show', organization_body_path(@organization, @body) %> |
+<%= link_to 'Back', organization_bodies_path(@organization) %>

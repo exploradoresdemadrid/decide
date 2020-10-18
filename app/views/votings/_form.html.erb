@@ -1,4 +1,7 @@
-<%= form_for(@voting, layout: :basic) do |f| %>
+<%= form_for([@organization, @voting], layout: :basic) do |f| %>
+  <%= label_tag t('activerecord.attributes.voting.body') %>
+  <%= f.collection_select :body_id, bodies_for_select(@organization), :first, :last, {}, {:class => 'form-control'} %>
+
   <%= f.text_field :title %>
   <%= f.text_field :description %>
 
@@ -13,10 +16,13 @@
     <%= f.text_area :options, value: @voting.questions.pluck(:title).join("\n") %>
   <% end %>
 
-  <%= label_tag :status%>
-  <%= f.collection_select :status, Voting.statuses, :first, :first, {}, {:class => 'form-control'} %>
+  <%= label_tag t('activerecord.attributes.voting.status') %>
+  <%= f.collection_select :status, statuses_for_select, :last, :first, {}, {:class => 'form-control'} %>
 
-  <%= f.check_box :secret %>
+  <%= label_tag t('activerecord.attributes.voting.timeout_in_seconds') %>
+  <%= f.collection_select :timeout_in_seconds, timeout_in_seconds_for_select, :first, :last, {}, {:class => 'form-control'} %>
+
+  <%= f.check_box :secret, label: t('activerecord.attributes.voting.secret') %>
   <br>
   <%= f.submit t('submit') %>
 <% end %>

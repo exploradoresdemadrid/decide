@@ -1,0 +1,65 @@
+en:
+  activerecord:
+    attributes:
+      body: 
+        name: Name
+        default_votes: Default votes
+      group:
+        name: Name
+        number: Number
+        available_votes: Available votes
+        auth_token: Access token
+        last_login: Last login
+      question:
+        title: Title
+        description: Description
+        options: Options
+      organization:
+        name: Name
+      voting:
+        body: Body
+        description: Description
+        questions: Questions
+        status: Status
+        statuses:
+          draft: Draft
+          ready: Ready
+          open: Open
+          finished: Finished
+          archived: Archived
+        title: Title
+        timeout_in_seconds: Time to answer
+        timeout_options: 
+          0_seconds: Unlimited
+          30_seconds: 30 seconds
+          60_seconds: 1 minute
+          300_seconds: 5 minutes
+        secret: Secret
+    models:
+      body:
+        one: body
+        many: bodies
+      group:
+        one: group
+        many: groups
+      question:
+        one: question
+        many: questions
+      option:
+        one: opcion
+        many: options
+      organization:
+        one: organization
+        many: organizations
+      vote:
+        one: vote
+        many: votes
+      voting:
+        one: voting
+        many: votings
+    successful:
+      messages:
+        destroyed: "%{model} was successfully destroyed."
+        created: "%{model} was successfully created."
+        updated: "%{model} was successfully updated."
+        bulk_updated: "%{count} %{model} were successfully updated."

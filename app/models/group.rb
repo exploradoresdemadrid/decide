@@ -5,13 +5,17 @@ class Group < ApplicationRecord
   belongs_to :user
   belongs_to :organization
   has_many :votes
+  has_many :bodies_groups
+  accepts_nested_attributes_for :bodies_groups
 
   # Validations
   validates_presence_of :name, :available_votes
   validates_uniqueness_of :name
   validates_numericality_of :available_votes, greater_than_or_equal_to: 1
 
+  # Callbacks
   before_validation :create_user
+  after_create :create_bodies_groups
 
   def voted?(voting)
     in? voting.groups
@@ -19,6 +23,10 @@ class Group < ApplicationRecord
 
   def full_name
     [name, number].join ' '
+  end
+
+  def votes_in_body(body)
+    bodies_groups.find_by(body: body).votes
   end
 
   private
@@ -29,5 +37,11 @@ class Group < ApplicationRecord
       password: SecureRandom.uuid,
       organization: organization
     ).id
+  end
+
+  def create_bodies_groups
+    organization.reload.bodies.each do |b|
+      bodies_groups.create!(body: b, votes: b.default_votes)
+    end
   end
 end

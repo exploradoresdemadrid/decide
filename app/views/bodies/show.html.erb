@@ -1,0 +1,17 @@
+<p>
+  <strong>Name:</strong>
+  <%= @body.name %>
+</p>
+
+<p>
+  <strong>Organization:</strong>
+  <%= @body.organization_id %>
+</p>
+
+<p>
+  <strong>Default votes:</strong>
+  <%= @body.default_votes %>
+</p>
+
+<%= link_to 'Edit', edit_organization_body_path(@organization, @body) %> |
+<%= link_to 'Back', organization_bodies_path(@organization) %>

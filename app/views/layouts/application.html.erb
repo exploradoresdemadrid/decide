@@ -13,7 +13,7 @@
   <body>
     <%= render './navbar' %>
     <div id="main-container">
-      <%= alert_box(notice, dismissible: true) if notice.present? %>
+      <%= alert_box(notice, dismissible: true, id: :notice) if notice.present? %>
       <%= alert_box(alert, context: :danger, dismissible: true) if alert.present? %>
       <%= yield %>
     </div>

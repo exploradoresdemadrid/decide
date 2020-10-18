@@ -1,6 +1,6 @@
-<h1>Editing Voting</h1>
+<%= edit_title(Voting) %>
 
 <%= render 'form', voting: @voting %>
 
-<%= link_to t('show'), @voting %> |
-<%= link_to t('back'), votings_path %>
+<%= link_to t('show'), organization_voting_path(@organization, @voting) %> |
+<%= link_to t('back'), organization_votings_path(@organization) %>

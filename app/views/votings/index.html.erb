@@ -1,13 +1,13 @@
-<h1><%= t('votings')%></h1>
+<h1><%= t('activerecord.models.voting.many').capitalize %></h1>
 
-<%= votings_table(@non_archived_votings) %>
+<%= votings_table(@organization, @non_archived_votings) %>
 
-<h2 data-toggle="collapse" href="#collapseExample">Votaciones archivadas</h2>
+<h2 data-toggle="collapse" href="#collapseExample"><%= t('votings.archived') %></h2>
 <div id="collapseExample" class="collapse">
-  <%= votings_table(@archived_votings) %>
+  <%= votings_table(@organization, @archived_votings) %>
 </div>
 
-<%= alert_box t('no_votings') if @votings.none? %>
+<%= alert_box t('messages.voting.none_active') if @votings.none? %>
 <br>
 
-<%= link_to t('new_voting'), new_voting_path if can?(:create, Voting) %>
+<%= link_to t('votings.new'), new_organization_voting_path(@organization) if can?(:create, Voting) %>

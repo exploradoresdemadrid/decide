@@ -15,4 +15,16 @@ module ApplicationHelper
       end.inject(:+)
     end
   end
+
+  def new_title(model)
+    content_tag(:h1) { t("#{model.name.pluralize.downcase}.new") }
+  end
+
+  def edit_title(model)
+    content_tag(:h1) { t('edit') + ' ' + t("activerecord.models.#{model.name.downcase}.one") }
+  end
+
+  def index_title(model)
+    content_tag(:h1) { t("activerecord.models.#{model.name.downcase}.many").capitalize }
+  end
 end

@@ -1,6 +1,6 @@
-<h1> <%= t('edit_group') %></h1>
+<%= edit_title(Group) %>
 
 <%= render 'form', group: @group %>
 
-<%= link_to t('show'), @group %> |
-<%= link_to t('back'), groups_path %>
+<%= link_to t('show'), organization_group_path(@organization, @group) %> |
+<%= link_to t('back'), organization_groups_path(@organization) %>
