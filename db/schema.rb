@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_121321) do
+ActiveRecord::Schema.define(version: 2020_10_18_144634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 2020_10_18_121321) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["organization_id"], name: "index_bodies_on_organization_id"
+  end
+
+  create_table "bodies_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "body_id", null: false
+    t.uuid "group_id", null: false
+    t.integer "votes"
+    t.index ["body_id"], name: "index_bodies_groups_on_body_id"
+    t.index ["group_id"], name: "index_bodies_groups_on_group_id"
   end
 
   create_table "groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -116,6 +124,8 @@ ActiveRecord::Schema.define(version: 2020_10_18_121321) do
   end
 
   add_foreign_key "bodies", "organizations"
+  add_foreign_key "bodies_groups", "bodies"
+  add_foreign_key "bodies_groups", "groups"
   add_foreign_key "groups", "organizations"
   add_foreign_key "groups", "users"
   add_foreign_key "options", "questions"

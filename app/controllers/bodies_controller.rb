@@ -28,7 +28,6 @@ class BodiesController < ApplicationController
     if @body.save
       redirect_to organization_body_path(@organization, @body), notice: 'Body was successfully created.'
     else
-      binding.pry
       render :new, alert: @body.errors
     end
   end

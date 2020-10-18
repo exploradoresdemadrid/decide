@@ -2,7 +2,19 @@
 <%= form_for([@organization, @group], layout: :basic) do |f| %>
   <%= f.text_field :name %>
   <%= f.number_field :number %>
-  <%= f.number_field :available_votes %>
+
+  <h3>Votes available</h3>
+  <div class="options-form">
+    <% @group.bodies_groups.each_with_index do |bg, index| %>
+      <%= f.fields_for bg do |bg_f| %>
+        <div class="nested-fields">
+          <%= bg_f.hidden_field :id, name: "group[bodies_groups_attributes][#{index}][id]", value: bg.id %>
+          <%= bg_f.text_field :votes, name: "group[bodies_groups_attributes][#{index}][votes]", label: bg.body.name %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  
 
   <%= f.submit t('submit') %>
 <% end %>
