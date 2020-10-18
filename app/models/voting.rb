@@ -9,11 +9,13 @@ class Voting < ApplicationRecord
     archived: 4
   }
 
+  # Associations
   belongs_to :organization
   has_many :questions, dependent: :destroy
   has_many :vote_submissions, dependent: :destroy
   has_many :groups, through: :vote_submissions
 
+  # Validations
   validates_presence_of :title, :status
   validates_numericality_of :timeout_in_seconds, only_integer: true, greater_than_or_equal_to: 0, allow_nil: true
 

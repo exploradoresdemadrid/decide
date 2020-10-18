@@ -32,7 +32,9 @@ Rails.application.routes.draw do
     post 'bulk_upload', on: :collection, to: 'groups#bulk_upload_create', as: :bulk_upload_create
   end
 
-  resources :organizations
+  resources :organizations do
+    resources :bodies
+  end
 
   root to: 'sessions#new'
 end
