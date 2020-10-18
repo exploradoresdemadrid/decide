@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_130021) do
+ActiveRecord::Schema.define(version: 2020_10_17_093833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 2020_06_20_130021) do
     t.string "type", default: "SimpleVoting", null: false
     t.integer "max_options"
     t.uuid "organization_id"
+    t.integer "timeout_in_seconds"
+    t.datetime "finishes_at"
     t.index ["organization_id"], name: "index_votings_on_organization_id"
   end
 

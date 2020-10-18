@@ -58,6 +58,15 @@ module VotingsHelper
     end.inject(:merge)
   end
 
+  def timeout_in_seconds_for_select
+    {
+      0 => 'Unlimited',
+      30 => '30 seconds',
+      60 => '1 minute',
+      300 => '5 minutes'
+    }
+  end
+
   def secret_voting_alert(voting)
     alert_box(dismissible: true) { t(voting.secret? ? 'is_secret' : 'is_not_secret') }
   end
