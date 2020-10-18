@@ -1,28 +1,15 @@
 <h1>Bodies</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Organization</th>
-      <th>Default votes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bodies.each do |body| %>
-      <tr>
-        <td><%= body.name %></td>
-        <td><%= body.organization_id %></td>
-        <td><%= body.default_votes %></td>
-        <td><%= link_to 'Show', organization_body_path(@organization, body) %></td>
-        <td><%= link_to 'Edit', edit_organization_body_path(@organization, body) %></td>
-        <td><%= link_to 'Destroy', organization_body_path(@organization, body), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= bootstrap_table(id: 'bodies_index') do |table| %>
+  <% table.headers = [t('body'), t('edit'), t('destroy')] %>
+  <% @bodies.each do |body| %>
+    <% table.rows << [
+      body.name,
+      link_to( t('edit'), edit_organization_body_path(@organization, body)),
+      link_to(t('destroy'), organization_body_path(@organization, body), method: :delete, data: { confirm: 'Are you sure?' })
+    ] %>
+  <% end %>
+<% end %>
 
 <br>
 
