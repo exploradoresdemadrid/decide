@@ -25,6 +25,9 @@ en:
     bar_chart: Bar chart
     percentage: percentage
     results: Results
+  time:
+    seconds: seconds
+    minutes: minutes
   groups:
     import: Import CSV
     new: New group

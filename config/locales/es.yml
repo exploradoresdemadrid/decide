@@ -25,6 +25,9 @@ es:
     bar_chart: Diagrama de barras
     percentage: Porcentaje
     results: Resultados
+  time:
+    seconds: segundos
+    minutes: minutos
   groups:
     import: Importar CSV
     new: Nuevo grupo
