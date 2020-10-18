@@ -1,0 +1,6 @@
+<%= form_for([@organization, @body], layout: :basic) do |f| %>
+  <%= f.text_field :name %>
+  <%= f.number_field :default_votes %>
+
+  <%= f.submit t('submit') %>
+<% end %>

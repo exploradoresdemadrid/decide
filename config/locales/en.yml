@@ -79,6 +79,8 @@ en:
   total_votes: Votes to submit
   upload_CSV: Import CSV
   groups_updated: "%{count} groups have been updated."
+  bodies: Decision-making bodies
+  body: Decision-making body
   errors:
     invalid_authentication_code: Code is invalid or expired
     voting_not_open: You cannot vote yet. You must wait for the question to be opened.

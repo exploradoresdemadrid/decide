@@ -10,11 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_093833) do
+ActiveRecord::Schema.define(version: 2020_10_18_162252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "bodies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.uuid "organization_id", null: false
+    t.integer "default_votes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["organization_id"], name: "index_bodies_on_organization_id"
+  end
+
+  create_table "bodies_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "body_id", null: false
+    t.uuid "group_id", null: false
+    t.integer "votes"
+    t.index ["body_id"], name: "index_bodies_groups_on_body_id"
+    t.index ["group_id"], name: "index_bodies_groups_on_group_id"
+  end
 
   create_table "groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
@@ -103,9 +120,14 @@ ActiveRecord::Schema.define(version: 2020_10_17_093833) do
     t.uuid "organization_id"
     t.integer "timeout_in_seconds"
     t.datetime "finishes_at"
+    t.uuid "body_id"
+    t.index ["body_id"], name: "index_votings_on_body_id"
     t.index ["organization_id"], name: "index_votings_on_organization_id"
   end
 
+  add_foreign_key "bodies", "organizations"
+  add_foreign_key "bodies_groups", "bodies"
+  add_foreign_key "bodies_groups", "groups"
   add_foreign_key "groups", "organizations"
   add_foreign_key "groups", "users"
   add_foreign_key "options", "questions"
@@ -115,5 +137,6 @@ ActiveRecord::Schema.define(version: 2020_10_17_093833) do
   add_foreign_key "vote_submissions", "votings"
   add_foreign_key "votes", "groups"
   add_foreign_key "votes", "options"
+  add_foreign_key "votings", "bodies"
   add_foreign_key "votings", "organizations"
 end

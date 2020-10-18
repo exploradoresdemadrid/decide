@@ -6,7 +6,7 @@ class VotingsController < ApplicationController
 
   # GET /votings
   def index
-    all_votings = Voting.accessible_by(current_ability).includes(:questions)
+    all_votings = @organization.votings.accessible_by(current_ability).includes(:questions)
     @non_archived_votings = all_votings.where.not(status: :archived)
     @archived_votings = @votings.archived
     respond_to do |format|
@@ -71,7 +71,7 @@ class VotingsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def voting_params
-    params.require(:voting).permit(:title, :description, :status, :secret, :type, :max_options, :options, :timeout_in_seconds)
+    params.require(:voting).permit(:title, :description, :status, :secret, :type, :max_options, :options, :timeout_in_seconds, :body_id)
   end
 
   def get_model(type)

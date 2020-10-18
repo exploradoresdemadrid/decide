@@ -3,12 +3,15 @@
 module VotingsHelper
   def votings_table(organization, votings)
     bootstrap_table do |table|
-      table.headers = [t('title'), t('status')]
+      table.headers = [t('title'), t('body'), t('status')]
       table.headers << t('edit') if can?(:edit, Voting)
       table.headers << t('destroy') if can?(:destroy, Voting)
 
       votings.each do |voting|
-        row = [link_to(voting.title, organization_voting_path(organization, voting)), voting.status.capitalize ]
+        row = []
+        row << link_to(voting.title, organization_voting_path(organization, voting))
+        row << voting.body&.name
+        row << voting.status.capitalize
         row << link_to(t('edit'), edit_organization_voting_path(organization, voting)) if can?(:edit, Voting)
         row << link_to(t('destroy'), organization_voting_path(organization, voting), method: :delete, data: { confirm: 'Are you sure?' }) if can?(:destroy, Voting)
 
@@ -56,6 +59,10 @@ module VotingsHelper
     Voting.types.map do |type|
       { type.name => type.human_class_name }
     end.inject(:merge)
+  end
+
+  def bodies_for_select(organization)
+    organization.bodies.pluck(:id, :name).to_h
   end
 
   def timeout_in_seconds_for_select

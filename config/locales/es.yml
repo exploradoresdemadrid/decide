@@ -47,6 +47,8 @@ es:
   total_votes: Papeletas a enviar
   upload_CSV: Importar CSV
   groups_updated: "Se han actualizado %{count} grupos."
+  bodies: Órganos
+  body: Órgano
   errors:
     invalid_authentication_code: El código es incorrecto o ha expirado
     voting_not_open: Todavía no puedes enviar tus papeletas. Debes esperar a que se abra la urna virtual.

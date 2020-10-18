@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :sessions, only: :new
 
   resources :organizations do
+    resources :bodies
     resources :votings do
       resources :questions
       post 'vote', to: 'votings#vote'
@@ -33,6 +34,5 @@ Rails.application.routes.draw do
       post 'bulk_upload', on: :collection, to: 'groups#bulk_upload_create', as: :bulk_upload_create
     end
   end
-
   root to: 'sessions#new'
 end

@@ -26,6 +26,17 @@ RSpec.describe Group, type: :model do
         uuid_regex = '[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}'
         expect(create(:group).user.email).to match(/^test\+#{uuid_regex}@example.com$/i)
       end
+
+      it 'creates a record per body with the default votes' do
+        organization = create :organization
+        organization.bodies.destroy_all
+        create :body, organization: organization, default_votes: 1
+        create :body, organization: organization, default_votes: 3
+        create :body, organization: organization, default_votes: 5
+
+        group = create :group, organization: organization
+        expect(group.bodies_groups.pluck(:votes)).to contain_exactly(1, 3, 5)
+      end
     end
   end
 end

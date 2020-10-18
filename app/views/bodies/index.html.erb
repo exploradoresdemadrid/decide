@@ -1,0 +1,16 @@
+<h1>Bodies</h1>
+
+<%= bootstrap_table(id: 'bodies_index') do |table| %>
+  <% table.headers = [t('body'), t('edit'), t('destroy')] %>
+  <% @bodies.each do |body| %>
+    <% table.rows << [
+      body.name,
+      link_to( t('edit'), edit_organization_body_path(@organization, body)),
+      link_to(t('destroy'), organization_body_path(@organization, body), method: :delete, data: { confirm: 'Are you sure?' })
+    ] %>
+  <% end %>
+<% end %>
+
+<br>
+
+<%= link_to 'New Body', new_organization_body_path(@organization) %>

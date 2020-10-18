@@ -14,6 +14,7 @@ class Ability
       can :manage, Group, organization_id: current_org_id
       can :manage, Question, voting: { organization_id: current_org_id }
       can :manage, Voting, organization_id: current_org_id
+      can :manage, Body, organization_id: current_org_id
     else
       can %i[read vote], Voting, id: Voting.published.pluck(:id), organization_id: current_org_id
     end
