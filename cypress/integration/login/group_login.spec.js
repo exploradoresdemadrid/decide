@@ -18,6 +18,6 @@ context('Group login', () => {
 
   it('use invalid auth code', () => {
     cy.loginWithCode('123456')
-    cy.get('.alert.alert-danger').should('contain', 'El código es incorrecto o ha expirado')
+    cy.get('.alert.alert-danger').should('contain', 'Code is invalid or expired')
   })
 })

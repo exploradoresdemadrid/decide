@@ -15,11 +15,11 @@ context('Voting creation', () => {
   })
 
   it('create secret voting', () => {
-    cy.contains('Nueva urna virtual').click()
-    cy.contains('Title').click().type('Sample title')
+    cy.contains('New voting').click()
+    cy.get('#new_voting').contains('Title').click().type('Sample title')
     cy.contains('Description').click().type('Sample description')
     cy.contains('Secret').click()
-    cy.contains('Enviar').click()
+    cy.contains('Submit').click()
 
     cy.get('.alert.alert-info').should('contain', 'Voting was successfully created.')
   })

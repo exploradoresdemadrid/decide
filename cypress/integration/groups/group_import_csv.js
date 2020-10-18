@@ -8,20 +8,20 @@ context('Group CSV import', () => {
   })
 
   it('create multiple groups', () => {
-    cy.contains('Grupos').click()
-    cy.contains('Importar CSV').click()
+    cy.contains('Groups').click()
+    cy.contains('Import CSV').click()
     cy.get('textarea').invoke('val', 'name,votes\nGroup 1,1\nGroup 2,2\nGroup 3,3')
-    cy.contains('Enviar').click()
+    cy.contains('Submit').click()
 
-    cy.get('.alert.alert-info').should('contain', 'Se han actualizado 3 grupos.')
+    cy.get('.alert.alert-info').should('contain', '3 groups have been updated successfully.')
   })
 
   it('Submit invalid information', () => {
-    cy.contains('Grupos').click()
-    cy.contains('Importar CSV').click()
+    cy.contains('Groups').click()
+    cy.contains('Import CSV').click()
     cy.get('textarea').invoke('val', 'name,votes\nGroup 1,1\nGroup 2,-2\nGroup 3,3')
-    cy.contains('Enviar').click()
+    cy.contains('Submit').click()
 
-    cy.get('.alert.alert-danger').should('contain', 'La validación falló: Available votes debe ser mayor que o igual a 1')
+    cy.get('.alert.alert-danger').should('contain', 'Validation failed: Available votes must be greater than or equal to 1')
   })
 })

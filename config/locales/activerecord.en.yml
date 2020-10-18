@@ -59,7 +59,7 @@ en:
         many: votings
     successful:
       messages:
-        destroyed: "%{model} has been destroyed successfully."
-        created: "%{model} has been cretated successfully."
-        updated: "%{model} has been updated successfully."
-        bulk_updated: "%{count} %{model} have been updated successfully."
+        destroyed: "%{model} was successfully destroyed."
+        created: "%{model} was successfully created."
+        updated: "%{model} was successfully updated."
+        bulk_updated: "%{count} %{model} were successfully updated."
