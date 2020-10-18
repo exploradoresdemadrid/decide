@@ -1,12 +1,12 @@
 <h1> <%= t('groups') %> </h1>
 
-<%= bootstrap_table(id: 'groups_index') do |table| %>
-  <% table.headers = [t('name'), t('number'), t('available_votes'), t('auth_token'), t('last_login'), t('edit'), t('destroy')] %>
+<%= bootstrap_table do |table| %>
+  <% table.headers = [t('name'), t('number'), *@organization.bodies.pluck(:name), t('auth_token'), t('last_login'), t('edit'), t('destroy')] %>
   <% @groups.each do |group| %>
     <% table.rows << [
       group.name,
       group.number,
-      group.available_votes,
+      *@organization.bodies.map{|b| group.votes_in_body(b)},
       group.user.auth_token,
       group.user.last_sign_in_at ? distance_of_time_in_words(group.user.last_sign_in_at, Time.now) : 'Never',
       link_to( t('edit'), edit_organization_group_path(@organization, group)),

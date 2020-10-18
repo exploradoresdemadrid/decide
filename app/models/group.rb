@@ -21,6 +21,10 @@ class Group < ApplicationRecord
     [name, number].join ' '
   end
 
+  def votes_in_body(body)
+    body.default_votes
+  end
+
   private
 
   def create_user
