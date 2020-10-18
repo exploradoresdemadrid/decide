@@ -1,5 +1,7 @@
 <%= form_for([@organization, @voting], layout: :basic) do |f| %>
+  <%= label_tag :body %>
   <%= f.collection_select :body_id, bodies_for_select(@organization), :first, :last, {}, {:class => 'form-control'} %>
+
   <%= f.text_field :title %>
   <%= f.text_field :description %>
 
