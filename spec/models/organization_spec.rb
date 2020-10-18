@@ -9,4 +9,18 @@ RSpec.describe Organization, type: :model do
       it { should validate_uniqueness_of(:name) }
     end
   end
+
+  describe 'callbacks' do
+    describe 'decision-making bodies' do
+      let(:organization) { create :organization }
+
+      it 'creates a default body with name "Default"' do
+        expect(organization.bodies.pluck(:name)).to contain_exactly('Default')
+      end
+
+      it 'configures the default votes as 1' do
+        expect(organization.bodies.first.default_votes).to eq 1
+      end
+    end
+  end
 end

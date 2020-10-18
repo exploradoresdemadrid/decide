@@ -8,4 +8,12 @@ class Organization < ApplicationRecord
 
   validates_presence_of :name
   validates_uniqueness_of :name
+
+  after_create :create_default_body
+
+  private
+
+  def create_default_body
+    bodies.create!(name: 'Default', default_votes: 1)
+  end
 end
