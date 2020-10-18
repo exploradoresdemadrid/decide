@@ -13,7 +13,7 @@ context('Group CSV import', () => {
     cy.get('textarea').invoke('val', 'name,votes\nGroup 1,1\nGroup 2,2\nGroup 3,3')
     cy.contains('Submit').click()
 
-    cy.get('.alert.alert-info').should('contain', '3 groups have been updated successfully.')
+    cy.get('.alert.alert-info').should('contain', '3 groups were successfully updated.')
   })
 
   it('Submit invalid information', () => {
