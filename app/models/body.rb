@@ -2,6 +2,7 @@ class Body < ApplicationRecord
   # Associations
   belongs_to :organization
   has_many :bodies_groups
+  has_many :votings
   has_and_belongs_to_many :groups
 
   # Validations

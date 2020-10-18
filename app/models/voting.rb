@@ -11,6 +11,7 @@ class Voting < ApplicationRecord
 
   # Associations
   belongs_to :organization
+  belongs_to :body
   has_many :questions, dependent: :destroy
   has_many :vote_submissions, dependent: :destroy
   has_many :groups, through: :vote_submissions

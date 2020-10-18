@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_144634) do
+ActiveRecord::Schema.define(version: 2020_10_18_162252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -120,6 +120,8 @@ ActiveRecord::Schema.define(version: 2020_10_18_144634) do
     t.uuid "organization_id"
     t.integer "timeout_in_seconds"
     t.datetime "finishes_at"
+    t.uuid "body_id"
+    t.index ["body_id"], name: "index_votings_on_body_id"
     t.index ["organization_id"], name: "index_votings_on_organization_id"
   end
 
@@ -135,5 +137,6 @@ ActiveRecord::Schema.define(version: 2020_10_18_144634) do
   add_foreign_key "vote_submissions", "votings"
   add_foreign_key "votes", "groups"
   add_foreign_key "votes", "options"
+  add_foreign_key "votings", "bodies"
   add_foreign_key "votings", "organizations"
 end
