@@ -1,9 +1,9 @@
 <%= navbar do %>
   <%= vertical do %>
     <%= link_to t('organizations'), organizations_path if current_user && can?(:index, Organization) %>
-    <%= link_to t('bodies'), organization_bodies_path(organization_id: current_user.organization_id) if current_user && can?(:index, Body) %>
-    <%= link_to t('votings'), votings_path if current_user %>
-    <%= link_to t('groups'), groups_path if current_user && can?(:index, Group) %>
+    <%= link_to t('bodies'), organization_bodies_path(current_user.organization) if current_user && can?(:index, Body) %>
+    <%= link_to t('votings'), organization_votings_path(current_user.organization) if current_user %>
+    <%= link_to t('groups'), organization_groups_path(current_user.organization) if current_user && can?(:index, Group) %>
     <%= link_to t('sign_out') , destroy_user_session_path, method: :delete if current_user %>
     <%= current_group&.full_name  %>
   <% end %>

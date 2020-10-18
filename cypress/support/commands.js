@@ -62,7 +62,7 @@ Cypress.Commands.add('updateVotingStatus', (name, status) => {
 })
 
 Cypress.Commands.add('createQuestion', (votingName, { title = 'Sample title', options = ['Yes', 'No'] }) => {
-  cy.visit('http://localhost:3000/votings')
+  cy.visit('http://localhost:3000/')
   cy.contains(votingName).click()
   cy.contains('a', 'Preguntas').click()
   cy.contains('Nueva pregunta').click()
@@ -79,7 +79,7 @@ Cypress.Commands.add('createQuestion', (votingName, { title = 'Sample title', op
 })
 
 Cypress.Commands.add('loginAsGroup', (groupName) => {
-  cy.get('table').contains('td', groupName).siblings(':nth-of-type(4)').first().invoke('text').then((authToken) => {
+  cy.get('#groups_index').contains('td', groupName).siblings(':nth-of-type(4)').first().invoke('text').then((authToken) => {
     cy.logout();
     cy.loginWithCode(authToken)
   })

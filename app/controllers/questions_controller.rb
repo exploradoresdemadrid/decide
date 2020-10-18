@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
-
-  load_and_authorize_resource :voting
-  load_and_authorize_resource :question, except: [:new, :create, :index]
+  load_and_authorize_resource :organization
+  load_and_authorize_resource :voting, through: :organization
+  load_and_authorize_resource :question, through: :voting, except: [:new, :create, :index]
 
   # GET /questions
   def index
@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to voting_questions_path(@voting), notice: 'Question was successfully created.'
+      redirect_to organization_voting_questions_path(@organization, @voting), notice: 'Question was successfully created.'
     else
       render :new
     end
@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   def update
     if @question.update(question_params)
-      redirect_to voting_questions_path(@voting), notice: 'Question was successfully updated.'
+      redirect_to organization_voting_questions_path(@organization, @voting), notice: 'Question was successfully updated.'
     else
       render :edit
     end
@@ -44,7 +44,7 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   def destroy
     @question.destroy
-    redirect_to voting_questions_path(@voting), notice: 'Question was successfully destroyed.'
+    redirect_to organization_voting_questions_path(@organization, @voting), notice: 'Question was successfully destroyed.'
   end
 
   private

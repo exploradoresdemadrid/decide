@@ -38,6 +38,6 @@
   <%= groups_without_vote_submitted(@voting) %>
 <% end %>
 
-<%= link_to t('edit'), edit_voting_path(@voting) if can?(:edit, @voting) %>
-<%= link_to t('back'), votings_path %>
-<%= link_to t('questions'), voting_questions_path(@voting) if can?(:index, Question) %>
+<%= link_to t('edit'), edit_organization_voting_path(@organization, @voting) if can?(:edit, @voting) %>
+<%= link_to t('back'), organization_votings_path(@organization) %>
+<%= link_to t('questions'), organization_voting_questions_path(@organization, @voting) if can?(:index, Question) %>
