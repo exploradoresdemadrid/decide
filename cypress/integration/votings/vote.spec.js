@@ -72,12 +72,6 @@ context('Vote submission', () => {
     cy.get('.alert.alert-danger').should('contain', 'Tu papeleta ha sido enviada. En cuanto se cierre la urna virtual podrás ver los resultados.')
   })
 
-  it('stay on the same page on reload', () => {
-    cy.contains('Recargar').click()
-
-    cy.get('.alert.alert-danger').should('contain', 'Tu papeleta ha sido enviada. En cuanto se cierre la urna virtual podrás ver los resultados.')
-  })
-
   it('displays countdown timer after voting', () => {
     cy.get('body').should('contain', 'Tiempo de votación')
   })
