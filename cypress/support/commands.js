@@ -62,7 +62,7 @@ Cypress.Commands.add('updateVotingStatus', (name, status) => {
 })
 
 Cypress.Commands.add('createQuestion', (votingName, { title = 'Sample title', options = ['Yes', 'No'] }) => {
-  cy.visit('http://localhost:3000/votings')
+  cy.visit('http://localhost:3000/')
   cy.contains(votingName).click()
   cy.contains('a', 'Preguntas').click()
   cy.contains('Nueva pregunta').click()

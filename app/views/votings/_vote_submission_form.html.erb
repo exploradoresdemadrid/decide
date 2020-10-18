@@ -5,7 +5,7 @@
     </div>
   <% end %>
   <div class="col-sm-9">
-    <%= simple_form_for voting, :url => voting_vote_path(voting), method: :post, layout: :horizontal do |f| %>
+    <%= simple_form_for voting, :url => organization_voting_vote_path(@organization, voting), method: :post, layout: :horizontal do |f| %>
       <%= alert_box error, context: :danger if error.present? %>
       <%= alert_box t('errors.voting_not_open'), context: :warning if @voting.ready?%>
       <%= voting_questions_form(voting, f) %>

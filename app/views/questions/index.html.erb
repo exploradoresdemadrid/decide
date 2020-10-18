@@ -7,13 +7,13 @@
       question.title,
       question.description,
       options_list(question),
-      link_to( t('edit'), edit_voting_question_path(@voting, question)),
-      link_to( t('destroy'), voting_question_path(@voting, question), method: :delete, data: { confirm: 'Are you sure?' })
+      link_to( t('edit'), edit_organization_voting_question_path(@organization, @voting, question)),
+      link_to( t('destroy'), organization_voting_question_path(@organization, @voting, question), method: :delete, data: { confirm: 'Are you sure?' })
     ] %>
   <% end %>
 <% end %>
 
 <br>
 
-<%= link_to t('new_question'), new_voting_question_path(@voting) %> | 
-<%= link_to t('back'), votings_path %>
+<%= link_to t('new_question'), new_organization_voting_question_path(@organization, @voting) %> | 
+<%= link_to t('back'), organization_votings_path(@organization) %>

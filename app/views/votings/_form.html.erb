@@ -1,4 +1,4 @@
-<%= form_for(@voting, layout: :basic) do |f| %>
+<%= form_for([@organization, @voting], layout: :basic) do |f| %>
   <%= f.text_field :title %>
   <%= f.text_field :description %>
 

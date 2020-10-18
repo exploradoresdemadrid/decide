@@ -1,5 +1,5 @@
 
-<%= form_for(@group, layout: :basic) do |f| %>
+<%= form_for([@organization, @group], layout: :basic) do |f| %>
   <%= f.text_field :name %>
   <%= f.number_field :number %>
   <%= f.number_field :available_votes %>

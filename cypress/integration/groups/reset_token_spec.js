@@ -16,7 +16,8 @@ context('Reset authentication token', () => {
   })
 
   it('modifies the authentication token for groups in the same organization', () => {
-    cy.visit('http://localhost:3000/groups')
+    cy.visit('http://localhost:3000/')
+    cy.contains('Grupos').click()
     cy.get('table').contains('td', 'Group 1').siblings(':nth-of-type(4)').first().invoke('text').then((oldAuthToken) => {
       cy.get('input').contains('Reset Tokens').click();
       cy.get('table').contains('td', 'Group 1').siblings(':nth-of-type(4)').first().invoke('text').then((newAuthToken) => {
@@ -26,15 +27,16 @@ context('Reset authentication token', () => {
   })
 
   it('does not modify the authentication token for groups in other organization', () => {
-    cy.visit('http://localhost:3000/groups')
+    cy.visit('http://localhost:3000/')
+    cy.contains('Grupos').click()
     cy.get('table').contains('td', 'Group 1').siblings(':nth-of-type(4)').first().invoke('text').then((oldAuthToken) => {
       cy.logout();
       cy.loginAsSecondAdmin();
-      cy.visit('http://localhost:3000/groups')
+      cy.contains('Grupos').click()
       cy.get('input').contains('Reset Tokens').click();
       cy.logout();
       cy.loginAsAdmin();
-      cy.visit('http://localhost:3000/groups')
+      cy.contains('Grupos').click()
       cy.get('table').contains('td', 'Group 1').siblings(':nth-of-type(4)').should('contain', oldAuthToken)
     })
   })
