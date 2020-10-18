@@ -46,6 +46,7 @@ Cypress.Commands.add('createVoting', (name, { status = 'draft' }) => {
   cy.contains('Title').click().type(name)
   cy.contains('Description').click().type('Sample description')
   cy.get('#voting_status').select(status)
+  cy.get('#voting_timeout_in_seconds').select('1 minute')
   cy.contains('Enviar').click()
 
   cy.get('.alert.alert-info').should('contain', 'Voting was successfully created.')

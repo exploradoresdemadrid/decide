@@ -58,6 +58,10 @@ context('Vote submission', () => {
     cy.get('.alert.alert-danger').should('contain', 'Debes enviar 5 papeletas en cada pregunta')
   })
 
+  it('displays countdown timer before voting', () => {
+    cy.get('body').should('contain', 'Tiempo de votación')
+  })
+
   it('submit available votes', () => {
     cy.get('input[type=range]').first().invoke('val', 3).trigger('change')
     cy.get('input[type=range]').last().invoke('val', 2).trigger('change')
@@ -72,6 +76,10 @@ context('Vote submission', () => {
     cy.contains('Recargar').click()
 
     cy.get('.alert.alert-danger').should('contain', 'Tu papeleta ha sido enviada. En cuanto se cierre la urna virtual podrás ver los resultados.')
+  })
+
+  it('displays countdown timer after voting', () => {
+    cy.get('body').should('contain', 'Tiempo de votación')
   })
 
   it('shows results once voting is finished', () => {
