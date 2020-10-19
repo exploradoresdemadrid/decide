@@ -31,7 +31,7 @@ Cypress.Commands.add('fillOrganizationForm', (name) => {
   cy.contains('Organizations').click()
 
   cy.contains('New organization').click()
-  cy.contains('Name').click().type(name)
+  cy.get('#new_organization').contains('Name').click().type(name)
 })
 
 Cypress.Commands.add('createOrganization', (name) => {
