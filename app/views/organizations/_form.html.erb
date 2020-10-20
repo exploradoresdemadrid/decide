@@ -1,5 +1,9 @@
 
 <%= form_for(@organization, layout: :basic) do |f| %>
   <%= f.text_field :name %>
+  <% if @organization.new_record? %>
+    <%= f.text_field :admin_email %>
+    <%= f.text_field :admin_password, type: :password %>
+  <% end %>
   <%= f.submit t('submit') %>
 <% end %>
