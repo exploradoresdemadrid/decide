@@ -17,6 +17,7 @@ es:
         options: Opciones
       organization:
         name: Nombre
+        admins: Cuentas de administración
       voting:
         body: Órgano
         description: Descripción

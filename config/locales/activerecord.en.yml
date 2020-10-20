@@ -17,6 +17,7 @@ en:
         options: Options
       organization:
         name: Name
+        admins: Admin accounts
       voting:
         body: Body
         description: Description
