@@ -38,6 +38,8 @@ module Decide
       g.factory_bot suffix: "factory"
     end
 
+    config.middleware.delete(Rack::Runtime)
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
