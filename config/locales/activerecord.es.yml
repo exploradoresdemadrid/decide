@@ -10,6 +10,7 @@ es:
         available_votes: Votos disponibles
         auth_token: Token de acceso
         last_login: Último inicio de sesión
+        email: Correo electrónico
       question:
         title: Título
         description: Descripción
@@ -63,3 +64,6 @@ es:
         created: "%{model} se ha creado correctamente."
         updated: "%{model} se ha actualizado correctamente."
         bulk_updated: "%{count} %{model} se han actualizado correctamente."
+    errors:
+      email:
+        invalid_format: El formato es incorrecto

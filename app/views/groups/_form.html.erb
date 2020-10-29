@@ -1,6 +1,7 @@
 
 <%= form_for([@organization, @group], layout: :basic) do |f| %>
   <%= f.text_field :name %>
+  <%= f.text_field :email %>
   <%= f.number_field :number %>
 
   <%= f.text_field :available_votes %>

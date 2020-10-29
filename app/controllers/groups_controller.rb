@@ -61,7 +61,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :number, :available_votes, bodies_groups_attributes: [:id, :votes])
+    params.require(:group).permit(:name, :number, :available_votes, :email, bodies_groups_attributes: [:id, :votes])
   end
 
   def bulk_upload_params
