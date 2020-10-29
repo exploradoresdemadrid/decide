@@ -1,0 +1,5 @@
+<p>Hola <%= @group.name %>,</p>
+
+<p>Tu código para acceder a la plataforma es <%= @group.auth_token %>. Puedes iniciar sesión en <%= link_to root_url, root_url %>.</p>
+
+<p>Este código será válido hasta el <%= l(@group.auth_token_expires_at, format: :long) %>.</p>

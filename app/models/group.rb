@@ -20,6 +20,8 @@ class Group < ApplicationRecord
   before_validation :create_user
   after_create :create_bodies_groups
 
+  delegate :auth_token, :auth_token_expires_at, to: :user
+
   def voted?(voting)
     in? voting.groups
   end

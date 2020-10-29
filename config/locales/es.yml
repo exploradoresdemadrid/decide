@@ -1,5 +1,8 @@
 ---
 es:
+  dates:
+    format:
+      long: "%B %d, %Y"
   submit: Enviar
   links: Enlaces
   edit: Editar
