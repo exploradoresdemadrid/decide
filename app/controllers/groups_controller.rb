@@ -47,6 +47,14 @@ class GroupsController < ApplicationController
     redirect_to organization_groups_url(@organization), notice: t('groups.tokens_updated')
   end
 
+  def email_token
+    current_organization.groups.where.not(email: nil).each do |group|
+      GroupMailer.with(group: group).code_submission.deliver_later
+    end
+
+    redirect_to organization_groups_url(@organization), notice: t('groups.token_emails_submitted')
+  end
+
   def bulk_upload_show; end
 
   def bulk_upload_create
@@ -61,7 +69,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :number, :available_votes, bodies_groups_attributes: [:id, :votes])
+    params.require(:group).permit(:name, :number, :available_votes, :email, bodies_groups_attributes: [:id, :votes])
   end
 
   def bulk_upload_params

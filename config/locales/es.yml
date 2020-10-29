@@ -1,5 +1,8 @@
 ---
 es:
+  dates:
+    format:
+      long: "%B %d, %Y"
   submit: Enviar
   links: Enlaces
   edit: Editar
@@ -33,6 +36,8 @@ es:
     new: Nuevo grupo
     supporters: Apoyos
     tokens_updated: Se han actualizado los token de acceso de los grupos.
+    token_emails_submitted: Se han enviado los token de acceso por correo electrónico.
+    token_emails_confirmation: ¿Realmente quieres enviar un correo a cada grupo con su código de acceso?
   options:
     add: Añadir opción
     none: Ninguna opción ha sido especificada

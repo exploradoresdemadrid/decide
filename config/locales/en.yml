@@ -1,5 +1,8 @@
 ---
 en:
+  dates:
+    format:
+      long: "%B %d, %Y"
   submit: Submit
   links: Links
   edit: Edit
@@ -33,6 +36,8 @@ en:
     new: New group
     supporters: Supporters
     tokens_updated: Access tokens for the groups have been updated.
+    token_emails_submitted: Access tokens have been sent via email.
+    token_emails_confirmation: Do you really want to send an email to every group with their access token?
   options:
     add: Add option
     none: No option has been configured

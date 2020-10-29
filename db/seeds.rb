@@ -38,6 +38,7 @@ sample_org = Organization.find_or_create_by(name: 'Sample organization')
   ].map do |(name, number)|
     Group.find_or_create_by!(organization: org, number: number) do |group|
       group.name = "#{name.downcase.capitalize} #{org.name}"
+      group.email = "group-#{number}@#{org.name.downcase.gsub(' ', '')}.com.invalid"
       group.available_votes = 1 + rand(MAX_VOTES - 1)
     end
   end

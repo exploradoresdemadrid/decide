@@ -10,6 +10,7 @@ en:
         available_votes: Available votes
         auth_token: Access token
         last_login: Last login
+        email: Email
       question:
         title: Title
         description: Description
@@ -63,3 +64,6 @@ en:
         created: "%{model} was successfully created."
         updated: "%{model} was successfully updated."
         bulk_updated: "%{count} %{model} were successfully updated."
+    errors:
+      email:
+        invalid_format: Format is invalid

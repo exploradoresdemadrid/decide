@@ -1,0 +1,6 @@
+---
+en:
+  mailers:
+    groups:
+      code_submission:
+        subject: 'Access token'

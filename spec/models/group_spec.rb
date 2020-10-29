@@ -14,6 +14,12 @@ RSpec.describe Group, type: :model do
       it { should validate_presence_of(:available_votes) }
       it { should validate_numericality_of(:available_votes).is_greater_than_or_equal_to(1) }
     end
+
+    describe 'email' do
+      it { should validate_uniqueness_of(:email).allow_nil.case_insensitive }
+      it { expect(build(:group, email: 'foo@bar@bar.com')).not_to be_valid }
+      it { expect(build(:group, email: 'foo@bar.com')).to be_valid }
+    end
   end
 
   describe 'callbacks' do

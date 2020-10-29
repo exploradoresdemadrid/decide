@@ -1,0 +1,10 @@
+<p>Hola <%= @group.name %>,</p>
+
+<Este>Tu código para acceder a la plataforma es <%= @group.auth_token %>. Puedes iniciar sesión en <%= link_to root_url, root_url %>.
+Este código será válido hasta el <%= l(@group.auth_token_expires_at, format: :long) %>.</p>
+
+<p>Los votos disponibles en los distintos órganos de decision son:<p>
+
+<%= mail_vote_distribution(@group) %>
+
+<p>En caso de que hubiera algún problema con la distribución de los votos, por favor contacta a la organización.</p>
