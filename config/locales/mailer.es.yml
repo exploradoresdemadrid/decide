@@ -1,0 +1,6 @@
+---
+es:
+  mailers:
+    groups:
+      code_submission:
+        subject: 'Código de inicio de sesión'

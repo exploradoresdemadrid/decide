@@ -29,3 +29,7 @@
 <%= form_tag reset_token_organization_groups_path(@organization) do %>
   <%= submit_tag "Reset Tokens" %>
 <% end %>
+
+<%= form_tag email_token_organization_groups_path(@organization) do %>
+  <%= submit_tag "Email Tokens", data: { confirm: t('groups.token_emails_confirmation') } %>
+<% end %>

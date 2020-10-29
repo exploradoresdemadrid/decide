@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :groups do
       get 'current', on: :collection
       post 'reset_token', on: :collection
+      post 'email_token', on: :collection
       get 'bulk_upload', on: :collection, to: 'groups#bulk_upload_show', as: :bulk_upload_show
       post 'bulk_upload', on: :collection, to: 'groups#bulk_upload_create', as: :bulk_upload_create
     end
