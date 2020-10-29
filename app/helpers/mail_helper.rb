@@ -10,6 +10,6 @@ module MailHelper
   def plain_mail_vote_distribution(group)
     group.organization.bodies.map do |body|
       "- #{body.name}: #{group.votes_in_body(body)}"
-    end.inject("\n")
+    end.join("\n")
   end
 end
