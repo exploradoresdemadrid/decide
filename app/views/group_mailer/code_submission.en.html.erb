@@ -1,5 +1,10 @@
 <p>Hello <%= @group.name %>,</p>
 
-<p>Your code to access the platform is <strong><%= @group.auth_token %></strong>. You can use this code to log in at <%= link_to root_url, root_url %>.</p>
+<p>Your code to access the platform is <strong><%= @group.auth_token %></strong>. You can use this code to log in at <%= link_to root_url, root_url %>.
+This code will be valid until <%= l(@group.auth_token_expires_at, format: :long) %>.</p>
 
-<p>This code will be valid until <%= l(@group.auth_token_expires_at, format: :long) %>.</p>
+<p>The votes available for the different decision-making bodies are:<p>
+
+<%= mail_vote_distribution(@group) %>
+
+<p>Should there be any problem with the distribution of the votes, please contact the organization.</p>
