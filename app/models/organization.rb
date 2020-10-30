@@ -10,10 +10,17 @@ class Organization < ApplicationRecord
   validates_uniqueness_of :name
 
   after_create :create_default_body
+  after_create :create_admin_account
+
+  attr_accessor :admin_email, :admin_password
 
   private
 
   def create_default_body
     bodies.create!(name: name, default_votes: 1)
+  end
+
+  def create_admin_account
+    users.create!(email: admin_email, role: :admin, password: admin_password)
   end
 end

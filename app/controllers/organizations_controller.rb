@@ -1,5 +1,6 @@
 class OrganizationsController < ApplicationController
   load_and_authorize_resource
+  skip_before_action :authenticate_user!, only: [:new, :create]
 
   # GET /organizations
   def index
@@ -24,6 +25,11 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(organization_params)
 
     if @organization.save
+      unless current_user
+        user = User.find_by(email: organization_params[:admin_email])
+        bypass_sign_in(user)
+        user.update_tracked_fields(request)
+      end
       redirect_to @organization, notice: t('activerecord.successful.messages.created', model: Organization.model_name.human).capitalize
     else
       render :new
@@ -53,6 +59,6 @@ class OrganizationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def organization_params
-      params.require(:organization).permit(:name)
+      params.require(:organization).permit(:name, :admin_email, :admin_password)
     end
 end

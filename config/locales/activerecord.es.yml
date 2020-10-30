@@ -17,6 +17,9 @@ es:
         options: Opciones
       organization:
         name: Nombre
+        admins: Cuentas de administración
+        admin_email: Email de administración
+        admin_password: Contraseña
       voting:
         body: Órgano
         description: Descripción

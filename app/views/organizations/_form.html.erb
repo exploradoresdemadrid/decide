@@ -1,13 +1,9 @@
 
-<%= simple_form_for(@organization) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.input :name %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<%= form_for(@organization, layout: :basic) do |f| %>
+  <%= f.text_field :name %>
+  <% if @organization.new_record? %>
+    <%= f.text_field :admin_email %>
+    <%= f.text_field :admin_password, type: :password %>
+  <% end %>
+  <%= f.submit t('submit') %>
 <% end %>

@@ -1,10 +1,15 @@
 <%= index_title(Organization) %>
 
 <%= bootstrap_table do |table| %>
-  <% table.headers = [t('activerecord.attributes.organization.name'), t('edit'), t('destroy')] %>
+  <% table.headers = [
+    t('activerecord.attributes.organization.name'),
+    t('activerecord.attributes.organization.admins'),
+    t('edit'),
+    t('destroy')] %>
   <% @organizations.each do |org| %>
     <% table.rows << [
       org.name,
+      string_list(org.users.where(role: :admin).pluck(:email)),
       link_to(t('edit'), edit_organization_path(org)),
       link_to(t('destroy'), org, method: :delete, data: { confirm: 'Are you sure?' })
     ] %>
