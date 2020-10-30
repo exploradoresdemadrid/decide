@@ -8,7 +8,7 @@ context('Group CSV import', () => {
   })
 
   it('create multiple groups', () => {
-    cy.contains('Groups').click()
+    cy.contains('groups').click()
     cy.contains('Import CSV').click()
     cy.get('textarea').invoke('val', 'name,votes\nGroup 1,1\nGroup 2,2\nGroup 3,3')
     cy.contains('Submit').click()
@@ -17,7 +17,7 @@ context('Group CSV import', () => {
   })
 
   it('Submit invalid information', () => {
-    cy.contains('Groups').click()
+    cy.contains('groups').click()
     cy.contains('Import CSV').click()
     cy.get('textarea').invoke('val', 'name,votes\nGroup 1,1\nGroup 2,-2\nGroup 3,3')
     cy.contains('Submit').click()

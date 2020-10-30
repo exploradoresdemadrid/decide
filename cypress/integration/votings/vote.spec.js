@@ -29,7 +29,7 @@ context('Vote submission', () => {
     cy.loginAsAdmin()
     cy.updateVotingStatus(votingTitle, 'open')
 
-    cy.contains('Groups').click()
+    cy.contains('groups').click()
     cy.loginAsGroup(groupName)
     cy.contains(votingTitle).click()
 

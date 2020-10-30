@@ -1,10 +1,14 @@
 <%= navbar do %>
   <%= vertical do %>
-    <%= link_to t('activerecord.models.organization.many').capitalize, organizations_path if current_user && can?(:index, Organization) %>
-    <%= link_to t('activerecord.models.body.many').capitalize, organization_bodies_path(current_user.organization) if current_user && can?(:index, Body) %>
-    <%= link_to t('activerecord.models.voting.many').capitalize, organization_votings_path(current_user.organization) if current_user %>
-    <%= link_to t('activerecord.models.group.many').capitalize, organization_groups_path(current_user.organization) if current_user && can?(:index, Group) %>
-    <%= link_to t('navigation.sign_out') , destroy_user_session_path, method: :delete if current_user %>
+    <%= link_to t('navigation.home'), root_path unless current_user %>
+    <%= link_to t('activerecord.models.organization.many'), organizations_path if current_user && can?(:index, Organization) %>
+    <%= link_to t('activerecord.models.body.many'), organization_bodies_path(current_user.organization) if current_user && can?(:index, Body) %>
+    <%= link_to t('activerecord.models.voting.many'), organization_votings_path(current_user.organization) if current_user %>
+    <%= link_to t('activerecord.models.group.many'), organization_groups_path(current_user.organization) if current_user && can?(:index, Group) %>
+    <%= link_to t('navigation.sign_out') , destroy_user_session_path, method: :delete, class: :right if current_user %>
+    <%= link_to current_user.name, destroy_user_session_path, method: :delete, class: :right if current_user %>
+    <%= link_to t('organization.new'), new_organization_path unless current_user %>
+    <%= link_to t('navigation.admin_login'), new_user_session_path , class: :right unless current_user %>
     <%= current_group&.full_name  %>
   <% end %>
-<% end if current_user.present? %>
+<% end %>

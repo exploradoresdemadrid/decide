@@ -1,3 +1,29 @@
-.navbar-toggle{
-    display: none;
+.navbar{
+    border-bottom: 2px solid #ddd;
+    border-top: 2px solid #ddd;
+    clear: both;
+    text-transform: uppercase;
+    margin: 20px 0;
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .navbar-header {
+        width: 100%;
+        .navbar-brand:hover {
+            background-color: unset;
+            color: #8534ce;
+        }
+        .navbar-toggle{
+            display: none;
+        }
+    
+        a {
+            &.right {
+                float: right;
+            }
+        }
+    }
+    
 }
