@@ -33,11 +33,13 @@ Cypress.Commands.add('fillOrganizationForm', (name) => {
 
   cy.contains('New organization').click()
   cy.get('#new_organization').contains('Name').click().type(name)
+  cy.contains('Admin email').click().type(`admin@${name.replaceAll(' ', '')}.com.invalid`)
+  cy.contains('Password').click().type('12345678')
 })
 
 Cypress.Commands.add('createOrganization', (name) => {
   cy.fillOrganizationForm(name)
-  cy.contains('Create Organization').click()
+  cy.contains('Submit').click()
 
   cy.get('.alert.alert-info').should('contain', 'Organization was successfully created.')
 })
