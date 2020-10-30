@@ -6,7 +6,7 @@
     *@organization.bodies.pluck(:name),
     *%w(auth_token last_login).map { |h| t("activerecord.attributes.group.#{h}") },
     t('edit'),
-    t('destroy')
+    t('destroy', data: { confirm: 'Are you sure?' })
     ] %>
   <% @groups.each do |group| %>
     <% table.rows << [
