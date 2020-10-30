@@ -17,14 +17,18 @@ module ApplicationHelper
   end
 
   def new_title(model)
-    content_tag(:h1) { t("#{model.name.pluralize.downcase}.new") }
+    application_header(t("#{model.name.pluralize.downcase}.new"))
   end
 
   def edit_title(model)
-    content_tag(:h1) { t('edit') + ' ' + t("activerecord.models.#{model.name.downcase}.one") }
+    application_header(t('edit') + ' ' + t("activerecord.models.#{model.name.downcase}.one"))
   end
 
   def index_title(model)
-    content_tag(:h1) { t("activerecord.models.#{model.name.downcase}.many").capitalize }
+    application_header(t("activerecord.models.#{model.name.downcase}.many").capitalize)
+  end
+
+  def application_header(text)
+    content_tag(:h1) { text }
   end
 end
