@@ -5,7 +5,7 @@ class Group < ApplicationRecord
   belongs_to :user
   belongs_to :organization
   has_many :votes
-  has_many :bodies_groups
+  has_many :bodies_groups, dependent: :destroy
   accepts_nested_attributes_for :bodies_groups
 
   # Validations
