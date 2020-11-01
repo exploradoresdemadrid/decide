@@ -2,8 +2,8 @@
 
 context('Group creation', () => {
   const uuid = () => Cypress._.random(0, 1e6)
-  var currentUUID
-  var groupName
+  let currentUUID
+  let groupName
 
   before(() => {
     cy.clearCookies()

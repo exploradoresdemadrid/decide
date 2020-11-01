@@ -4,7 +4,7 @@ document.addEventListener('turbolinks:load', function (event) {
     const finishesAt = Date.parse(raw)
     const current = new Date().getTime()
 
-    var totalSeconds = Math.round((finishesAt - current) / 1000)
+    let totalSeconds = Math.round((finishesAt - current) / 1000)
 
     if (totalSeconds < -2 && totalSeconds > -5) {
       location.reload()
