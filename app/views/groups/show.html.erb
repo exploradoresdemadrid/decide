@@ -3,15 +3,16 @@
   <%= @group.name %>
 </p>
 
-<p>
-  <strong> <%= t('number') %>:</strong>
-  <%= @group.number %>
-</p>
+<% if @group.number %>
+  <p>
+    <strong> <%= t('activerecord.attributes.group.number') %>:</strong>
+    <%= @group.number %>
+  </p>
+<% end %>
 
 <p>
-  <strong> <%= t('available_votes') %>:</strong>
-  <%= @group.available_votes %>
+  <strong> <%= t('activerecord.attributes.group.available_votes') %>:</strong>
+  <%= mail_vote_distribution(@group) %>
 </p>
 
-<%= link_to t('edit'), edit_group_path(@group) %> |
-<%= link_to t('back'), groups_path %>
+<%= link_to t('edit'), edit_organization_group_path(@organization, @group) if can?(:edit, @group) %>
