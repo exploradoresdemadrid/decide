@@ -9,11 +9,11 @@ RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 RUN gem install bundler:2.1.2
-ADD Gemfile* $APP_HOME/
+COPY Gemfile Gemfile.lock $APP_HOME/
 RUN bundle config set without 'development test' && bundle install
 
-ADD package* $APP_HOME/
+COPY package.json package-lock.json $APP_HOME/
 RUN yarn install --check-files
 
-ADD . $APP_HOME
+COPY . $APP_HOME
 CMD ["rails","server","-b","0.0.0.0"]
