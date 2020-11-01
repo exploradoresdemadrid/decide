@@ -1,7 +1,7 @@
 <h1><%= t('activerecord.models.voting.many').capitalize %></h1>
 
 <div class="actions">
-  <%= button_to t('votings.new'), new_organization_voting_path(@organization), method: :get, context: :primary %>
+  <%= button_to t('votings.new'), new_organization_voting_path(@organization), method: :get, context: :primary if can?(:create, Voting) %>
 </div>
 
 <%= votings_table(@organization, @non_archived_votings) %>
