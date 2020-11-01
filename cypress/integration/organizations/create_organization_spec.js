@@ -17,6 +17,7 @@ context('Organization creation', () => {
     cy.contains('Submit').click()
 
     cy.get('.alert.alert-info').should('contain', 'Organization was successfully created.')
+    cy.percySnapshot();
   })
 
   it('return an error when name is missing', () => {
@@ -24,5 +25,6 @@ context('Organization creation', () => {
     cy.contains('Submit').click()
 
     cy.get('span').should('contain', 'can\'t be blank')
+    cy.percySnapshot();
   })
 })

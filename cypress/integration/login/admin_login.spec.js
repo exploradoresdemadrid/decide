@@ -30,10 +30,12 @@ context('Admin login', () => {
   it('use invalid password', () => {
     cy.login('admin@example.com', 'invalidpass')
     cy.get('.alert.alert-danger').should('contain', 'Invalid Email or password.')
+    cy.percySnapshot();
   })
 
   it('logout', () => {
     cy.loginAsAdmin()
     cy.logout()
+    cy.percySnapshot();
   })
 })

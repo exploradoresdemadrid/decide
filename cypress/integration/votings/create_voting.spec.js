@@ -12,6 +12,7 @@ context('Voting creation', () => {
 
   it('create simple voting', () => {
     cy.createVoting('Sample title', {})
+    cy.percySnapshot();
   })
 
   it('create secret voting', () => {

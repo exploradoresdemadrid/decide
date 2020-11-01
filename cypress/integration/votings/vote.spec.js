@@ -22,6 +22,7 @@ context('Vote submission', () => {
     cy.get('.alert.alert-warning').should('contain', 'You cannot vote yet. You must wait for the question to be opened.')
     cy.get('.question').should('contain', 'Sample title')
     cy.contains('Emitir votos').should('be.disabled')
+    cy.percySnapshot();
   })
 
   it('empty vote submission', () => {
@@ -36,6 +37,7 @@ context('Vote submission', () => {
     cy.get('.total-votes-counter').should('contain', '0/5')
     cy.contains('Emitir votos').click()
     cy.get('.alert.alert-danger').should('contain', 'You must submit 5 votes in each question')
+    cy.percySnapshot();
   })
 
   it('submit extra votes', () => {
@@ -74,6 +76,7 @@ context('Vote submission', () => {
 
   it('displays countdown timer after voting', () => {
     cy.get('body').should('contain', 'Tiempo de votación')
+    cy.percySnapshot();
   })
 
   it('shows results once voting is finished', () => {
@@ -84,6 +87,7 @@ context('Vote submission', () => {
 
     cy.get('.panel-heading').first().should('contain', 'Results')
     cy.get('.panel-heading').last().should('contain', 'Bar chart')
+    cy.percySnapshot();
   })
 
   it('shows results once voting is archived', () => {
