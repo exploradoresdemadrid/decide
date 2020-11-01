@@ -1,8 +1,6 @@
-FROM ruby:2.7.1
+FROM ruby:2.7.1-alpine
 
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update -qq && apt-get install --no-install-recommends -y build-essential nodejs yarn
+RUN apk --no-cache add yarn nodejs build-base postgresql-dev
 
 ENV APP_HOME /app
 RUN mkdir $APP_HOME
