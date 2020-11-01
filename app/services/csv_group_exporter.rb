@@ -14,7 +14,7 @@ class CsvGroupExporter
                          .joins(:body)
                          .order(**GROUPS_ORDER, **BODIES_ORDER)
                          .pluck(:group_id, :votes)
-                         .group_by { |r| [r[0]] }
+                         .group_by(&:first)
     CSV.generate do |csv|
       csv << headers
       @organization.groups.order(number: :asc, name: :asc).each { |g| csv << build_row(g) }
@@ -39,7 +39,7 @@ class CsvGroupExporter
       group.name,
       group.number,
       group.email,
-      *@data[[group.id]].map(&:last)
+      *@data[group.id].map(&:last)
     ]
   end
 
