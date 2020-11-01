@@ -15,6 +15,7 @@ context('Admin login', () => {
     cy.get('.navbar-header').should('contain', 'votings')
     cy.get('.navbar-header').should('contain', 'groups')
     cy.get('.navbar-header').should('contain', 'Sign out')
+    cy.percySnapshot();
   })
 
   it('use valid superadmin password', () => {
