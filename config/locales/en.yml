@@ -36,8 +36,11 @@ en:
     seconds: seconds
     minutes: minutes
   groups:
+    email_tokens: Email tokens
     import: Import CSV
     new: New group
+    reset_tokens: Reset tokens
+    reset_tokens_confirmation: Do you really want to reset the tokens for all groups? Existing tokens will be disabled.
     supporters: Supporters
     tokens_updated: Access tokens for the groups have been updated.
     token_emails_submitted: Access tokens have been sent via email.

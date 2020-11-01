@@ -19,7 +19,7 @@ context('Reset authentication token', () => {
     cy.visit('http://localhost:3000/')
     cy.contains('groups').click()
     cy.get('#groups_index').contains('td', 'Group 1').siblings(':nth-of-type(4)').first().invoke('text').then((oldAuthToken) => {
-      cy.get('input').contains('Reset Tokens').click();
+      cy.get('input').contains('Reset tokens').click();
       cy.get('#groups_index').contains('td', 'Group 1').siblings(':nth-of-type(4)').first().invoke('text').then((newAuthToken) => {
         cy.get('#groups_index').contains('td', 'Group 1').siblings(':nth-of-type(4)').should('not.contain', oldAuthToken)
       })
@@ -33,7 +33,7 @@ context('Reset authentication token', () => {
       cy.logout();
       cy.loginAsSecondAdmin();
       cy.contains('groups').click()
-      cy.get('input').contains('Reset Tokens').click();
+      cy.get('input').contains('Reset tokens').click();
       cy.logout();
       cy.loginAsAdmin();
       cy.contains('groups').click()

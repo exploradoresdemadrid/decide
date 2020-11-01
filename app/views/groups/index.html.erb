@@ -1,5 +1,12 @@
 <%= index_title(Group) %>
 
+<div class="actions">
+  <%= button_to t('groups.new'), new_organization_group_path(@organization), method: :get, context: :primary %>
+  <%= button_to t('groups.import'), bulk_upload_show_organization_groups_path(@organization), method: :get, context: :primary %>
+  <%= button_to t('groups.reset_tokens'), reset_token_organization_groups_path(@organization) , method: :post, context: :warning, data: { confirm: t('groups.reset_tokens_confirmation') } %>
+  <%= button_to t('groups.email_tokens'), email_token_organization_groups_path(@organization) , method: :post, context: :warning, data: { confirm: t('groups.token_emails_confirmation') } %>
+</div>
+
 <%= bootstrap_table(id: 'groups_index') do |table| %>
   <% table.headers = [
     *%w(name number).map { |h| t("activerecord.attributes.group.#{h}") },
@@ -19,17 +26,4 @@
       link_to(t('destroy'), organization_group_path(@organization, group), method: :delete, data: { confirm: 'Are you sure?' })
     ] %>
   <% end %>
-<% end %>
-
-<br>
-
-<%= link_to t('groups.new'), new_organization_group_path(@organization) %>
-<%= link_to t('groups.import'), bulk_upload_show_organization_groups_path(@organization) %>
-
-<%= form_tag reset_token_organization_groups_path(@organization) do %>
-  <%= submit_tag "Reset Tokens" %>
-<% end %>
-
-<%= form_tag email_token_organization_groups_path(@organization) do %>
-  <%= submit_tag "Email Tokens", data: { confirm: t('groups.token_emails_confirmation') } %>
 <% end %>

@@ -36,8 +36,11 @@ es:
     seconds: segundos
     minutes: minutos
   groups:
+    email_tokens: Enviar tokens por email
     import: Importar CSV
     new: Nuevo grupo
+    reset_tokens: Actualizar tokens
+    reset_tokens_confirmation: ¿Realmente quieres actualizar los tokens de acceso de todos los grupos? Los tokens actuales dejarán de ser válidos.
     supporters: Apoyos
     tokens_updated: Se han actualizado los token de acceso de los grupos.
     token_emails_submitted: Se han enviado los token de acceso por correo electrónico.
