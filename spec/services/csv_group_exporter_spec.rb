@@ -32,8 +32,8 @@ RSpec.describe CsvGroupExporter, type: :service do
       end
     end
 
-    context 'when the organization has 2 groups' do
-      before do 
+    context 'when the organization has 3 groups' do
+      before do
         create :group, organization: organization, name: 'Group B', number: 5, email: 'ordered3@foo.com'
         create :group, organization: organization, name: 'Group A', number: 5, email: 'ordered2@foo.com'
         create :group, organization: organization, name: 'Group C', number: 2, email: 'ordered1@foo.com'

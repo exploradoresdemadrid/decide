@@ -3,11 +3,18 @@
 require 'csv'
 
 class CsvGroupExporter
+  BODIES_ORDER = { 'bodies.name' => 'asc' }.freeze
+  GROUPS_ORDER = { 'groups.number' => :asc, 'groups.name' => :asc }.freeze
   def initialize(organization)
     @organization = organization
   end
 
   def export!
+    @data = @organization.bodies_groups
+                         .joins(:body)
+                         .order(**GROUPS_ORDER, **BODIES_ORDER)
+                         .pluck(:group_id, :votes)
+                         .group_by { |r| [r[0]] }
     CSV.generate do |csv|
       csv << headers
       @organization.groups.order(number: :asc, name: :asc).each { |g| csv << build_row(g) }
@@ -32,11 +39,11 @@ class CsvGroupExporter
       group.name,
       group.number,
       group.email,
-      *bodies.map { |b| group.votes_in_body(b) }
+      *@data[[group.id]].map(&:last)
     ]
   end
 
   def bodies
-    @organization.bodies.order(name: :asc)
+    @organization.bodies.order(BODIES_ORDER)
   end
 end

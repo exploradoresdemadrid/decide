@@ -5,6 +5,7 @@ class Organization < ApplicationRecord
   has_many :votings, dependent: :destroy
   has_many :groups, through: :users
   has_many :bodies, dependent: :destroy
+  has_many :bodies_groups, through: :groups
 
   validates_presence_of :name
   validates_uniqueness_of :name
