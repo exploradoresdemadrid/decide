@@ -57,6 +57,10 @@ class GroupsController < ApplicationController
 
   def bulk_upload_show; end
 
+  def bulk_upload_template
+    send_data CsvGroupExporter.new(current_organization).export!, filename: "#{t('activerecord.models.group.many')}-#{Date.today}.csv"
+  end
+
   def bulk_upload_create
     groups = CsvGroupImporter.new(current_organization, bulk_upload_params[:import]).import!
 

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       get 'current', on: :collection
       post 'reset_token', on: :collection
       post 'email_token', on: :collection
+      get 'bulk_upload/template', on: :collection, to: 'groups#bulk_upload_template', as: :bulk_upload_template
       get 'bulk_upload', on: :collection, to: 'groups#bulk_upload_show', as: :bulk_upload_show
       post 'bulk_upload', on: :collection, to: 'groups#bulk_upload_create', as: :bulk_upload_create
     end

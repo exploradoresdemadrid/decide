@@ -36,6 +36,7 @@ en:
     seconds: seconds
     minutes: minutes
   groups:
+    csv_template_download: Download CSV template
     email_tokens: Email tokens
     import: Import CSV
     new: New group
