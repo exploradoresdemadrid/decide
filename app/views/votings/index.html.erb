@@ -1,5 +1,9 @@
 <h1><%= t('activerecord.models.voting.many').capitalize %></h1>
 
+<div class="actions">
+  <%= button_to t('votings.new'), new_organization_voting_path(@organization), method: :get, context: :primary if can?(:create, Voting) %>
+</div>
+
 <%= votings_table(@organization, @non_archived_votings) %>
 
 <h2 data-toggle="collapse" href="#collapseExample"><%= t('votings.archived') %></h2>
@@ -9,5 +13,3 @@
 
 <%= alert_box t('messages.voting.none_active') if @votings.none? %>
 <br>
-
-<%= link_to t('votings.new'), new_organization_voting_path(@organization) if can?(:create, Voting) %>
