@@ -4,10 +4,10 @@
   "dependencies": {
     "chart.js": "^2.9.4",
     "chartkick": "^3.2.1",
-    "cypress": "^5.5.0",
     "snyk": "^1.421.1"
   },
   "devDependencies": {
+    "cypress": "^5.5.0",
     "eslint": "^7.12.1",
     "eslint-config-standard": "^16.0.0",
     "eslint-plugin-import": "^2.22.1",
