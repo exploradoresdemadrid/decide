@@ -19,6 +19,14 @@ es:
       none_active: No hay ninguna urna virtual activa.
     login:
       group_login: Introduce el código de acceso
+    group_csv_import:
+      step_0: "Por favor, sigue estas instrucciones para actualizar la información de los grupos:"
+      step_1: Descarga la plantilla CSV, que contiene la información existente de todos los grupos.
+      step_2: Utiliza el editor de hojas de cálculo de tue elección (Microsoft Excel, Libreoffice Calc, etc.) para abrir la plantilla CSV.
+      step_3: Modifica las celdas de la tabla con los valores que quieras importar al sistema. Las cabeceras (primera fila) y el identificador de grupo (primera columna) no deben modificarse. Para crear un nuevo grupo, añade una fila dejando vacía la casilla del identificador de grupo.
+      step_4: Guarda la plantilla en tu ordenador, conservando el formato CSV original.
+      step_5: Abre la plantilla CSV modificada utilizando cualquier editor de texto plano (Notepad, Gedit, Sublime Text, ...) y copia el contenido.
+      step_6: Pega el contenido en el cuadro de texto situado en la parte inferior, y haz clic en el botón Enviar.
   never: Nunca
   navigation:
     admin_login: Login administración

@@ -19,6 +19,14 @@ en:
       none_active: There is no active voting.
     login:
       group_login: Insert the access token
+    group_csv_import:
+      step_0: "Please, follow these instructions in order to update the groups information:"
+      step_1: Download the CSV template, which contains the existing information for every group.
+      step_2: Using the spreadsheet editor of your choice (Microsoft Excel, Libreoffice Calc, etc.) open the CSV template.
+      step_3: Modify the cells in the table with the values you wish to import to the system. The headers (first row) and the group ID (first coulmn) should remain untouched. In order to create a new group, add a new row leaving the Group ID cell empty.
+      step_4: Save the template to your local machine, preserving the original CSV format.
+      step_5: Open the modified CSV template using any plain-text editor (Notepad, Gedit, Sublime Text, ...) and copy the content.
+      step_6: Paste the content in the textarea below, and click the Submit button.
   never: Never
   navigation:
     admin_login: Admin login

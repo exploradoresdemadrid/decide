@@ -1,4 +1,4 @@
-name,votes
-Group 1,1
-Group 2,2
-Group 3,-3
+ID (do not modify),Name,Number (optional),Email,Votes in Body A,Votes in Body B
+92613895-026b-42e2-b08f-b1193e4b8e18,Group 1,1,foo+1@bar.com,1,2
+1cac7a00-7d65-46da-99c7-d47e0bc6ea63,Group 2,2,foo+2@bar.com,3,4
+16a16967-884b-4f78-ad86-e348d4ae3e89,Group 3,3,foo+3@bar.com,5,-6
