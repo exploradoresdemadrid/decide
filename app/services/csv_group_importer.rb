@@ -13,13 +13,19 @@ class CsvGroupImporter
   def import!
     validate!
 
-    Group.transaction do
+    ActiveRecord::Base.transaction do
       @csv.map do |row|
-        Group.find_or_initialize_by(organization: @organization, name: row['name'])
-             .update!(available_votes: row['votes'])
+        group = Group.find_or_initialize_by(organization: @organization, id: row[0])
+        group.update!(name: row[1], number: row[2], email: row[3], available_votes: 1)
+
+        body_names.each_with_index do |body_name, i|
+          group.assign_votes_to_body_by_name(
+            body_name,
+            row[CsvGroupExporter::COMMON_HEADERS.size + i]
+          )
+        end
       end
     end
-    
   rescue ActiveRecord::RecordInvalid => e
     raise CSVParseError, e.message
   end
@@ -27,7 +33,17 @@ class CsvGroupImporter
   private
 
   def validate!
-    raise CSVParseError, 'Formato del CSV incorrecto' unless @csv.headers == %w[name votes]
+    raise CSVParseError, 'Formato del CSV incorrecto' unless valid_headers?
     raise CSVParseError, 'El CSV no puede contener líneas en blanco' if @csv.any? { |line| line.to_h.values.none? }
+  end
+
+  def valid_headers?
+    return false unless @csv.headers.first(CsvGroupExporter::COMMON_HEADERS.size) == CsvGroupExporter::COMMON_HEADERS
+
+    @organization.bodies.pluck(:name).sort == body_names.sort
+  end
+
+  def body_names
+    (@csv.headers - CsvGroupExporter::COMMON_HEADERS).map { |header| header.gsub('Votes in ', '') }
   end
 end

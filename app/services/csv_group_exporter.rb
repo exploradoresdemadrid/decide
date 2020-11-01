@@ -5,6 +5,12 @@ require 'csv'
 class CsvGroupExporter
   BODIES_ORDER = { 'bodies.name' => 'asc' }.freeze
   GROUPS_ORDER = { 'groups.number' => :asc, 'groups.name' => :asc }.freeze
+  COMMON_HEADERS = [
+    'ID (do not modify)',
+    'Name',
+    'Number (optional)',
+    'Email'].freeze
+
   def initialize(organization)
     @organization = organization
   end
@@ -25,10 +31,7 @@ class CsvGroupExporter
 
   def headers
     [
-      'ID (do not modify)',
-      'Name',
-      'Number (optional)',
-      'Email',
+      *COMMON_HEADERS,
       *bodies.pluck(:name).map { |b| "Votes in #{b}" }
     ]
   end
