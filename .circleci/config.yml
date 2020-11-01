@@ -107,6 +107,7 @@ workflows:
             branches:
               only:
                 - master
+                - docker/decrease-size
       - deploy:
           requires:
             - build
