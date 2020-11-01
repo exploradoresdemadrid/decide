@@ -34,6 +34,12 @@ class Group < ApplicationRecord
     bodies_groups.find_by(body: body).votes
   end
 
+  def assign_votes_to_body_by_name(body_name, votes)
+    bodies_groups.joins(:body)
+                 .find_by(bodies: { name: body_name })
+                 .update!(votes: votes)
+  end
+
   private
 
   def create_user
