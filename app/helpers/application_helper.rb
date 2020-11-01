@@ -31,4 +31,10 @@ module ApplicationHelper
   def application_header(text)
     content_tag(:h1) { text }
   end
+
+  def fa_icon(name, tooltip, options = {})
+    options.merge!(title: tooltip) if tooltip.present?
+
+    icon name, library: :font_awesome, **options
+  end
 end

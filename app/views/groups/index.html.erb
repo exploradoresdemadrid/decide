@@ -12,8 +12,9 @@
     *%w(name number).map { |h| t("activerecord.attributes.group.#{h}") },
     *@organization.bodies.pluck(:name),
     *%w(auth_token last_login).map { |h| t("activerecord.attributes.group.#{h}") },
-    t('edit'),
-    t('destroy', data: { confirm: 'Are you sure?' })
+    nil,
+    nil,
+    nil
     ] %>
   <% @groups.each do |group| %>
     <% table.rows << [
@@ -23,7 +24,8 @@
       group.user.auth_token,
       group.user.last_sign_in_at ? distance_of_time_in_words(group.user.last_sign_in_at, Time.now) : t('never'),
       link_to( t('edit'), edit_organization_group_path(@organization, group)),
-      link_to(t('destroy'), organization_group_path(@organization, group), method: :delete, data: { confirm: 'Are you sure?' })
+      link_to(t('destroy'), organization_group_path(@organization, group), method: :delete, data: { confirm: 'Are you sure?' }),
+      (fa_icon('exclamation-triangle', t('activerecord.errors.email.missing'), class: :warning) unless group.email.present?)
     ] %>
   <% end %>
 <% end %>
