@@ -9,6 +9,5 @@
     <%= link_to current_user.name, organization_group_path(current_user.organization, current_user.group), method: :delete, class: :right if current_user&.group %>
     <%= link_to t('organization.new'), new_organization_path unless current_user %>
     <%= link_to t('navigation.admin_login'), new_user_session_path , class: :right unless current_user %>
-    <%= current_group&.full_name  %>
   <% end %>
 <% end %>
