@@ -10,7 +10,7 @@ class CsvGroupExporter
   def export!
     CSV.generate do |csv|
       csv << headers
-      @organization.groups.each { |g| csv << build_row(g) }
+      @organization.groups.order(number: :asc, name: :asc).each { |g| csv << build_row(g) }
     end
   end
 
