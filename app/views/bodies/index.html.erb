@@ -1,5 +1,9 @@
 <%= index_title(Body) %>
 
+<div class="actions">
+  <%= button_to t('bodies.new'), new_organization_body_path(@organization), method: :get, context: :primary %>
+</div>
+
 <%= bootstrap_table(id: 'bodies_index') do |table| %>
   <% table.headers = [t('activerecord.attributes.body.name'), t('edit'), t('destroy')] %>
   <% @bodies.each do |body| %>
@@ -10,7 +14,3 @@
     ] %>
   <% end %>
 <% end %>
-
-<br>
-
-<%= link_to t('bodies.new'), new_organization_body_path(@organization) %>
