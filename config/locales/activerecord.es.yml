@@ -70,3 +70,4 @@ es:
     errors:
       email:
         invalid_format: El formato es incorrecto
+        missing: Falta el correo

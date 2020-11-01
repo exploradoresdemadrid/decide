@@ -20,4 +20,8 @@ document.addEventListener('turbolinks:load', function (event) {
   })
 
   setInterval(function () { $('.countdown-timer').change() }, 1000)
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 })
