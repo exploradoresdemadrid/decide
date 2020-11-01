@@ -3,6 +3,7 @@ class GroupMailer < ApplicationMailer
     attachments.inline['logo.png'] = File.read('app/assets/images/logo.png')
 
     @group = params[:group]
+    @organization = @group.organization
     mail(to: @group.email, subject: t('mailers.groups.code_submission.subject')) do |format|
       format.html
       format.text
