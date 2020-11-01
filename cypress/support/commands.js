@@ -18,7 +18,7 @@ Cypress.Commands.add('createGroup', (name) => {
 
 Cypress.Commands.add('fillGroupForm', (name) => {
   cy.visit('http://localhost:3000')
-  cy.contains('Groups').click()
+  cy.contains('groups').click()
 
   cy.contains('New group').click()
   cy.get('#new_group').contains('Name').click().type(name)
@@ -29,7 +29,7 @@ Cypress.Commands.add('fillGroupForm', (name) => {
 
 Cypress.Commands.add('fillOrganizationForm', (name) => {
   cy.visit('http://localhost:3000')
-  cy.contains('Organizations').click()
+  cy.contains('organizations').click()
 
   cy.contains('New organization').click()
   cy.get('#new_organization').contains('Name').click().type(name)
@@ -106,5 +106,5 @@ Cypress.Commands.add('loginAsSuperadmin', () => {
 Cypress.Commands.add('loginWithCode', (authToken) => {
   cy.visit('http://localhost:3000')
   cy.get('#user_auth_token').type(authToken)
-  cy.contains('Entrar').click()
+  cy.contains('Submit').click()
 })

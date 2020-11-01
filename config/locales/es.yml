@@ -16,9 +16,13 @@ es:
       is_secret: Esta urna virtual es secreta. Las papeletas enviadas no se asociarán a su grupo.
       is_not_secret: Esta urna virtual no es secreta. Las papeletas emitidas se asociarán a su grupo y serán visible en los resultados.
       already_voted: Tu papeleta ha sido enviada. En cuanto se cierre la urna virtual podrás ver los resultados.
-      none_active: No hay ninguna urna virtual activa
+      none_active: No hay ninguna urna virtual activa.
+    login:
+      group_login: Introduce el código de acceso
   never: Nunca
   navigation:
+    admin_login: Login administración
+    home: Inicio
     sign_out: Cerrar sesión
   bodies:
     new: Nuevo órgano

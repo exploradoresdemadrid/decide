@@ -1,5 +1,5 @@
 <div id="login-page">
-  <%= alert_box 'Introduce el pin que has recibido al inscribirte.' %>
+  <%= alert_box t('messages.login.group_login') %>
   <%= simple_form_for :user, url: api_v1_users_login_path, remote: true do |f| %>
     <%= f.input :auth_token,
                 as: :string,
@@ -8,6 +8,6 @@
                   maxlength: User::AUTH_TOKEN_LENGTH,
                   type: :tel
                 } %>
-    <%= f.submit 'Entrar' %>
+    <%= f.submit t('submit') %>
   <% end %>
 </div>

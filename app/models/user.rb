@@ -25,6 +25,10 @@ class User < ApplicationRecord
     save!
   end
 
+  def name
+    group&.name || "#{role} #{organization.name}"
+  end
+
   private
 
   def assign_auth_token

@@ -11,18 +11,18 @@ context('Admin login', () => {
   it('use valid admin password', () => {
     cy.loginAsAdmin()
     cy.get('.alert.alert-info').should('contain', 'Signed in successfully.')
-    cy.get('.navbar-header').should('not.contain', 'Organizations')
-    cy.get('.navbar-header').should('contain', 'Votings')
-    cy.get('.navbar-header').should('contain', 'Groups')
+    cy.get('.navbar-header').should('not.contain', 'organizations')
+    cy.get('.navbar-header').should('contain', 'votings')
+    cy.get('.navbar-header').should('contain', 'groups')
     cy.get('.navbar-header').should('contain', 'Sign out')
   })
 
   it('use valid superadmin password', () => {
     cy.loginAsSuperadmin()
     cy.get('.alert.alert-info').should('contain', 'Signed in successfully.')
-    cy.get('.navbar-header').should('contain', 'Organizations')
-    cy.get('.navbar-header').should('contain', 'Votings')
-    cy.get('.navbar-header').should('contain', 'Groups')
+    cy.get('.navbar-header').should('contain', 'organizations')
+    cy.get('.navbar-header').should('contain', 'votings')
+    cy.get('.navbar-header').should('contain', 'groups')
     cy.get('.navbar-header').should('contain', 'Sign out')
   })
 

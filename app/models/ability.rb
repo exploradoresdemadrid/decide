@@ -18,6 +18,7 @@ class Ability
         can :manage, Body, organization_id: current_org_id
       else
         can %i[read vote], Voting, id: Voting.published.pluck(:id), organization_id: current_org_id
+        can :show, Group, id: user.group.id
       end
     else
       can :create, Organization
