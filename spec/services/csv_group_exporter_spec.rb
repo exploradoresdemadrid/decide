@@ -11,7 +11,7 @@ RSpec.describe CsvGroupExporter, type: :service do
     context 'when the organization has a single decision-making body' do
       let(:organization) { create :organization, name: 'Sample org'}
       it 'only renders one column for votes' do
-        expect(export.first).to eq(["ID", "Name", "Number (optional)", "Email", "Votes in Sample org"])
+        expect(export.first).to eq(["ID (do not modify)", "Name", "Number (optional)", "Email", "Votes in Sample org"])
       end
     end
 
@@ -22,7 +22,7 @@ RSpec.describe CsvGroupExporter, type: :service do
       end
 
       it 'renders three columns for votes, ordered alphabetically by body name' do
-        expect(export.first).to eq(["ID", "Name", "Number (optional)", "Email", "Votes in Body a", "Votes in Body b", "Votes in Body c"])
+        expect(export.first).to eq(["ID (do not modify)", "Name", "Number (optional)", "Email", "Votes in Body a", "Votes in Body b", "Votes in Body c"])
       end
     end
 

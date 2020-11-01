@@ -25,7 +25,7 @@ class CsvGroupExporter
 
   def headers
     [
-      'ID',
+      'ID (do not modify)',
       'Name',
       'Number (optional)',
       'Email',
