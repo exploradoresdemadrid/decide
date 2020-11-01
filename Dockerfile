@@ -10,7 +10,7 @@ RUN gem install bundler:2.1.2
 COPY Gemfile Gemfile.lock $APP_HOME/
 RUN bundle config set without 'development test' && bundle install
 
-COPY package.json package-lock.json $APP_HOME/
+COPY package.json $APP_HOME/
 RUN yarn install --check-files
 
 COPY . $APP_HOME
