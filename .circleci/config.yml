@@ -85,7 +85,7 @@ jobs:
       - run:
           name: Build & push to DockerHub 
           command: |
-            docker build -f Dockerfile-prod -t $ORG_NAME/$IMAGE_NAME:$TAG .
+            docker build -t $ORG_NAME/$IMAGE_NAME:$TAG .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
             docker push $ORG_NAME/$IMAGE_NAME:$TAG
   deploy:
@@ -107,6 +107,7 @@ workflows:
             branches:
               only:
                 - master
+                - unify-docker
       - deploy:
           requires:
             - build
