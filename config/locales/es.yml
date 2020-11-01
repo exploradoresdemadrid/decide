@@ -36,6 +36,7 @@ es:
     seconds: segundos
     minutes: minutos
   groups:
+    csv_template_download: Descargar plantilla CSV
     email_tokens: Enviar tokens por email
     import: Importar CSV
     new: Nuevo grupo

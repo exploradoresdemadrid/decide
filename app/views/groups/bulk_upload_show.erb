@@ -1,5 +1,9 @@
 <h1> <%= t('groups.import') %> </h1>
 
+<div class="actions">
+  <%= button_to t('groups.csv_template_download'), bulk_upload_template_organization_groups_path(@organization), method: :get, context: :primary %>
+</div>
+
 <%= form_for(:group, layout: :basic) do |f| %>
   <%= f.text_area :import %>
 
