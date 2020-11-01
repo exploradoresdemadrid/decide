@@ -107,6 +107,7 @@ workflows:
             branches:
               only:
                 - master
+                - unify-docker
       - deploy:
           requires:
             - build
