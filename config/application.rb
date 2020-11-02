@@ -32,6 +32,7 @@ module Decide
 
     config.i18n.available_locales = [:en, :es] 
     config.i18n.default_locale = :es
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*', '*.{rb,yml}')]
 
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
