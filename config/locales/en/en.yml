@@ -36,7 +36,7 @@ en:
     new: New body
   questions:
     new: New question
-  results: 
+  results:
     bar_chart: Bar chart
     percentage: percentage
     results: Results
@@ -76,3 +76,77 @@ en:
     already_voted: You have already voted
     multiselect:
       options_exceeded: Max number of options to select is %{max}, but you selected %{selected}
+  activerecord:
+    attributes:
+      body:
+        name: Name
+        default_votes: Default votes
+      group:
+        name: Name
+        number: Number
+        available_votes: Available votes
+        auth_token: Access token
+        last_login: Last login
+        email: Email
+      question:
+        title: Title
+        description: Description
+        options: Options
+      organization:
+        name: Name
+        admins: Admin accounts
+        admin_email: Admin email
+        admin_password: Password
+      voting:
+        body: Body
+        description: Description
+        questions: Questions
+        status: Status
+        statuses:
+          draft: Draft
+          ready: Ready
+          open: Open
+          finished: Finished
+          archived: Archived
+        title: Title
+        timeout_in_seconds: Time to answer
+        timeout_options:
+          0_seconds: Unlimited
+          30_seconds: 30 seconds
+          60_seconds: 1 minute
+          300_seconds: 5 minutes
+        secret: Secret
+    models:
+      body:
+        one: body
+        other: ""
+      group:
+        one: group
+        other: ""
+      question:
+        one: question
+        other: ""
+      option:
+        one: opcion
+        other: ""
+      organization:
+        one: organization
+        other: ""
+      vote:
+        one: vote
+        other: ""
+      voting:
+        one: voting
+        other: ""
+    successful:
+      messages:
+        destroyed: "%{model} was successfully destroyed."
+        created: "%{model} was successfully created."
+        updated: "%{model} was successfully updated."
+        bulk_updated: "%{count} %{model} were successfully updated."
+    errors:
+      email:
+        invalid_format: Format is invalid
+        missing: Email is missing
+  activerecord.poeditor:
+    testing: Testing in English
