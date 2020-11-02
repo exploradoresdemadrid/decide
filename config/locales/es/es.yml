@@ -36,7 +36,7 @@ es:
     new: Nuevo órgano
   questions:
     new: Nueva pregunta
-  results:
+  results: 
     bar_chart: Diagrama de barras
     percentage: Porcentaje
     results: Resultados
@@ -76,77 +76,3 @@ es:
     already_voted: Ya has enviado tu papeleta
     multiselect:
       options_exceeded: El número máximo de opciones a elegir es %{max}, pero seleccionaste %{selected}
-  activerecord:
-    attributes:
-      body:
-        name: Nombre
-        default_votes: Votos por defecto
-      group:
-        name: Nombre
-        number: Número
-        available_votes: Votos disponibles
-        auth_token: Token de acceso
-        last_login: Último inicio de sesión
-        email: Correo electrónico
-      question:
-        title: Título
-        description: Descripción
-        options: Opciones
-      organization:
-        name: Nombre
-        admins: Cuentas de administración
-        admin_email: Email de administración
-        admin_password: Contraseña
-      voting:
-        body: Órgano
-        description: Descripción
-        questions: Preguntas
-        status: Estado
-        statuses:
-          draft: Borrador
-          ready: Preparada
-          open: Abierta
-          finished: Finalizada
-          archived: Archivada
-        title: Título
-        timeout_in_seconds: Tiempo para responder
-        timeout_options:
-          0_seconds: Sin límite
-          30_seconds: 30 segundos
-          60_seconds: 1 minuto
-          300_seconds: 5 minutos
-        secret: Secreta
-    models:
-      body:
-        one: órgano
-        other: ""
-      group:
-        one: grupo
-        other: ""
-      question:
-        one: pregunta
-        other: ""
-      option:
-        one: opción
-        other: ""
-      organization:
-        one: organización
-        other: ""
-      vote:
-        one: papeleta
-        other: ""
-      voting:
-        one: urna virtual
-        other: ""
-    successful:
-      messages:
-        destroyed: "%{model} se ha eliminado correctamente."
-        created: "%{model} se ha creado correctamente."
-        updated: "%{model} se ha actualizado correctamente."
-        bulk_updated: "%{count} %{model} se han actualizado correctamente."
-    errors:
-      email:
-        invalid_format: El formato es incorrecto
-        missing: Falta el correo
-  activerecord.poeditor:
-    testing: Testing in Spanish
