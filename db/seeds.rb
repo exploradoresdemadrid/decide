@@ -29,7 +29,7 @@ sample_org = Organization.find_or_create_by(name: 'Sample organization')
     end
   end
 
-  MAX_VOTES = 6
+  max_votes = 6
 
   groups = [
     ['Group 1', 1],
@@ -39,8 +39,8 @@ sample_org = Organization.find_or_create_by(name: 'Sample organization')
     Group.find_or_create_by!(organization: org, number: number) do |group|
       group.name = "#{name.downcase.capitalize} #{org.name}"
       group.email = "group-#{number}@#{org.name.downcase.gsub(' ', '')}.com.invalid"
-      group.available_votes = 1 + rand(MAX_VOTES - 1)
-    end
+      group.available_votes = 1
+    end.tap{ |g| g.assign_votes_to_body_by_name(org.name, 1 + rand(max_votes - 1)) }
   end
 
   public_voting = Voting.find_or_create_by!(organization: org, title: "#{org.name} - Weather voting") do |voting|
@@ -67,7 +67,7 @@ sample_org = Organization.find_or_create_by(name: 'Sample organization')
     response = public_voting.questions.map do |question|
       [
         question.id,
-        group.available_votes.times.map { question.option_ids.sample }.group_by(&:itself).transform_values(&:count)
+        group.votes_in_body(question.body).times.map { question.option_ids.sample }.group_by(&:itself).transform_values(&:count)
       ]
     end.to_h
 
