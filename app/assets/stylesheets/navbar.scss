@@ -1,3 +1,5 @@
+@import 'colors';
+
 .navbar{
     border-bottom: 2px solid #ddd;
     border-top: 2px solid #ddd;
@@ -12,7 +14,7 @@
     .navbar-header {
         width: 100%;
         .navbar-brand:hover {
-            color: #8534ce;
+            color: $color-main;
         }
         .navbar-toggle{
             display: none;

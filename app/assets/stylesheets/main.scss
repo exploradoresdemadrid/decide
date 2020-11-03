@@ -1,6 +1,30 @@
+@import 'colors';
+
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+.header {
+  border-bottom: 2px solid $color-main;
+  padding: 0;
+  margin: 20px 0 30px 0;
+  height: 45px;
+
+  h1 {
+    display: inline-block;
+    text-transform: uppercase;
+    color: $color-main;
+    margin: 0 0 0 15px;
+    padding: 0;
+  }
+
+  img {
+    height: 100%;
+    display: inline-block;
+    margin: 0 0 20px 0;
+  }
+}
+
 
 #main-container {
   width: 80%;
