@@ -1,5 +1,5 @@
 document.addEventListener('turbolinks:load', function (event) {
-  $('.countdown-timer').change(function (e) {
+  $('.countdown-timer.open').change(function (e) {
     const raw = $(e.target).data('finishes-at')
     const finishesAt = Date.parse(raw)
     const current = new Date().getTime()

@@ -65,8 +65,9 @@ es:
     submitted: Votos emitidos
     total: Papeletas a enviar
   votings:
-    archived: Urnas virtuales archivadas
+    archived: Ver urnas virtuales archivadas
     new: Nueva urna virtual
+    voting_time: Tiempo de votación
   errors:
     invalid_authentication_code: El código es incorrecto o ha expirado
     voting_not_open: Todavía no puedes enviar tus papeletas. Debes esperar a que se abra la urna virtual.

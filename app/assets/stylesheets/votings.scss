@@ -1,3 +1,32 @@
-// Place all the styles related to the Votings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+@import 'colors';
+
+.countdown-timer {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 10px;
+
+  table {
+    width: 100%;
+    .timer-content {
+      font-size: 2.5em;
+
+      td {
+        height: 100px;
+        vertical-align: bottom;
+      }
+    }
+  }
+}
+
+.question {
+  .custom-range::-webkit-slider-thumb,
+  .custom-range::-moz-range-thumb {
+    background: $color-main;
+  }
+}
+
+.vote-submission-button {
+  text-transform: uppercase;
+  width: 125%;
+}

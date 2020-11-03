@@ -59,7 +59,7 @@ context('Vote submission', () => {
   })
 
   it('displays countdown timer before voting', () => {
-    cy.get('body').should('contain', 'Tiempo de votación')
+    cy.get('body').should('contain', 'Voting time')
   })
 
   it('submit available votes', () => {
@@ -73,7 +73,7 @@ context('Vote submission', () => {
   })
 
   it('displays countdown timer after voting', () => {
-    cy.get('body').should('contain', 'Tiempo de votación')
+    cy.get('body').should('contain', 'Voting time')
   })
 
   it('shows results once voting is finished', () => {

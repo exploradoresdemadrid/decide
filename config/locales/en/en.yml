@@ -65,8 +65,9 @@ en:
     submitted: Submitted votes
     total: Votes to be submitted
   votings:
-    archived: Archived votings
+    archived: View archived votings
     new: New voting
+    voting_time: Voting time
   errors:
     invalid_authentication_code: Code is invalid or expired
     voting_not_open: You cannot vote yet. You must wait for the question to be opened.

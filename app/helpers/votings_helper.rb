@@ -3,21 +3,38 @@
 module VotingsHelper
   def votings_table(organization, votings)
     bootstrap_table do |table|
-      table.headers = %w(title body status).map { |h| t("activerecord.attributes.voting.#{h}") }
-      table.headers << t('edit') if can?(:edit, Voting)
-      table.headers << t('destroy') if can?(:destroy, Voting)
+      table.headers = []
+      table.headers << t('activerecord.attributes.voting.body')
+      table.headers << t('activerecord.models.voting.one').capitalize
+      table.headers << nil
 
       votings.each do |voting|
         row = []
-        row << link_to(voting.title, organization_voting_path(organization, voting))
         row << voting.body&.name
-        row << t("activerecord.attributes.voting.statuses.#{voting.status}")
-        row << link_to(t('edit'), edit_organization_voting_path(organization, voting)) if can?(:edit, Voting)
-        row << link_to(t('destroy'), organization_voting_path(organization, voting), method: :delete, data: { confirm: 'Are you sure?' }) if can?(:destroy, Voting)
-
+        row << link_to(voting.title, organization_voting_path(voting.organization, voting)) + voting_badge(voting)
+        row << voting_actions(voting)
         table.rows << row
       end
     end
+  end
+
+  def voting_badge(voting)
+    status = {
+      ready: :info,
+      draft: :light,
+      open: :success,
+      finished: :secondary,
+      archived: :dark
+    }[voting.status.to_sym] || :default
+    content_tag(:span, t("activerecord.attributes.voting.statuses.#{voting.status}"), class: "badge badge-#{status}")
+  end
+
+  def voting_actions(voting)
+    actions = []
+    actions << link_to(fa_icon(:edit, t('edit')), edit_organization_voting_path(voting.organization, voting)) if can?(:edit, Voting)
+    actions << link_to(fa_icon(:trash, t('destroy')), organization_voting_path(voting.organization, voting), method: :delete, data: { confirm: 'Are you sure?' }) if can?(:destroy, Voting)
+    actions << link_to(fa_icon('bar-chart', t('results.results')), organization_voting_path(voting.organization, voting)) if voting.finished? || voting.archived?
+    actions.inject(:+)
   end
 
   def groups_with_vote_submitted(voting)
@@ -71,6 +88,14 @@ module VotingsHelper
 
   def timeout_in_seconds_for_select
     [0, 30, 60, 300].map { |n| [n, t("activerecord.attributes.voting.timeout_options.#{n}_seconds")] }.to_h
+  end
+
+  def minutes_timeout(voting)
+    (voting.timeout_in_seconds || 0) / 60
+  end
+
+  def seconds_timeout(voting)
+    (voting.timeout_in_seconds || 0) - 60 * minutes_timeout(voting)
   end
 
   def secret_voting_alert(voting)

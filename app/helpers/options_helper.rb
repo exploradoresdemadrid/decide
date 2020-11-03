@@ -17,10 +17,9 @@ module OptionsHelper
   end
 
   def total_votes_counter(question)
-    content_tag(:hr) +
-      content_tag(:div, class: 'vote-summary') do
-        content_tag(:label, t('votes.total'), class: 'col-md-10 col-sm-10 col-10') +
-          content_tag(:span, "0/#{votes_available(question) || 0}", class: 'total-votes-counter col-2', data: {total: votes_available(question) || 0})
-      end
+    content_tag(:div, class: 'vote-summary') do
+      content_tag(:label, t('votes.total'), class: 'col-md-10 col-sm-10 col-10') +
+        content_tag(:span, "0/#{votes_available(question) || 0}", class: 'total-votes-counter col-2', data: {total: votes_available(question) || 0})
+    end
   end
 end
