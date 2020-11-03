@@ -18,3 +18,14 @@
     }
   }
 }
+
+.question {
+  .custom-range::-webkit-slider-thumb,
+  .custom-range::-moz-range-thumb {
+    background: $color-main;
+  }
+}
+
+.vote-submission-button {
+  width: 125%;
+}
