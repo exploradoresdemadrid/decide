@@ -19,6 +19,7 @@ Organization.destroy_all
 
 edm_org = Organization.find_or_create_by(name: 'Exploradores de Madrid')
 sample_org = Organization.find_or_create_by(name: 'Sample organization')
+Body.update_all(default_votes: 5)
 
 [[edm_org, 'edm'], [sample_org, 'sample']]. each do |(org, org_name)|
   %i[admin superadmin].each do |role|
