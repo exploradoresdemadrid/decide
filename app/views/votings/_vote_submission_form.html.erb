@@ -7,7 +7,7 @@
   <div class="col-sm-9 vote-submission-form">
     <%= simple_form_for voting, :url => organization_voting_vote_path(@organization, voting), method: :post, layout: :horizontal do |f| %>
       <%= alert_box error, context: :danger if error.present? %>
-      <%= alert_box t('errors.voting_not_open'), context: :warning if @voting.ready?%>
+      <%= alert_box t('errors.voting_not_open'), context: :warning, dismissible: true if @voting.ready?%>
       <%= voting_questions_form(voting, f) %>
       <%= f.submit 'Emitir votos', disabled: @voting.ready?, class: 'btn btn-success vote-submission-button' %>
     <% end if current_group %>
