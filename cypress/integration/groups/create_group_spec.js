@@ -20,9 +20,11 @@ context('Group creation', () => {
   it('create and delete group', () => {
     cy.contains('Submit').click()
     cy.get('.alert.alert-info').should('contain', 'Group was successfully created.')
+    cy.percySnapshot();
 
     cy.get('#groups_index').contains('td', groupName).parent().contains('Destroy').click()
     cy.get('.alert.alert-info').should('contain', 'Group was successfully destroyed.')
+    cy.percySnapshot();
   })
 
   it('return an error when name is missing', () => {
@@ -30,6 +32,7 @@ context('Group creation', () => {
     cy.contains('Submit').click()
 
     cy.get('span').should('contain', 'can\'t be blank')
+    cy.percySnapshot();
   })
 
   it('return an error when available votes is 0', () => {
@@ -37,5 +40,6 @@ context('Group creation', () => {
     cy.contains('Submit').click()
 
     cy.get('span').should('contain', 'must be greater than or equal to 1')
+    cy.percySnapshot();
   })
 })

@@ -14,6 +14,7 @@ context('Group login', () => {
   it('use valid auth code', () => {
     cy.loginAsGroup(groupName)
     cy.get('.navbar').should('contain', groupName)
+    cy.percySnapshot();
   })
 
   it('use invalid auth code', () => {
