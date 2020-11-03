@@ -30,7 +30,6 @@ module ApplicationHelper
 
   def application_header(text, options)
     content_tag :div, class: :header do
-
       elements = []
       elements << image_tag("icons/#{options[:icon]}", class: :icon) if options[:icon]
       elements << content_tag(:h1) { text }
