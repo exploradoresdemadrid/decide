@@ -3,8 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe VoteSubmissionService, type: :service do
-  let!(:group) { create :group, available_votes: 2 }
-  let!(:voting) { create :voting }
+  let!(:organization) { create :organization }
+  let!(:group) do
+    create(:group, available_votes: 2, organization: organization).tap do |g| 
+      g.assign_votes_to_body_by_name(organization.name, 2)
+    end
+  end
+  let!(:voting) { create :voting, organization: organization }
   let!(:question_1) { create :question, voting: voting }
   let!(:option_1_1) { create :option, question: question_1 }
   let!(:option_1_2) { create :option, question: question_1 }

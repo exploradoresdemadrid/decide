@@ -18,7 +18,7 @@
   "scripts": {
     "cy:run:recorded": "cypress run --record",
     "cy:run": "cypress run",
-    "cy:open" : "cypress open"
+    "cy:open": "cypress open"
   },
   "snyk": true
 }

@@ -10,6 +10,6 @@
       <%= alert_box t('errors.voting_not_open'), context: :warning if @voting.ready?%>
       <%= voting_questions_form(voting, f) %>
       <%= f.submit 'Emitir votos', disabled: @voting.ready? %>
-    <% end %>
+    <% end if current_group %>
   </div>
 </div>

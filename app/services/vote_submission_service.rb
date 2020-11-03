@@ -12,10 +12,10 @@ class VoteSubmissionService
 
   def vote!
     voting.perform_voting_validations!(response)
-
-    @response = voting.transform_votes(@response, available_votes: @group&.available_votes)
-
     verify_group_presence!
+
+    @response = voting.transform_votes(@response, available_votes: available_votes)
+
     verify_group_already_voted!
     verify_voting_status!
     verify_questions_belong_to_voting!
@@ -25,15 +25,15 @@ class VoteSubmissionService
       raise Errors::VotingError, I18n.t('errors.missing_votes_for_question')
     end
 
-    unless response.values.all? { |question_responses| question_responses.values.sum == group.available_votes }
-      raise Errors::VotingError, I18n.t('errors.invalid_number_votes', votes: group.available_votes)
+    unless response.values.all? { |question_responses| question_responses.values.sum == available_votes }
+      raise Errors::VotingError, I18n.t('errors.invalid_number_votes', votes: available_votes)
     end
 
     ActiveRecord::Base.transaction do
       response.values.inject(:merge).each do |option_id, votes|
         votes.times { Vote.create!(option_id: option_id, group_id: stored_group_id) }
       end
-      VoteSubmission.create!(group: group, voting: voting, votes_submitted: group.available_votes)
+      VoteSubmission.create!(group: group, voting: voting, votes_submitted: available_votes)
     end
   rescue ActiveRecord::InvalidForeignKey, ActiveRecord::NotNullViolation
     raise Errors::VotingError, I18n.t('errors.missing_option')
@@ -42,6 +42,10 @@ class VoteSubmissionService
   end
 
   private
+
+  def available_votes
+    group.votes_in_body(voting.body)
+  end
 
   def verify_group_presence!
     unless group.present?

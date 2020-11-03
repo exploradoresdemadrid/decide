@@ -22,6 +22,6 @@ class Organization < ApplicationRecord
   end
 
   def create_admin_account
-    users.create!(email: admin_email, role: :admin, password: admin_password)
+    users.create!(email: admin_email, role: :admin, password: admin_password) if admin_email && admin_password
   end
 end
