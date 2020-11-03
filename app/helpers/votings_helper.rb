@@ -12,7 +12,7 @@ module VotingsHelper
       votings.each do |voting|
         row = []
         row << voting.body&.name
-        row << voting.title
+        row << link_to(voting.title, organization_voting_path(voting.organization, voting))
         row << t("activerecord.attributes.voting.statuses.#{voting.status}")
         row <<  voting_actions(voting)
         table.rows << row
