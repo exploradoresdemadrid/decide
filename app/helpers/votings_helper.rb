@@ -3,21 +3,28 @@
 module VotingsHelper
   def votings_table(organization, votings)
     bootstrap_table do |table|
-      table.headers = %w(title body status).map { |h| t("activerecord.attributes.voting.#{h}") }
-      table.headers << t('edit') if can?(:edit, Voting)
-      table.headers << t('destroy') if can?(:destroy, Voting)
+      table.headers = []
+      table.headers << t('activerecord.attributes.voting.body')
+      table.headers << t('activerecord.models.voting.one').capitalize
+      table.headers << t('activerecord.attributes.voting.status')
+      table.headers << nil
 
       votings.each do |voting|
         row = []
-        row << link_to(voting.title, organization_voting_path(organization, voting))
         row << voting.body&.name
+        row << link_to(voting.title, organization_voting_path(organization, voting))
         row << t("activerecord.attributes.voting.statuses.#{voting.status}")
-        row << link_to(t('edit'), edit_organization_voting_path(organization, voting)) if can?(:edit, Voting)
-        row << link_to(t('destroy'), organization_voting_path(organization, voting), method: :delete, data: { confirm: 'Are you sure?' }) if can?(:destroy, Voting)
-
+        row <<  voting_actions(voting)
         table.rows << row
       end
     end
+  end
+
+  def voting_actions(voting)
+    actions = []
+    actions << link_to(fa_icon(:edit, t('edit')), edit_organization_voting_path(voting.organization, voting)) if can?(:edit, Voting)
+    actions << link_to(fa_icon(:trash, t('destroy')), organization_voting_path(voting.organization, voting), method: :delete, data: { confirm: 'Are you sure?' }) if can?(:destroy, Voting)
+    actions.inject(:+)
   end
 
   def groups_with_vote_submitted(voting)
