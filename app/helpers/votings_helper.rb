@@ -90,6 +90,14 @@ module VotingsHelper
     [0, 30, 60, 300].map { |n| [n, t("activerecord.attributes.voting.timeout_options.#{n}_seconds")] }.to_h
   end
 
+  def minutes_timeout(voting)
+    (voting.timeout_in_seconds || 0) / 60
+  end
+
+  def seconds_timeout(voting)
+    (voting.timeout_in_seconds || 0) - 60 * minutes_timeout(voting)
+  end
+
   def secret_voting_alert(voting)
     alert_box(dismissible: true) { t("messages.voting.#{voting.secret? ? 'is_secret' : 'is_not_secret'}") }
   end

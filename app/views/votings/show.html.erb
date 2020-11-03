@@ -1,12 +1,8 @@
-<h1><%= @voting.title %></h1>
+<%= application_header(@voting.title) %>
+<%= content_tag(:h2, @voting.body.name) %>
+<%= @voting.description if @voting.description.present? %>
 
-<%= secret_voting_alert(@voting) if @voting.open? %>
 
-<% if @voting.description.present? %>
-  <h2><%= t('activerecord.attributes.voting.description') %></h2>
-
-  <%= @voting.description %>
-<% end %>
 
 <% if @voting.finished? || @voting.archived? %>
   <h2><%= t('results.results') %></h2>
@@ -21,6 +17,7 @@
 <% end %>
 
 <% if @voting.open? || @voting.ready?  %>
+  <%= secret_voting_alert(@voting) %>
   <% if current_group&.voted?(@voting) %>
     <%= alert_box t('messages.voting.already_voted'), context: :success %>
     <%= render 'countdown_component', voting: @voting %>

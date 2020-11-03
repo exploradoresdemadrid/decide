@@ -28,7 +28,7 @@ module ApplicationHelper
     application_header(t("activerecord.models.#{model.name.downcase}.many").capitalize, options)
   end
 
-  def application_header(text, options)
+  def application_header(text, options = {})
     content_tag :div, class: :header do
       elements = []
       elements << image_tag("icons/#{options[:icon]}", class: :icon) if options[:icon]

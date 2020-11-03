@@ -1,5 +1,5 @@
 <div class="row">
-  <% if @voting.finishes_at %>
+  <% if @voting.timeout_in_seconds %>
     <div class="col-sm-3">
       <%= render 'countdown_component', voting: @voting %>
     </div>
