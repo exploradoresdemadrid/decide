@@ -12,7 +12,7 @@ module VotingsHelper
       votings.each do |voting|
         row = []
         row << voting.body&.name
-        row << link_to(voting.title, organization_voting_path(organization, voting))
+        row << voting.title
         row << t("activerecord.attributes.voting.statuses.#{voting.status}")
         row <<  voting_actions(voting)
         table.rows << row
@@ -24,6 +24,7 @@ module VotingsHelper
     actions = []
     actions << link_to(fa_icon(:edit, t('edit')), edit_organization_voting_path(voting.organization, voting)) if can?(:edit, Voting)
     actions << link_to(fa_icon(:trash, t('destroy')), organization_voting_path(voting.organization, voting), method: :delete, data: { confirm: 'Are you sure?' }) if can?(:destroy, Voting)
+    actions << link_to(fa_icon('bar-chart', t('results.results')), organization_voting_path(voting.organization, voting)) if voting.finished? || voting.archived?
     actions.inject(:+)
   end
 
