@@ -6,18 +6,27 @@ module VotingsHelper
       table.headers = []
       table.headers << t('activerecord.attributes.voting.body')
       table.headers << t('activerecord.models.voting.one').capitalize
-      table.headers << t('activerecord.attributes.voting.status')
       table.headers << nil
 
       votings.each do |voting|
         row = []
         row << voting.body&.name
-        row << link_to(voting.title, organization_voting_path(voting.organization, voting))
-        row << t("activerecord.attributes.voting.statuses.#{voting.status}")
-        row <<  voting_actions(voting)
+        row << link_to(voting.title, organization_voting_path(voting.organization, voting)) + voting_badge(voting)
+        row << voting_actions(voting)
         table.rows << row
       end
     end
+  end
+
+  def voting_badge(voting)
+    status = {
+      ready: :info,
+      draft: :light,
+      open: :success,
+      finished: :secondary,
+      archived: :dark
+    }[voting.status.to_sym] || :default
+    content_tag(:span, t("activerecord.attributes.voting.statuses.#{voting.status}"), class: "badge badge-#{status}")
   end
 
   def voting_actions(voting)

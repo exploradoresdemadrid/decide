@@ -41,6 +41,7 @@ body {
 }
 
 .actions {
+  margin: 10px 0;
   form {
     display: inline-block;
   }
@@ -52,4 +53,8 @@ body {
   .warning {
     color: #ffc107;
   }
+}
+
+.badge {
+  margin: 0 10px;
 }
