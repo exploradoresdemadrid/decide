@@ -65,7 +65,7 @@ es:
     submitted: Votos emitidos
     total: Papeletas a enviar
   votings:
-    archived: Urnas virtuales archivadas
+    archived: Ver urnas virtuales archivadas
     new: Nueva urna virtual
   errors:
     invalid_authentication_code: El código es incorrecto o ha expirado
