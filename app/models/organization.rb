@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Organization < ApplicationRecord
+  SMOKETEST_CODE = 'decide_edm_smoketest'
+
   has_many :users, dependent: :destroy
   has_many :votings, dependent: :destroy
   has_many :groups, through: :users
@@ -14,6 +16,10 @@ class Organization < ApplicationRecord
   after_create :create_admin_account
 
   attr_accessor :admin_email, :admin_password
+
+  def smoke_test?
+    name.include? SMOKETEST_CODE
+  end
 
   private
 

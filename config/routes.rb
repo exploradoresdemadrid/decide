@@ -15,6 +15,9 @@ Rails.application.routes.draw do
           post 'login', to: 'sessions#create'
         end
       end
+      resources :organizations, only: [] do
+        put 'test', on: :collection, to: 'organizations#create_test'
+      end
     end
   end
 

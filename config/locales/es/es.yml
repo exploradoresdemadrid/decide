@@ -52,6 +52,7 @@ es:
     reset_tokens_confirmation: ¿Realmente quieres actualizar los tokens de acceso de todos los grupos? Los tokens actuales dejarán de ser válidos.
     supporters: Apoyos
     tokens_updated: Se han actualizado los token de acceso de los grupos.
+    token_emails_skipped: El envío de emails está desactivado en las cuentas de pruebas. No se ha enviado ningún email.
     token_emails_submitted: Se han enviado los token de acceso por correo electrónico.
     token_emails_confirmation: ¿Realmente quieres enviar un correo a cada grupo con su código de acceso?
   options:
