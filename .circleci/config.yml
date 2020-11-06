@@ -69,6 +69,47 @@ jobs:
           command: bundle exec rails s
           background: true
       - run: sleep 5 ; npm run cy:run:recorded
+  zaproxy:
+    working_directory: ~/decide
+    parallelism: 1
+    shell: /bin/bash --login
+    docker:
+      - image: circleci/ruby:2.7.1-node-browsers
+        environment:
+          RAILS_ENV: development
+          RACK_ENV: development
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
+      - image: circleci/postgres:9.6-ram
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: decide_development
+          POSTGRES_PASSWORD: postgres
+      - image: circleci/redis:6-alpine
+    steps:
+      - checkout
+      - run: npm install
+      - restore_cache:
+          keys:
+            - v1-dep-{{ checksum "Gemfile.lock" }}
+            - v1-dep-bundle-
+      - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+      - save_cache:
+          key: v1-dep-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run: bundle exec rake db:reset
+      - run:
+          name: Rails server
+          command: bundle exec rails s
+          background: true
+      - run:
+          name: ZAP baseline test of application
+          command: |
+            docker pull owasp/zap2docker-weekly && \
+            docker run -t owasp/zap2docker-weekly zap-baseline.py \
+                -t http://localhost:3000/ || \
+            if [ $? -ne 1 ]; then exit 0; else exit 1; fi;
   build:
     docker:
       - image: circleci/ruby:2.7.1-node-browsers
@@ -108,6 +149,11 @@ workflows:
               only:
                 - master
                 - unify-docker
+      - zaproxy:
+          filters:
+            branches:
+              only:
+                - zaproxy
       - deploy:
           requires:
             - build
