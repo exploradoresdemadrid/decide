@@ -88,6 +88,7 @@ jobs:
       - image: circleci/redis:6-alpine
     steps:
       - checkout
+      - setup_remote_docker
       - run: npm install
       - restore_cache:
           keys:
