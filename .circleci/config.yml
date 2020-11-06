@@ -109,8 +109,11 @@ jobs:
           command: |
             docker pull owasp/zap2docker-weekly && \
             docker run -t owasp/zap2docker-weekly zap-baseline.py \
+                -r report.html \
                 -t http://localhost:3000/ || \
             if [ $? -ne 1 ]; then exit 0; else exit 1; fi;
+      - store_artifacts:
+          path: report.html
   build:
     docker:
       - image: circleci/ruby:2.7.1-node-browsers
