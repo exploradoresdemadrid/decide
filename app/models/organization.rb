@@ -15,6 +15,10 @@ class Organization < ApplicationRecord
 
   attr_accessor :admin_email, :admin_password
 
+  def smoke_test?
+    name.include? 'decide_edm_smoketest'
+  end
+
   private
 
   def create_default_body
