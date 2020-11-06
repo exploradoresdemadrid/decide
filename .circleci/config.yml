@@ -109,7 +109,7 @@ jobs:
           command: |
             docker pull owasp/zap2docker-weekly && \
             docker run -t owasp/zap2docker-weekly zap-baseline.py \
-                -r report.html \
+                -r /home/circleci/decide/report.html \
                 -t http://localhost:3000/ || \
             if [ $? -ne 1 ]; then exit 0; else exit 1; fi;
       - store_artifacts:
