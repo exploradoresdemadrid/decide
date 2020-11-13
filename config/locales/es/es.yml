@@ -17,6 +17,8 @@ es:
       is_not_secret: Esta urna virtual no es secreta. Las papeletas emitidas se asociarán a su grupo y serán visible en los resultados.
       already_voted: Tu papeleta ha sido enviada. En cuanto se cierre la urna virtual podrás ver los resultados.
       none_active: No hay ninguna urna virtual activa.
+      zero_votes: No tienes ningún voto asignado en este órgano de decisión. No obstante, puedes ver la votación y los resultados.
+
     login:
       group_login: Introduce el código de acceso
     group_csv_import:
