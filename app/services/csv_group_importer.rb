@@ -12,9 +12,11 @@ class CsvGroupImporter
 
   def import!
     validate!
+    row_number = 0
 
     ActiveRecord::Base.transaction do
-      @csv.map do |row|
+      @csv.each_with_index.map do |row, j|
+        row_number = j + 1
         group = Group.find_or_initialize_by(organization: @organization, id: row[0])
         group.update!(name: row[1], number: row[2], email: row[3], available_votes: 1)
 
@@ -27,7 +29,7 @@ class CsvGroupImporter
       end
     end
   rescue ActiveRecord::RecordInvalid => e
-    raise CSVParseError, e.message
+    raise CSVParseError, "Row #{row_number}: #{e.message}"
   end
 
   private

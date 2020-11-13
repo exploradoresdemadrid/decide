@@ -83,7 +83,7 @@ RSpec.describe CsvGroupImporter, type: :service do
 
     context 'when group validations do not pass' do
       let(:csv_content) { File.open('spec/fixtures/groups/invalid_wrong_information.csv').read }
-      include_examples 'error', 'Validation failed: Votes must be greater than or equal to 0'
+      include_examples 'error', 'Row 3: Validation failed: Votes must be greater than or equal to 0'
     end
   end
 end
