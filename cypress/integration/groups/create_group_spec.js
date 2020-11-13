@@ -31,11 +31,4 @@ context('Group creation', () => {
 
     cy.get('span').should('contain', 'can\'t be blank')
   })
-
-  it('return an error when available votes is 0', () => {
-    cy.get('#group_available_votes').clear().type('0')
-    cy.contains('Submit').click()
-
-    cy.get('span').should('contain', 'must be greater than or equal to 1')
-  })
 })

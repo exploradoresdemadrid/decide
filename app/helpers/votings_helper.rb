@@ -68,7 +68,7 @@ module VotingsHelper
       voting.questions.map do |question|
         f.check_box :options,
                     { label: question.title, name: "votes[#{question.id}][#{question.options.yes.first.id}]" },
-                    current_group.available_votes, 0
+                    votes_available(question), 0
       end.inject(:+)
   end
 

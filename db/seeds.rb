@@ -40,7 +40,6 @@ Body.update_all(default_votes: 5)
     Group.find_or_create_by!(organization: org, number: number) do |group|
       group.name = "#{name.downcase.capitalize} #{org.name}"
       group.email = "group-#{number}@#{org.name.downcase.gsub(' ', '')}.com.invalid"
-      group.available_votes = 1
     end.tap{ |g| g.assign_votes_to_body_by_name(org.name, 1 + rand(max_votes - 1)) }
   end
 
