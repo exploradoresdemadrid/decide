@@ -15,7 +15,6 @@ RSpec.describe Group, type: :model do
     end
 
     describe 'email' do
-      it { should validate_uniqueness_of(:email).allow_nil.case_insensitive }
       it { expect(build(:group, email: 'foo@bar@bar.com')).not_to be_valid }
       it { expect(build(:group, email: 'foo@bar.com')).to be_valid }
     end

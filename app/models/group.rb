@@ -13,7 +13,6 @@ class Group < ApplicationRecord
   validates_numericality_of :available_votes, greater_than_or_equal_to: 1
   validates :email,
             format: { with: URI::MailTo::EMAIL_REGEXP, message: I18n.t('activerecord.errors.email.invalid_format') },
-            uniqueness: { case_sensitive: false },
             allow_blank: true
   # Callbacks
   before_validation :create_user
