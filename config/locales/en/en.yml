@@ -17,6 +17,7 @@ en:
       is_not_secret: This voting is not secret. Votes submitted will be associated with your group and will be visible in the results page.
       already_voted: Your vote was submitted. You will be able to see the results as soon as the voting finishes.
       none_active: There is no active voting.
+      zero_votes: There are no votes assigned to you in this decision-making body. However, you can still observe the voting and see the results.
     login:
       group_login: Insert the access token
     group_csv_import:
