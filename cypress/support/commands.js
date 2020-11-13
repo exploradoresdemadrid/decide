@@ -24,7 +24,6 @@ Cypress.Commands.add('fillGroupForm', (name) => {
   cy.get('#new_group').contains('Name').click().type(name)
   cy.contains('Email').click().type(`group-${name.toLowerCase().replaceAll(' ', '_')}@test.com.invalid`)
   cy.contains('Number').click().type('123')
-  cy.contains('Available votes').click().type('5')
 })
 
 Cypress.Commands.add('fillOrganizationForm', (name) => {

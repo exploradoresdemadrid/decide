@@ -7,7 +7,6 @@ en:
       group:
         name: Name
         number: Number
-        available_votes: Available votes
         auth_token: Access token
         last_login: Last login
         email: Email
