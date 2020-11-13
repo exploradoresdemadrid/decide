@@ -10,7 +10,6 @@ class Group < ApplicationRecord
 
   # Validations
   validates_presence_of :name, :available_votes
-  validates_uniqueness_of :name
   validates_numericality_of :available_votes, greater_than_or_equal_to: 1
   validates :email,
             format: { with: URI::MailTo::EMAIL_REGEXP, message: I18n.t('activerecord.errors.email.invalid_format') },
