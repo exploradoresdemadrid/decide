@@ -4,8 +4,6 @@
   <%= f.text_field :email %>
   <%= f.number_field :number %>
 
-  <%= f.text_field :available_votes %>
-
   <% if @group.persisted? %>
     <h3><%= t('activerecord.attributes.group.available_votes') %></h3>
     <div class="options-form">

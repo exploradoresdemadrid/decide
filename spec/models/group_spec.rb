@@ -9,11 +9,6 @@ RSpec.describe Group, type: :model do
       it { should validate_presence_of(:name) }
     end
 
-    describe 'available votes' do
-      it { should validate_presence_of(:available_votes) }
-      it { should validate_numericality_of(:available_votes).is_greater_than_or_equal_to(1) }
-    end
-
     describe 'email' do
       it { expect(build(:group, email: 'foo@bar@bar.com')).not_to be_valid }
       it { expect(build(:group, email: 'foo@bar.com')).to be_valid }
