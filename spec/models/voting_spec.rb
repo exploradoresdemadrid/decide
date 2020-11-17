@@ -87,7 +87,7 @@ RSpec.describe Voting, type: :model do
       end
     end
 
-    %i[draft ready].each do |from|
+    %i[draft ready finished].each do |from|
       context "transition '#{from.capitalize}' -> 'Open'" do
         context 'when the timeout is configured' do
           let(:voting) { create :voting, status: from, timeout_in_seconds: 60 }
@@ -106,8 +106,8 @@ RSpec.describe Voting, type: :model do
       end
     end
 
-    context "transition 'Finished' -> 'Open" do
-      let(:voting) { create :voting, status: :finished, timeout_in_seconds: 60 }
+    context "transition 'Archived' -> 'Open" do
+      let(:voting) { create :voting, status: :archived, timeout_in_seconds: 60 }
       include_examples 'do not spawn job'
     end
   end
