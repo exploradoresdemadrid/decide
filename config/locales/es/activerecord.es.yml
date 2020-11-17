@@ -72,4 +72,4 @@ es:
         invalid_format: El formato es incorrecto
         missing: Falta el correo
       voting:
-        misconfigured: La urna virtual no está configurada correctamente. Por favor, asegúrate de que tiene al menos una pregunta, y todas las preguntas tienen al menos dos opciones.
+        misconfigured: La urna virtual no está configurada correctamente. Por favor, asegúrate de que tiene al menos una pregunta y todas las preguntas tienen al menos dos opciones.

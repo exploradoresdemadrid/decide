@@ -71,4 +71,4 @@ en:
         invalid_format: Format is invalid
         missing: Email is missing
       voting:
-        misconfigured: The voting is misconfigured. Please, make sure it has at least one question, and all questions have at least two options
+        misconfigured: The voting is misconfigured. Please, make sure it has at least one question and all questions have at least two options
