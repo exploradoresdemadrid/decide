@@ -8,4 +8,8 @@ class Question < ApplicationRecord
   validates_presence_of :title
 
   delegate :body, to: :voting
+
+  def misconfigured?
+    options.count < 2
+  end
 end
