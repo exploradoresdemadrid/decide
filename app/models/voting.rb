@@ -39,6 +39,11 @@ class Voting < ApplicationRecord
 
   def perform_voting_validations!(votes); end
 
+  def misconfigured?
+    return true if questions.none?
+    questions.any?(&:misconfigured?)
+  end
+
   private
 
   def spawn_timeout_worker

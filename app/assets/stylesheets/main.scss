@@ -50,7 +50,7 @@ body {
 .fa {
   margin: 0 5px;
   font-size: 20px !important;
-  .warning {
+  &.warning {
     color: #ffc107;
   }
 }
