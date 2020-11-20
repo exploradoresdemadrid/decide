@@ -36,6 +36,8 @@ en:
           0_seconds: Unlimited
           30_seconds: 30 seconds
           60_seconds: 1 minute
+          120_seconds: 2 minutes
+          180_seconds: 3 minutes
           300_seconds: 5 minutes
         secret: Secret
     models:

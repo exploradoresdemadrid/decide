@@ -37,6 +37,8 @@ es:
           0_seconds: Sin límite
           30_seconds: 30 segundos
           60_seconds: 1 minuto
+          120_seconds: 2 minutos
+          180_seconds: 3 minutos
           300_seconds: 5 minutos
         secret: Secreta
     models:

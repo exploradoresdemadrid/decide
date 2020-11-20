@@ -93,7 +93,7 @@ module VotingsHelper
   end
 
   def timeout_in_seconds_for_select
-    [0, 30, 60, 300].map { |n| [n, t("activerecord.attributes.voting.timeout_options.#{n}_seconds")] }.to_h
+    [0, 30, 60, 120, 180, 300].map { |n| [n, t("activerecord.attributes.voting.timeout_options.#{n}_seconds")] }.to_h
   end
 
   def minutes_timeout(voting)
