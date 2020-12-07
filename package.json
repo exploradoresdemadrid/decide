@@ -4,7 +4,7 @@
   "dependencies": {
     "chart.js": "^2.9.4",
     "chartkick": "^3.2.1",
-    "snyk": "^1.433.0"
+    "snyk": "^1.434.2"
   },
   "devDependencies": {
     "cypress": "^6.0.1",
