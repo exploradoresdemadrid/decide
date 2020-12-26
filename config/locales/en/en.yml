@@ -13,18 +13,18 @@ en:
   remove: Destroy
   messages:
     voting:
-      is_secret: This voting is secret. Votes submitted will not be associated with your group.
-      is_not_secret: This voting is not secret. Votes submitted will be associated with your group and will be visible in the results page.
+      is_secret: This voting is secret. Votes submitted will not be associated with your account.
+      is_not_secret: This voting is not secret. Votes submitted will be associated with your account and will be visible in the results page.
       already_voted: Your vote was submitted. You will be able to see the results as soon as the voting finishes.
       none_active: There is no active voting.
       zero_votes: There are no votes assigned to you in this decision-making body. However, you can still observe the voting and see the results.
     login:
       group_login: Insert the access token
     group_csv_import:
-      step_0: "Please, follow these instructions in order to update the groups information:"
-      step_1: Download the CSV template, which contains the existing information for every group.
+      step_0: "Please, follow these instructions in order to update the %{member_type} information:"
+      step_1: Download the CSV template, which contains the existing information for every %{member_type}.
       step_2: Using the spreadsheet editor of your choice (Microsoft Excel, Libreoffice Calc, etc.) open the CSV template.
-      step_3: Modify the cells in the table with the values you wish to import to the system. The headers (first row) and the group ID (first coulmn) should remain untouched. In order to create a new group, add a new row leaving the Group ID cell empty.
+      step_3: Modify the cells in the table with the values you wish to import to the system. The headers (first row) and the first coulmn should remain untouched. In order to create a new %{member_type}, add a new row leaving the first column empty.
       step_4: Save the template to your local machine, preserving the original CSV format.
       step_5: Open the modified CSV template using any plain-text editor (Notepad, Gedit, Sublime Text, ...) and copy the content.
       step_6: Paste the content in the textarea below, and click the Submit button.
@@ -48,14 +48,13 @@ en:
     csv_template_download: Download CSV template
     email_tokens: Email tokens
     import: Import CSV
-    new: New group
     reset_tokens: Reset tokens
-    reset_tokens_confirmation: Do you really want to reset the tokens for all groups? Existing tokens will be disabled.
+    reset_tokens_confirmation: Do you really want to reset all access tokens? Existing tokens will be disabled.
     supporters: Supporters
-    tokens_updated: Access tokens for the groups have been updated.
+    tokens_updated: Access tokens have been updated.
     token_emails_skipped: Email delivery is disabled for smoketest accounts. No email has been delivered.
     token_emails_submitted: Access tokens have been sent via email.
-    token_emails_confirmation: Do you really want to send an email to every group with their access token?
+    token_emails_confirmation: Do you really want to send an email to every %{member_type} with their access token?
   options:
     add: Add option
     none: No option has been configured

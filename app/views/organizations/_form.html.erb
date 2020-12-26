@@ -5,5 +5,8 @@
     <%= f.text_field :admin_email %>
     <%= f.text_field :admin_password, type: :password %>
   <% end %>
+  <%= label_tag t('activerecord.attributes.organization.member_type') %>
+  <%= f.collection_select :member_type, member_types_for_select, :last, :first, {}, {:class => 'form-control'} %>
+  <br>
   <%= f.submit t('submit') %>
 <% end %>

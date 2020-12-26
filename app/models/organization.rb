@@ -3,6 +3,13 @@
 class Organization < ApplicationRecord
   SMOKETEST_CODE = 'decide_edm_smoketest'
 
+  enum member_type: {
+    group: 0,
+    family: 1,
+    member: 2,
+    team: 3
+  }.transform_keys { |k| "#{k}_membership" }
+
   has_many :users, dependent: :destroy
   has_many :votings, dependent: :destroy
   has_many :groups, through: :users
