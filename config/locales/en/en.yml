@@ -49,7 +49,7 @@ en:
     email_tokens: Email tokens
     import: Import CSV
     reset_tokens: Reset tokens
-    reset_tokens_confirmation: Do you really want to reset the tokens for all %{member_type}? Existing tokens will be disabled.
+    reset_tokens_confirmation: Do you really want to reset all access tokens? Existing tokens will be disabled.
     supporters: Supporters
     tokens_updated: Access tokens have been updated.
     token_emails_skipped: Email delivery is disabled for smoketest accounts. No email has been delivered.

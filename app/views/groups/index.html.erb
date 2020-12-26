@@ -3,7 +3,7 @@
 <div class="actions">
   <%= button_to t("activerecord.attributes.organization.#{@organization.member_type}.new"), new_organization_group_path(@organization), method: :get, context: :primary %>
   <%= button_to t('groups.import'), bulk_upload_show_organization_groups_path(@organization), method: :get, context: :primary %>
-  <%= button_to t('groups.reset_tokens'), reset_token_organization_groups_path(@organization) , method: :post, context: :warning, class: 'reset-tokens', data: { confirm: t('groups.reset_tokens_confirmation', member_type: t_member_type(:many)) } %>
+  <%= button_to t('groups.reset_tokens'), reset_token_organization_groups_path(@organization) , method: :post, context: :warning, class: 'reset-tokens', data: { confirm: t('groups.reset_tokens_confirmation') } %>
   <%= button_to t('groups.email_tokens'), email_token_organization_groups_path(@organization) , method: :post, context: :warning, data: { confirm: t('groups.token_emails_confirmation', member_type: t_member_type) } %>
 </div>
 
