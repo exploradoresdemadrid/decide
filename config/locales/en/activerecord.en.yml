@@ -29,6 +29,7 @@ en:
           many: groups
           new: New group
           edit: Edit group
+        member_type: Member type
       voting:
         body: Body
         description: Description
