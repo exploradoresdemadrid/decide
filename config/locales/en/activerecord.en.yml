@@ -19,6 +19,16 @@ en:
         admins: Admin accounts
         admin_email: Admin email
         admin_password: Password
+        family_membership:
+          one: family
+          many: families
+          new: New family
+          edit: Edit family
+        group_membership:
+          one: group
+          many: groups
+          new: New group
+          edit: Edit group
       voting:
         body: Body
         description: Description

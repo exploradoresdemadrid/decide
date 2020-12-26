@@ -1,10 +1,10 @@
 <h1> <%= t('groups.import') %> </h1>
 
-<p><%= t('messages.group_csv_import.step_0') %></p>
+<p><%= t('messages.group_csv_import.step_0', member_type: t_member_type) %></p>
 
 <%= content_tag(:ol) do
   (1..6).map do |step|
-    content_tag :li, t("messages.group_csv_import.step_#{step}")
+    content_tag :li, t("messages.group_csv_import.step_#{step}", member_type: t_member_type)
   end.inject(:+)
 end %>
 
