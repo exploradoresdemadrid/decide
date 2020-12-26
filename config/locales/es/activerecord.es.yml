@@ -20,6 +20,27 @@ es:
         admins: Cuentas de administración
         admin_email: Email de administración
         admin_password: Contraseña
+        family_membership:
+          one: familia
+          many: familias
+          new: Nueva familia
+          edit: Modificar familia
+        group_membership:
+          one: grupo
+          many: grupos
+          new: Nuevo grupo
+          edit: Modificar grupo
+        member_membership:
+          one: persona asociada
+          many: personas asociadas
+          new: Nueva persona asociada
+          edit: Modificar persona asociada
+        team_membership:
+          one: equipo
+          many: equipos
+          new: Nuevo equipo
+          edit: Modificar equipo
+        member_type: Member type
       voting:
         body: Órgano
         description: Descripción
