@@ -951,10 +951,10 @@ crypto-random-string@^2.0.0:
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-2.0.0.tgz#ef2a7a966ec11083388369baa02ebead229b30d5"
   integrity sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==
 
-cypress@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-6.1.0.tgz#af2596cb110aa98eaf75fef3d8ab379ca0ff2413"
-  integrity sha512-uQnSxRcZ6hkf9R5cr8KpRBTzN88QZwLIImbf5DWa5RIxH6o5Gpff58EcjiYhAR8/8p9SGv7O6SRygq4H+k0Qpw==
+cypress@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-6.2.0.tgz#1a8a7dd5bd08db3064551a9f12072963cc9337bf"
+  integrity sha512-m/rkcogYM9MTy8rbsZgyS5wT2L/J+B5V2bY2ztkDNMyqhk/oZgUF4KTWVLzkW2I+scg0iAddca95tLlt7XnAtw==
   dependencies:
     "@cypress/listr-verbose-renderer" "^0.4.1"
     "@cypress/request" "^2.88.5"
