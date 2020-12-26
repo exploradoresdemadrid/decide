@@ -5,7 +5,9 @@ class Organization < ApplicationRecord
 
   enum member_type: {
     group: 0,
-    family: 1
+    family: 1,
+    member: 2,
+    team: 3
   }.transform_keys { |k| "#{k}_membership" }
 
   has_many :users, dependent: :destroy

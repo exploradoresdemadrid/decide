@@ -29,6 +29,16 @@ en:
           many: groups
           new: New group
           edit: Edit group
+        member_membership:
+          one: member
+          many: members
+          new: New member
+          edit: Edit member
+        team_membership:
+          one: team
+          many: teams
+          new: New team
+          edit: Edit team
         member_type: Member type
       voting:
         body: Body
