@@ -24,7 +24,7 @@ gem 'chartkick'
 gem 'devise', '>= 4.7.1'
 gem 'devise-i18n', '>= 1.9.1'
 gem 'rack-cors'
-gem 'sidekiq', '~>6.1.2'
+gem 'sidekiq', '~>6.1.3'
 
 gem 'cocoon'
 
