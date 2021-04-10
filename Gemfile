@@ -38,7 +38,7 @@ group :development, :test do
   gem 'factory_bot_rails', '>= 6.0.0'
   gem 'pry'
   gem 'rspec-rails', '~> 5.0.1'
-  gem 'rubocop'
+  gem 'rubocop', '>= 1.12.0'
   gem 'dotenv-rails', '>= 2.7.5'
   gem 'cypress-rails', '>= 0.3.0'
 end
