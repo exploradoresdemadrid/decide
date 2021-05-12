@@ -5,7 +5,7 @@ ruby '2.7.1'
 
 gem 'rails', '~> 6.0.3'
 gem 'pg'
-gem 'puma', '~> 5.2'
+gem 'puma', '~> 5.3', '>= 5.3.1'
 gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 gem 'uglifier', '>= 1.3.0'
 
@@ -40,7 +40,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.1'
   gem 'rubocop'
   gem 'dotenv-rails', '>= 2.7.5'
-  gem 'cypress-rails', '>= 0.3.0'
+  gem 'cypress-rails', '>= 0.5.0'
 end
 
 group :test do
