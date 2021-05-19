@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 
-gem 'rails', '~> 6.0.3'
+gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 gem 'pg'
 gem 'puma', '~> 5.2'
 gem 'sass-rails', '~> 6.0', '>= 6.0.0'
@@ -21,26 +21,26 @@ gem 'bh', '>= 1.3.6'
 gem 'btgen', '>= 0.1.0'
 gem 'chartkick'
 
-gem 'devise', '>= 4.7.1'
-gem 'devise-i18n', '>= 1.9.1'
+gem 'devise', '>= 4.7.3'
+gem 'devise-i18n', '>= 1.9.3'
 gem 'rack-cors'
 gem 'sidekiq', '~>6.2.0'
 
 gem 'cocoon'
 
 gem 'cancancan'
-gem 'simple_form', '>= 5.0.1'
+gem 'simple_form', '>= 5.1.0'
 
 gem 'rails-i18n' , '>= 6.0.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'factory_bot_rails', '>= 6.0.0'
+  gem 'factory_bot_rails', '>= 6.1.0'
   gem 'pry'
   gem 'rspec-rails', '~> 5.0.1'
   gem 'rubocop'
-  gem 'dotenv-rails', '>= 2.7.5'
-  gem 'cypress-rails', '>= 0.3.0'
+  gem 'dotenv-rails', '>= 2.7.6'
+  gem 'cypress-rails', '>= 0.5.0'
 end
 
 group :test do
@@ -49,7 +49,7 @@ group :test do
 end
 
 group :development do
-  gem 'web-console', '>= 4.0.1'
+  gem 'web-console', '>= 4.1.0'
   gem 'listen', '>= 3.0.5', '< 3.6'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
