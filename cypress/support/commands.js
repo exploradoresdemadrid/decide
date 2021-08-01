@@ -109,5 +109,5 @@ Cypress.Commands.add('loginWithCode', (authToken) => {
 })
 
 Cypress.uuid = () => {
-  return 1
+  return Math.floor(Math.random() * (100000));
 }
