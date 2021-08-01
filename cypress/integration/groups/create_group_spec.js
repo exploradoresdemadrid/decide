@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
 
 context('Group creation', () => {
-  const uuid = () => Cypress._.random(0, 1e6)
   let currentUUID
   let groupName
 
@@ -11,7 +10,7 @@ context('Group creation', () => {
     cy.loginAsAdmin()
   })
   beforeEach(() => {
-    currentUUID = uuid()
+    currentUUID = Cypress.uuid()
     groupName = 'Sample name ' + currentUUID
     Cypress.Cookies.preserveOnce('_decide_session')
     cy.fillGroupForm(groupName)

@@ -107,3 +107,8 @@ Cypress.Commands.add('loginWithCode', (authToken) => {
   cy.get('#user_auth_token').type(authToken)
   cy.contains('Submit').click()
 })
+
+
+Cypress.uuid = () => {
+  Cypress._.random(0, 1e6)
+}
