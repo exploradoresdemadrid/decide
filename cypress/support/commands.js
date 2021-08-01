@@ -109,4 +109,7 @@ Cypress.Commands.add('loginWithCode', (authToken) => {
 })
 
 
-Cypress.uuid = () => Cypress._.random(0, 1e6)
+Cypress.uuid = () => {
+  let suffix = Cypress.env('globalIdentifier') || 0;
+  return Cypress.env('globalIdentifier', ++suffix);
+}
