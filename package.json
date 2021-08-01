@@ -7,6 +7,8 @@
     "snyk": "^1.440.4"
   },
   "devDependencies": {
+    "@percy/cli": "^1.0.0-beta.62",
+    "@percy/cypress": "^3.1.1",
     "cypress": "^8.1.0",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
@@ -16,7 +18,7 @@
     "eslint-plugin-standard": "^5.0.0"
   },
   "scripts": {
-    "cy:run:recorded": "cypress run --record",
+    "cy:run:recorded": "percy exec -- cypress run --record",
     "cy:run": "cypress run",
     "cy:open": "cypress open"
   },
