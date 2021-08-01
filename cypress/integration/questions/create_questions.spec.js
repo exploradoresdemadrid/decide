@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 context('Question creation', () => {
-  const currentUUID = Cypress.uuid()()
+  const currentUUID = Cypress.uuid()
   const votingTitle = 'Voting ' + currentUUID
 
   before(() => {

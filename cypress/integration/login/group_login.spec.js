@@ -1,5 +1,5 @@
 context('Group login', () => {
-  const groupName = 'Sample name ' + Cypress.uuid()()
+  const groupName = 'Sample name ' + Cypress.uuid()
 
   before(() => {
     cy.loginAsAdmin()
