@@ -109,6 +109,4 @@ Cypress.Commands.add('loginWithCode', (authToken) => {
 })
 
 
-Cypress.uuid = () => {
-  Cypress._.random(0, 1e6)
-}
+Cypress.uuid = () => Cypress._.random(0, 1e6)
