@@ -108,7 +108,6 @@ Cypress.Commands.add('loginWithCode', (authToken) => {
   cy.contains('Submit').click()
 })
 
-let counter = 0;
 Cypress.uuid = () => {
-  return `${Cypress.mocha.getRunner().suite.ctx.currentTest.title} - ${++counter}`
+  return 1
 }
