@@ -108,9 +108,7 @@ Cypress.Commands.add('loginWithCode', (authToken) => {
   cy.contains('Submit').click()
 })
 
+let counter = 0;
 Cypress.uuid = () => {
-  let currentValue = cy.get('@globalCounter') || 0;
-  currentValue++;
-  cy.wrap(currentValue).as('globalCounter');
-  return currentValue;
+  return `${Cypress.mocha.getRunner().suite.ctx.currentTest.title} - ${++counter}`
 }
