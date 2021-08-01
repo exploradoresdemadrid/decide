@@ -7,10 +7,8 @@ context('Organization creation', () => {
     cy.loginAsSuperadmin()
   })
   beforeEach(() => {
-    const uuid = () => Cypress._.random(0, 1e6)
-
     Cypress.Cookies.preserveOnce('_decide_session')
-    cy.fillOrganizationForm('Sample name ' + uuid())
+    cy.fillOrganizationForm('Sample name ' + Cypress.uuid()())
   })
 
   it('create organization', () => {
