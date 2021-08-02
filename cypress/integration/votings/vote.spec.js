@@ -62,8 +62,6 @@ context('Vote submission', () => {
 
   it('displays countdown timer before voting', () => {
     cy.get('body').should('contain', 'Voting time')
-
-    cy.percySnapshot();
   })
 
   it('submit available votes', () => {
