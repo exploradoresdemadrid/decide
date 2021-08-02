@@ -1,9 +1,7 @@
 /// <reference types="cypress" />
 
 context('Question creation', () => {
-  const uuid = () => Cypress._.random(0, 1e6)
-  const currentUUID = uuid()
-  const votingTitle = 'Voting ' + currentUUID
+  const votingTitle = 'Sample voting 1'
 
   before(() => {
     cy.clearCookies()
@@ -24,11 +22,16 @@ context('Question creation', () => {
     cy.get('#new_question').contains('Title').click().type('Sample title')
     cy.contains('Add option').click()
     cy.get('.options-form input.form-control').type('Option 1')
+
+    cy.percySnapshot();
+
     cy.contains('Submit').click()
 
     cy.get('#notice').should('contain', 'Question was successfully created.')
     cy.get('#questions_index').should('contain', 'Sample title')
     cy.get('#questions_index').should('contain', 'Option 1')
+
+    cy.percySnapshot();
   })
 
   it('Add option to an existing question', () => {
