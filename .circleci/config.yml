@@ -111,6 +111,7 @@ jobs:
           name: ZAP baseline test of application
           command: |
             cd ~/decide && \
+            chmod -R 777 .zap && \
             docker pull owasp/zap2docker-weekly && \
             docker run --network host -v $(pwd)/.zap:/zap/wrk/:rw -t owasp/zap2docker-weekly zap-baseline.py \
                 -r report.html \
