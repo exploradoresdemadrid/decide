@@ -83,6 +83,11 @@ jobs:
             - v1-dep-{{ checksum "Gemfile.lock" }}
             - v1-dep-bundle-
       - run:
+          name: Install native dependencies
+          command: |
+            sudo apt-get install libpq-dev && \
+            sudo ln -s /usr/lib/x86_64-linux-gnu/libffi.so.7 /usr/lib/x86_64-linux-gnu/libffi.so.6
+      - run:
           name: Install ruby dependencies
           command: |
             cd ~/decide && \
@@ -97,6 +102,7 @@ jobs:
           command: |
             cd ~/decide && \
             rvm use && \
+            export POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres POSTGRES_HOST=localhost && \
             bundle exec rake db:reset && \
             bundle exec rails s
           background: true
