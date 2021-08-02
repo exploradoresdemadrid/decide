@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/exploradoresdemadrid/decide.svg?style=svg)](https://circleci.com/gh/exploradoresdemadrid/decide)
 [![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/2ojcg1/runs)
+[![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/2efa4648/decide)
 
 ## Instructions for development
 
