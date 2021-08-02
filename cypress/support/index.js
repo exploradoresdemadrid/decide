@@ -20,6 +20,3 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-
-const seedrandom = require('seedrandom');
-seedrandom('my-seed', { global: true });
