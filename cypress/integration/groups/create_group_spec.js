@@ -15,6 +15,8 @@ context('Group creation', () => {
   })
 
   it('create and delete group', () => {
+    cy.percySnapshot();
+
     cy.contains('Submit').click()
     cy.get('.alert.alert-info').should('contain', 'Group was successfully created.')
 
@@ -27,5 +29,7 @@ context('Group creation', () => {
     cy.contains('Submit').click()
 
     cy.get('span').should('contain', 'can\'t be blank')
+
+    cy.percySnapshot();
   })
 })

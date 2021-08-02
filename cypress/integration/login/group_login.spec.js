@@ -13,10 +13,14 @@ context('Group login', () => {
   it('use valid auth code', () => {
     cy.loginAsGroup(groupName)
     cy.get('.navbar').should('contain', groupName)
+
+    cy.percySnapshot();
   })
 
   it('use invalid auth code', () => {
     cy.loginWithCode('123456')
     cy.get('.alert.alert-danger').should('contain', 'Code is invalid or expired')
+
+    cy.percySnapshot();
   })
 })

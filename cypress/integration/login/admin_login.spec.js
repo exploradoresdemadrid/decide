@@ -15,6 +15,8 @@ context('Admin login', () => {
     cy.get('.navbar-header').should('contain', 'votings')
     cy.get('.navbar-header').should('contain', 'groups')
     cy.get('.navbar-header').should('contain', 'Sign out')
+
+    cy.percySnapshot();
   })
 
   it('use valid superadmin password', () => {
@@ -24,11 +26,15 @@ context('Admin login', () => {
     cy.get('.navbar-header').should('contain', 'votings')
     cy.get('.navbar-header').should('contain', 'groups')
     cy.get('.navbar-header').should('contain', 'Sign out')
+
+    cy.percySnapshot();
   })
 
   it('use invalid password', () => {
     cy.login('admin@example.com', 'invalidpass')
     cy.get('.alert.alert-danger').should('contain', 'Invalid Email or password.')
+
+    cy.percySnapshot();
   })
 
   it('logout', () => {

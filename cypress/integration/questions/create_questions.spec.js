@@ -22,11 +22,16 @@ context('Question creation', () => {
     cy.get('#new_question').contains('Title').click().type('Sample title')
     cy.contains('Add option').click()
     cy.get('.options-form input.form-control').type('Option 1')
+
+    cy.percySnapshot();
+
     cy.contains('Submit').click()
 
     cy.get('#notice').should('contain', 'Question was successfully created.')
     cy.get('#questions_index').should('contain', 'Sample title')
     cy.get('#questions_index').should('contain', 'Option 1')
+
+    cy.percySnapshot();
   })
 
   it('Add option to an existing question', () => {

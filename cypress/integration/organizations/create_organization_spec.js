@@ -12,6 +12,8 @@ context('Organization creation', () => {
   })
 
   it('create organization', () => {
+    cy.percySnapshot();
+    
     cy.contains('Submit').click()
 
     cy.get('.alert.alert-info').should('contain', 'Organization was successfully created.')
