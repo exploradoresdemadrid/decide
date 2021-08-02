@@ -69,6 +69,56 @@ jobs:
           command: bundle exec rails s
           background: true
       - run: sleep 5 ; npm run cy:run:recorded
+  zaproxy:
+    working_directory: ~/decide
+    parallelism: 1
+    shell: /bin/bash --login
+    machine:
+      image: ubuntu-2004:202107-01
+    steps:
+      - checkout
+      - run: npm install
+      - restore_cache:
+          keys:
+            - v1-dep-{{ checksum "Gemfile.lock" }}
+            - v1-dep-bundle-
+      - run:
+          name: Install native dependencies
+          command: |
+            sudo apt-get install libpq-dev && \
+            sudo ln -s /usr/lib/x86_64-linux-gnu/libffi.so.7 /usr/lib/x86_64-linux-gnu/libffi.so.6
+      - run:
+          name: Install ruby dependencies
+          command: |
+            cd ~/decide && \
+            rvm use && \
+            bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+      - save_cache:
+          key: v1-dep-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: Rails server
+          command: |
+            cd ~/decide && \
+            rvm use && \
+            docker run -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -d -p 5432:5432 postgres:9.6 && \
+            export POSTGRES_USER=postgres POSTGRES_PASSWORD=postgres POSTGRES_HOST=localhost && \
+            bundle exec rake db:reset && \
+            bundle exec rails s
+          background: true
+      - run:
+          name: ZAP baseline test of application
+          command: |
+            cd ~/decide && \
+            chmod -R 777 .zap && \
+            docker pull owasp/zap2docker-weekly && \
+            docker run --network host -v $(pwd)/.zap:/zap/wrk/:rw -t owasp/zap2docker-weekly zap-baseline.py \
+                -r report.html \
+                -t http://localhost:3000/ || \
+            if [ $? -ne 1 ]; then exit 0; else exit 1; fi;
+      - store_artifacts:
+          path: .zap/report.html
   build:
     docker:
       - image: circleci/ruby:2.7.1-node-browsers
@@ -109,6 +159,7 @@ workflows:
               only:
                 - master
                 - unify-docker
+      - zaproxy
       - deploy:
           requires:
             - build
