@@ -92,10 +92,13 @@ jobs:
           key: v1-dep-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-      - run: bundle exec rake db:reset
       - run:
           name: Rails server
-          command: bundle exec rails s
+          command: |
+            cd ~/decide && \
+            rvm use && \
+            bundle exec rake db:reset && \
+            bundle exec rails s
           background: true
       - run:
           name: ZAP baseline test of application
