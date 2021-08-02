@@ -17,8 +17,6 @@ context('Group CSV import', () => {
     cy.get('.csv-import form .btn').click()
 
     cy.get('.alert.alert-info').should('contain', '3 groups were successfully updated.')
-
-    cy.percySnapshot();
   })
 
   it('Submit invalid information', () => {
@@ -28,7 +26,5 @@ context('Group CSV import', () => {
     cy.get('.csv-import form .btn').click()
 
     cy.get('.alert.alert-danger').should('contain', 'Row 3: Validation failed: Votes must be greater than or equal to 0')
-
-    cy.percySnapshot();
   })
 })
