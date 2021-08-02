@@ -152,7 +152,7 @@ workflows:
   build:
     jobs:
       - test
-#      - cypress
+      - cypress
       - build:
           filters:
             branches:
@@ -168,7 +168,7 @@ workflows:
           requires:
             - build
             - test
-#            - cypress
+            - cypress
           filters:
             branches:
               only:
