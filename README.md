@@ -12,7 +12,7 @@ The recommended steps to setup the environment locally are described in this sec
 ### Installation
 
 1. Install rvm following the instructions from the [RVM installation guide](https://rvm.io/rvm/install).
-1. Install the ruby version specified in [.ruby-version](https://github.com/exploradoresdemadrid/decide/blob/master/.ruby-version) file. For example, `rvm install ruby-2.7.1`.
+1. Install the ruby version specified in [.ruby-version](https://github.com/exploradoresdemadrid/decide/blob/master/.ruby-version) file. For example, `rvm install ruby-2.7.3`.
 1. Install bundler gem: `gem install bundler`.
 1. Install the dependencies of the project: `bundle install`.
 1. Create your database with some sample data: `rake db:reset`. A Postgres server needs to be running so that Rails can connect to it.
