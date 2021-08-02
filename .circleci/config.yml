@@ -159,11 +159,7 @@ workflows:
               only:
                 - master
                 - unify-docker
-      - zaproxy:
-          filters:
-            branches:
-              only:
-                - zaproxy
+      - zaproxy
       - deploy:
           requires:
             - build
