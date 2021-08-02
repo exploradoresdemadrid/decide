@@ -30,8 +30,6 @@ context('Question creation', () => {
     cy.get('#notice').should('contain', 'Question was successfully created.')
     cy.get('#questions_index').should('contain', 'Sample title')
     cy.get('#questions_index').should('contain', 'Option 1')
-
-    cy.percySnapshot();
   })
 
   it('Add option to an existing question', () => {

@@ -29,7 +29,5 @@ context('Group creation', () => {
     cy.contains('Submit').click()
 
     cy.get('span').should('contain', 'can\'t be blank')
-
-    cy.percySnapshot();
   })
 })
