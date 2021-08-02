@@ -75,13 +75,6 @@ jobs:
     shell: /bin/bash --login
     machine:
       image: ubuntu-2004:202107-01
-    docker:
-      - image: circleci/postgres:9.6-ram
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: decide_development
-          POSTGRES_PASSWORD: postgres
-      - image: circleci/redis:6-alpine
     steps:
       - checkout
       - setup_remote_docker
