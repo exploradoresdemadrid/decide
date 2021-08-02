@@ -1170,13 +1170,21 @@ chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.npmjs.org/chardet/-/chardet-0.7.0.tgz"
 
-chart.js@^3.5.0:
+chart.js@>=3.0.2, chart.js@^3.5.0:
   version "3.5.0"
   resolved "https://registry.npmjs.org/chart.js/-/chart.js-3.5.0.tgz"
 
-chartkick@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.npmjs.org/chartkick/-/chartkick-3.2.1.tgz"
+chartjs-adapter-date-fns@>=2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/chartjs-adapter-date-fns/-/chartjs-adapter-date-fns-2.0.0.tgz#5e53b2f660b993698f936f509c86dddf9ed44c6b"
+
+chartkick@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/chartkick/-/chartkick-4.0.5.tgz#310a60c931e8ceedc39adee2ef8e9d1e474cb0e6"
+  optionalDependencies:
+    chart.js ">=3.0.2"
+    chartjs-adapter-date-fns ">=2.0.0"
+    date-fns ">=2.0.0"
 
 check-more-types@^2.24.0:
   version "2.24.0"
@@ -1412,6 +1420,10 @@ dashdash@^1.12.0:
   resolved "https://registry.npmjs.org/dashdash/-/dashdash-1.14.1.tgz"
   dependencies:
     assert-plus "^1.0.0"
+
+date-fns@>=2.0.0:
+  version "2.23.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.23.0.tgz#4e886c941659af0cf7b30fafdd1eaa37e88788a9"
 
 dayjs@^1.10.4:
   version "1.10.5"
