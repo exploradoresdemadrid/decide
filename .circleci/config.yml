@@ -108,12 +108,12 @@ jobs:
           name: ZAP baseline test of application
           command: |
             docker pull owasp/zap2docker-weekly && \
-            docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly zap-baseline.py \
-                -r report.html \
+            docker run --network host -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly zap-baseline.py \
+                -r tmp/report.html \
                 -t http://localhost:3000/ || \
             if [ $? -ne 1 ]; then exit 0; else exit 1; fi;
       - store_artifacts:
-          path: /zap/wrk
+          path: tmp/report.html
   build:
     docker:
       - image: circleci/ruby:2.7.1-node-browsers
