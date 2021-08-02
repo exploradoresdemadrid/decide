@@ -36,3 +36,6 @@ coverage
 
 # Ignore dotenv files
 .env
+
+# Zaproxy report
+.zap/report.html
