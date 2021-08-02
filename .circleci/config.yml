@@ -82,7 +82,12 @@ jobs:
           keys:
             - v1-dep-{{ checksum "Gemfile.lock" }}
             - v1-dep-bundle-
-      - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+      - run:
+          name: Install ruby dependencies
+          command: |
+            cd ~/decide && \
+            rvm use && \
+            bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
       - save_cache:
           key: v1-dep-{{ checksum "Gemfile.lock" }}
           paths:
