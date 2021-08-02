@@ -3,6 +3,7 @@
 [![CircleCI](https://circleci.com/gh/exploradoresdemadrid/decide.svg?style=svg)](https://circleci.com/gh/exploradoresdemadrid/decide)
 [![Cypress Dashboard](https://img.shields.io/badge/cypress-dashboard-brightgreen.svg)](https://dashboard.cypress.io/#/projects/2ojcg1/runs)
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/2efa4648/decide)
+[![CodeQL](https://github.com/exploradoresdemadrid/decide/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/exploradoresdemadrid/decide/actions/workflows/codeql-analysis.yml)
 
 ## Instructions for development
 
