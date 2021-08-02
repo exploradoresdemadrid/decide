@@ -51,11 +51,15 @@ class GroupsController < ApplicationController
   end
 
   def email_token
-    current_organization.groups.where.not(email: nil).each do |group|
-      GroupMailer.with(group: group).code_submission.deliver_later
-    end
+    if current_organization.smoke_test?
+      redirect_to organization_groups_url(@organization), notice: t('groups.token_emails_skipped')
+    else
+      current_organization.groups.where.not(email: nil).each do |group|
+        GroupMailer.with(group: group).code_submission.deliver_later
+      end
 
-    redirect_to organization_groups_url(@organization), notice: t('groups.token_emails_submitted')
+      redirect_to organization_groups_url(@organization), notice: t('groups.token_emails_submitted')
+    end
   end
 
   def bulk_upload_show; end
@@ -76,7 +80,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :number, :available_votes, :email, bodies_groups_attributes: [:id, :votes])
+    params.require(:group).permit(:name, :number, :email, bodies_groups_attributes: [:id, :votes])
   end
 
   def bulk_upload_params

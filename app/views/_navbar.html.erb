@@ -4,7 +4,7 @@
     <%= link_to t('activerecord.models.organization.many'), organizations_path if current_user && can?(:index, Organization) %>
     <%= link_to t('activerecord.models.body.many'), organization_bodies_path(current_user.organization) if current_user && can?(:index, Body) %>
     <%= link_to t('activerecord.models.voting.many'), organization_votings_path(current_user.organization) if current_user %>
-    <%= link_to t('activerecord.models.group.many'), organization_groups_path(current_user.organization) if current_user && can?(:index, Group) %>
+    <%= link_to t_member_type(:many), organization_groups_path(current_user.organization) if current_user && can?(:index, Group) %>
     <%= link_to t('navigation.sign_out') , destroy_user_session_path, method: :delete, class: :right if current_user %>
     <%= link_to current_user.name, organization_group_path(current_user.organization, current_user.group), method: :delete, class: :right if current_user&.group %>
     <%= link_to t('organization.new'), new_organization_path unless current_user %>

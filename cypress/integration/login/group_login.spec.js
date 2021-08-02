@@ -1,6 +1,5 @@
 context('Group login', () => {
-  const uuid = () => Cypress._.random(0, 1e6)
-  const groupName = 'Sample name ' + uuid()
+  const groupName = 'Sample group name 2'
 
   before(() => {
     cy.loginAsAdmin()
@@ -14,10 +13,14 @@ context('Group login', () => {
   it('use valid auth code', () => {
     cy.loginAsGroup(groupName)
     cy.get('.navbar').should('contain', groupName)
+
+    cy.percySnapshot();
   })
 
   it('use invalid auth code', () => {
     cy.loginWithCode('123456')
     cy.get('.alert.alert-danger').should('contain', 'Code is invalid or expired')
+
+    cy.percySnapshot();
   })
 })

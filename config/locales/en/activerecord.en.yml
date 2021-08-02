@@ -7,7 +7,6 @@ en:
       group:
         name: Name
         number: Number
-        available_votes: Available votes
         auth_token: Access token
         last_login: Last login
         email: Email
@@ -20,6 +19,27 @@ en:
         admins: Admin accounts
         admin_email: Admin email
         admin_password: Password
+        family_membership:
+          one: family
+          many: families
+          new: New family
+          edit: Edit family
+        group_membership:
+          one: group
+          many: groups
+          new: New group
+          edit: Edit group
+        member_membership:
+          one: member
+          many: members
+          new: New member
+          edit: Edit member
+        team_membership:
+          one: team
+          many: teams
+          new: New team
+          edit: Edit team
+        member_type: Member type
       voting:
         body: Body
         description: Description
@@ -37,6 +57,8 @@ en:
           0_seconds: Unlimited
           30_seconds: 30 seconds
           60_seconds: 1 minute
+          120_seconds: 2 minutes
+          180_seconds: 3 minutes
           300_seconds: 5 minutes
         secret: Secret
     models:
@@ -71,3 +93,5 @@ en:
       email:
         invalid_format: Format is invalid
         missing: Email is missing
+      voting:
+        misconfigured: The voting is misconfigured. Please, make sure it has at least one question and all questions have at least two options

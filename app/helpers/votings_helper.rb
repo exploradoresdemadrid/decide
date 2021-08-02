@@ -11,7 +11,7 @@ module VotingsHelper
       votings.each do |voting|
         row = []
         row << voting.body&.name
-        row << link_to(voting.title, organization_voting_path(voting.organization, voting)) + voting_badge(voting)
+        row << link_to(voting.title, organization_voting_path(voting.organization, voting)) + voting_badge(voting) + voting_warning(voting)
         row << voting_actions(voting)
         table.rows << row
       end
@@ -27,6 +27,12 @@ module VotingsHelper
       archived: :dark
     }[voting.status.to_sym] || :default
     content_tag(:span, t("activerecord.attributes.voting.statuses.#{voting.status}"), class: "badge badge-#{status}")
+  end
+
+  def voting_warning(voting)
+    return content_tag :span unless voting.misconfigured?
+
+    fa_icon('exclamation-triangle', t('activerecord.errors.voting.misconfigured'), class: :warning)
   end
 
   def voting_actions(voting)
@@ -68,7 +74,7 @@ module VotingsHelper
       voting.questions.map do |question|
         f.check_box :options,
                     { label: question.title, name: "votes[#{question.id}][#{question.options.yes.first.id}]" },
-                    current_group.available_votes, 0
+                    votes_available(question), 0
       end.inject(:+)
   end
 
@@ -87,7 +93,7 @@ module VotingsHelper
   end
 
   def timeout_in_seconds_for_select
-    [0, 30, 60, 300].map { |n| [n, t("activerecord.attributes.voting.timeout_options.#{n}_seconds")] }.to_h
+    [0, 30, 60, 120, 180, 300].map { |n| [n, t("activerecord.attributes.voting.timeout_options.#{n}_seconds")] }.to_h
   end
 
   def minutes_timeout(voting)

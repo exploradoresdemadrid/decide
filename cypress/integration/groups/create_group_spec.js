@@ -1,8 +1,6 @@
 /// <reference types="cypress" />
 
 context('Group creation', () => {
-  const uuid = () => Cypress._.random(0, 1e6)
-  let currentUUID
   let groupName
 
   before(() => {
@@ -11,13 +9,14 @@ context('Group creation', () => {
     cy.loginAsAdmin()
   })
   beforeEach(() => {
-    currentUUID = uuid()
-    groupName = 'Sample name ' + currentUUID
+    groupName = 'Sample group name 1'
     Cypress.Cookies.preserveOnce('_decide_session')
     cy.fillGroupForm(groupName)
   })
 
   it('create and delete group', () => {
+    cy.percySnapshot();
+
     cy.contains('Submit').click()
     cy.get('.alert.alert-info').should('contain', 'Group was successfully created.')
 
@@ -30,12 +29,7 @@ context('Group creation', () => {
     cy.contains('Submit').click()
 
     cy.get('span').should('contain', 'can\'t be blank')
-  })
 
-  it('return an error when available votes is 0', () => {
-    cy.get('#group_available_votes').clear().type('0')
-    cy.contains('Submit').click()
-
-    cy.get('span').should('contain', 'must be greater than or equal to 1')
+    cy.percySnapshot();
   })
 })

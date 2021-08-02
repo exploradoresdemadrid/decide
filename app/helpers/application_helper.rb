@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-
   def current_group
     current_user&.group
+  end
+
+  def current_organization
+    current_user.organization
   end
 
   def string_list(items)
@@ -16,12 +19,16 @@ module ApplicationHelper
     end
   end
 
+  def t_member_type(amount = :one)
+    I18n.t("activerecord.attributes.organization.#{current_organization.member_type}.#{amount}")
+  end
+
   def new_title(model, options = {})
-    application_header(t("#{model.name.pluralize.downcase}.new"), options)
+    application_header(t("#{model_key(model)}.new"), options)
   end
 
   def edit_title(model, options = {})
-    application_header(t('edit') + ' ' + t("activerecord.models.#{model.name.downcase}.one"), options)
+    application_header(t("#{model_key(model)}.edit"), options)
   end
 
   def index_title(model, options = {})
@@ -41,5 +48,15 @@ module ApplicationHelper
     options.merge!(title: tooltip) if tooltip.present?
 
     icon name, library: :font_awesome, **options
+  end
+
+  private
+
+  def model_key(model)
+    if model == Group
+      "activerecord.attributes.organization.#{@organization.member_type}"
+    else
+      model.name.pluralize.downcase
+    end
   end
 end

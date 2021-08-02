@@ -19,6 +19,9 @@ context('Voting creation', () => {
     cy.get('#new_voting').contains('Title').click().type('Sample title')
     cy.contains('Description').click().type('Sample description')
     cy.contains('Secret').click()
+
+    cy.percySnapshot();
+
     cy.contains('Submit').click()
 
     cy.get('.alert.alert-info').should('contain', 'Voting was successfully created.')

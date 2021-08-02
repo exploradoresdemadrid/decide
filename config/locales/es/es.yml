@@ -13,17 +13,18 @@ es:
   remove: Eliminar
   messages:
     voting:
-      is_secret: Esta urna virtual es secreta. Las papeletas enviadas no se asociarán a su grupo.
-      is_not_secret: Esta urna virtual no es secreta. Las papeletas emitidas se asociarán a su grupo y serán visible en los resultados.
+      is_secret: Esta urna virtual es secreta. Las papeletas enviadas no se asociarán a su cuenta.
+      is_not_secret: Esta urna virtual no es secreta. Las papeletas emitidas se asociarán a su cuenta y serán visible en los resultados.
       already_voted: Tu papeleta ha sido enviada. En cuanto se cierre la urna virtual podrás ver los resultados.
       none_active: No hay ninguna urna virtual activa.
+      zero_votes: No tienes ningún voto asignado en este órgano de decisión. No obstante, puedes ver la votación y los resultados.
     login:
       group_login: Introduce el código de acceso
     group_csv_import:
-      step_0: "Por favor, sigue estas instrucciones para actualizar la información de los grupos:"
-      step_1: Descarga la plantilla CSV, que contiene la información existente de todos los grupos.
+      step_0: "Por favor, sigue estas instrucciones para actualizar la información de los %{member_type}:"
+      step_1: Descarga la plantilla CSV, que contiene la información existente de cada %{member_type}.
       step_2: Utiliza el editor de hojas de cálculo de tue elección (Microsoft Excel, Libreoffice Calc, etc.) para abrir la plantilla CSV.
-      step_3: Modifica las celdas de la tabla con los valores que quieras importar al sistema. Las cabeceras (primera fila) y el identificador de grupo (primera columna) no deben modificarse. Para crear un nuevo grupo, añade una fila dejando vacía la casilla del identificador de grupo.
+      step_3: Modifica las celdas de la tabla con los valores que quieras importar al sistema. Las cabeceras (primera fila) y la primera columna no deben modificarse. Para crear un nuevo %{member_type}, añade una fila dejando vacía la primera columna.
       step_4: Guarda la plantilla en tu ordenador, conservando el formato CSV original.
       step_5: Abre la plantilla CSV modificada utilizando cualquier editor de texto plano (Notepad, Gedit, Sublime Text, ...) y copia el contenido.
       step_6: Pega el contenido en el cuadro de texto situado en la parte inferior, y haz clic en el botón Enviar.
@@ -47,13 +48,13 @@ es:
     csv_template_download: Descargar plantilla CSV
     email_tokens: Enviar tokens por email
     import: Importar CSV
-    new: Nuevo grupo
     reset_tokens: Actualizar tokens
-    reset_tokens_confirmation: ¿Realmente quieres actualizar los tokens de acceso de todos los grupos? Los tokens actuales dejarán de ser válidos.
+    reset_tokens_confirmation: ¿Realmente quieres actualizar todos los tokens de acceso? Los tokens actuales dejarán de ser válidos.
     supporters: Apoyos
-    tokens_updated: Se han actualizado los token de acceso de los grupos.
+    tokens_updated: Se han actualizado los token de acceso.
+    token_emails_skipped: El envío de emails está desactivado en las cuentas de pruebas. No se ha enviado ningún email.
     token_emails_submitted: Se han enviado los token de acceso por correo electrónico.
-    token_emails_confirmation: ¿Realmente quieres enviar un correo a cada grupo con su código de acceso?
+    token_emails_confirmation: ¿Realmente quieres enviar un correo a cada cuenta con su código de acceso?
   options:
     add: Añadir opción
     none: Ninguna opción ha sido especificada

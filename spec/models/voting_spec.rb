@@ -20,6 +20,45 @@ RSpec.describe Voting, type: :model do
     end
   end
 
+  describe '#misconfigured?' do
+    let(:voting) { create :voting }
+
+    context 'when there are no questions' do
+      before { voting.questions.destroy_all }
+      it { expect(voting).to be_misconfigured }
+    end
+
+    context 'when there is one question that is misconfigured' do
+      before do
+        allow(voting.questions.create(title: :foo)).to receive(:misconfigured?).and_return(true)
+      end
+      it { expect(voting).to be_misconfigured }
+    end
+
+    context 'when there is one question that is properly configured' do
+      before do
+        allow(voting.questions.create(title: :foo)).to receive(:misconfigured?).and_return(false)
+      end
+      it { expect(voting).not_to be_misconfigured }
+    end
+
+    context 'when one of the multiple questions is misconfigured' do
+      before do
+        allow(voting.questions.create(title: :bar)).to receive(:misconfigured?).and_return(true)
+        allow(voting.questions.create(title: :bar)).to receive(:misconfigured?).and_return(false)
+      end
+      it { expect(voting).to be_misconfigured }
+    end
+
+    context 'when all of the multiple questions are properly configured' do
+      before do
+        allow(voting.questions.create(title: :bar)).to receive(:misconfigured?).and_return(false)
+        allow(voting.questions.create(title: :bar)).to receive(:misconfigured?).and_return(false)
+      end
+      it { expect(voting).not_to be_misconfigured }
+    end
+  end
+
   describe 'automatic transition to finished status' do
     RSpec.shared_examples 'do not spawn job' do
       it 'the job is not scheduled' do
@@ -48,7 +87,7 @@ RSpec.describe Voting, type: :model do
       end
     end
 
-    %i[draft ready].each do |from|
+    %i[draft ready finished].each do |from|
       context "transition '#{from.capitalize}' -> 'Open'" do
         context 'when the timeout is configured' do
           let(:voting) { create :voting, status: from, timeout_in_seconds: 60 }
@@ -67,8 +106,8 @@ RSpec.describe Voting, type: :model do
       end
     end
 
-    context "transition 'Finished' -> 'Open" do
-      let(:voting) { create :voting, status: :finished, timeout_in_seconds: 60 }
+    context "transition 'Archived' -> 'Open" do
+      let(:voting) { create :voting, status: :archived, timeout_in_seconds: 60 }
       include_examples 'do not spawn job'
     end
   end
