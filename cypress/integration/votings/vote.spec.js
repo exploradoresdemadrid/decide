@@ -1,9 +1,8 @@
 /// <reference types="cypress" />
 
 context('Vote submission', () => {
-  const currentUUID = Cypress.uuid()
-  const votingTitle = 'Voting ' + currentUUID
-  const groupName = 'Group ' + currentUUID 
+  const votingTitle = 'Sample voting 3'
+  const groupName = 'Sample group name 3'
 
   before(() => {
     cy.clearCookies()

@@ -8,7 +8,7 @@ context('Organization creation', () => {
   })
   beforeEach(() => {
     Cypress.Cookies.preserveOnce('_decide_session')
-    cy.fillOrganizationForm('Sample name ' + Cypress.uuid())
+    cy.fillOrganizationForm('Sample organization name 1')
   })
 
   it('create organization', () => {

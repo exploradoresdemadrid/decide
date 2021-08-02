@@ -1,8 +1,7 @@
 /// <reference types="cypress" />
 
 context('Question creation', () => {
-  const currentUUID = Cypress.uuid()
-  const votingTitle = 'Voting ' + currentUUID
+  const votingTitle = 'Sample voting 1'
 
   before(() => {
     cy.clearCookies()
