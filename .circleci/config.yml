@@ -118,6 +118,7 @@ jobs:
                 -n decide_localhost.context \
                 -U admin_edm@example.com \
                 -r report.html \
+                -d \
                 -t http://localhost:3000/ || \
             if [ $? -ne 1 ]; then exit 0; else exit 1; fi;
       - store_artifacts:
