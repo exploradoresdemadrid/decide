@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+    <context>
+        <name>Decide localhost</name>
+        <desc/>
+        <inscope>true</inscope>
+        <incregexes>http://localhost:3000/.*</incregexes>
+        <tech>
+            <include>Db.PostgreSQL</include>
+            <include>Language.JavaScript</include>
+            <include>Language.Ruby</include>
+            <include>OS.MacOS</include>
+            <include>OS.Windows</include>
+            <include>SCM.Git</include>
+            <exclude>Db</exclude>
+            <exclude>Db.CouchDB</exclude>
+            <exclude>Db.Firebird</exclude>
+            <exclude>Db.HypersonicSQL</exclude>
+            <exclude>Db.IBM DB2</exclude>
+            <exclude>Db.Microsoft Access</exclude>
+            <exclude>Db.Microsoft SQL Server</exclude>
+            <exclude>Db.MongoDB</exclude>
+            <exclude>Db.MySQL</exclude>
+            <exclude>Db.Oracle</exclude>
+            <exclude>Db.SAP MaxDB</exclude>
+            <exclude>Db.SQLite</exclude>
+            <exclude>Db.Sybase</exclude>
+            <exclude>Language</exclude>
+            <exclude>Language.ASP</exclude>
+            <exclude>Language.C</exclude>
+            <exclude>Language.JSP/Servlet</exclude>
+            <exclude>Language.Java</exclude>
+            <exclude>Language.PHP</exclude>
+            <exclude>Language.Python</exclude>
+            <exclude>Language.XML</exclude>
+            <exclude>OS</exclude>
+            <exclude>OS.Linux</exclude>
+            <exclude>SCM</exclude>
+            <exclude>SCM.SVN</exclude>
+            <exclude>WS</exclude>
+            <exclude>WS.Apache</exclude>
+            <exclude>WS.IIS</exclude>
+            <exclude>WS.Tomcat</exclude>
+        </tech>
+        <urlparser>
+            <class>org.zaproxy.zap.model.StandardParameterParser</class>
+            <config>{"kvps":"&amp;","kvs":"=","struct":[]}</config>
+        </urlparser>
+        <postparser>
+            <class>org.zaproxy.zap.model.StandardParameterParser</class>
+            <config>{"kvps":"&amp;","kvs":"=","struct":[]}</config>
+        </postparser>
+        <authentication>
+            <type>2</type>
+            <strategy>EACH_RESP</strategy>
+            <pollurl/>
+            <polldata/>
+            <pollheaders/>
+            <pollfreq>60</pollfreq>
+            <pollunits>REQUESTS</pollunits>
+            <loggedin>Signed in successfully</loggedin>
+            <loggedout>Signed out successfully</loggedout>
+            <form>
+                <loginurl>http://localhost:3000/users/sign_in</loginurl>
+                <loginbody>utf8=%E2%9C%93&amp;authenticity_token=zgjbbucsNsdpJqqYZwQNEWOtqxxhpE%2Fb4nDtbEDHdF8OgIrgfd4aNy9RfqI28uc4szxaUdFF3AH3VCxrEVJBnw%3D%3D&amp;user%5Bemail%5D=admin_edm%40example.com&amp;user%5Bpassword%5D=12345678&amp;user%5Bremember_me%5D=0&amp;commit=Log+in</loginbody>
+                <loginpageurl>http://localhost:3000/users/sign_in</loginpageurl>
+            </form>
+        </authentication>
+        <users>
+            <user>34;true;YWRtaW5fZWRtQGV4YW1wbGUuY29t;2;YWRtaW5fZWRtQGV4YW1wbGUuY29t~MTIzNDU2Nzg=~</user>
+        </users>
+        <forceduser>34</forceduser>
+        <session>
+            <type>0</type>
+        </session>
+        <authorization>
+            <type>0</type>
+            <basic>
+                <header/>
+                <body/>
+                <logic>AND</logic>
+                <code>-1</code>
+            </basic>
+        </authorization>
+    </context>
+</configuration>
