@@ -114,6 +114,7 @@ jobs:
             chmod -R 777 .zap && \
             docker pull owasp/zap2docker-weekly && \
             docker run --network host -v $(pwd)/.zap:/zap/wrk/:rw -t owasp/zap2docker-weekly zap-full-scan.py \
+                -m 5 \
                 -n decide_localhost.context \
                 -U admin_edm@example.com \
                 -r report.html \
