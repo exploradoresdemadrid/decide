@@ -113,7 +113,7 @@ jobs:
             cd ~/decide && \
             chmod -R 777 .zap && \
             docker pull owasp/zap2docker-weekly && \
-            docker run --network host -v $(pwd)/.zap:/zap/wrk/:rw -t owasp/zap2docker-weekly zap-full-scan.py \
+            docker run --network host -v $(pwd)/.zap:/zap/wrk/:rw -v $(pwd)/.zap/custom_policy.policy:/home/zap/.ZAP_D/policies/Default\ Policy.policy:rw -t owasp/zap2docker-weekly zap-full-scan.py \
                 -m 5 \
                 -n decide_localhost.context \
                 -U admin_edm@example.com \
