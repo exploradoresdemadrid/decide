@@ -10,7 +10,6 @@
             <include>Language.JavaScript</include>
             <include>Language.Ruby</include>
             <include>OS.MacOS</include>
-            <include>OS.Windows</include>
             <include>SCM.Git</include>
             <exclude>Db</exclude>
             <exclude>Db.CouchDB</exclude>
@@ -35,6 +34,7 @@
             <exclude>Language.XML</exclude>
             <exclude>OS</exclude>
             <exclude>OS.Linux</exclude>
+            <exclude>OS.Windows</exclude>
             <exclude>SCM</exclude>
             <exclude>SCM.SVN</exclude>
             <exclude>WS</exclude>
