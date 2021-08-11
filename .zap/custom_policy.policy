@@ -2,7 +2,7 @@
 <configuration>
 	<policy>Default Policy</policy>
 	<scanner>
-		<level>LOW</level>
+		<level>HIGH</level>
 		<strength>LOW</strength>
 	</scanner>
 </configuration>
