@@ -20,6 +20,10 @@ jobs:
     url: http://localhost:3000/
   type: spider
 - parameters:
+    maxDuration: 1
+    url: http://localhost:3000/
+  type: spiderAjax
+- parameters:
     maxDuration: 0
   type: passiveScan-wait
 - parameters:
