@@ -163,7 +163,6 @@ workflows:
               only:
                 - master
                 - unify-docker
-      - zaproxy
       - deploy:
           requires:
             - build
@@ -173,3 +172,13 @@ workflows:
             branches:
               only:
                 - master
+  daily_check:
+    triggers:
+      - schedule:
+          cron: "0 2 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - zaproxy
