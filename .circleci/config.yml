@@ -85,6 +85,7 @@ jobs:
       - run:
           name: Install native dependencies
           command: |
+            sudo apt update && \
             sudo apt-get install libpq-dev && \
             sudo ln -s /usr/lib/x86_64-linux-gnu/libffi.so.7 /usr/lib/x86_64-linux-gnu/libffi.so.6
       - run:
@@ -108,7 +109,7 @@ jobs:
             bundle exec rails s
           background: true
       - run:
-          name: ZAP baseline test of application
+          name: ZAP full scan of application
           command: |
             cd ~/decide && \
             chmod -R 777 .zap && \
