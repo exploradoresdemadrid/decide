@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "chart.js": "^3.6.0",
-    "chartkick": "^4.0.5",
+    "chartkick": "^4.1.0",
     "snyk": "^1.742.0"
   },
   "devDependencies": {
