@@ -41,7 +41,8 @@ RUN set -x \
         --with-xml2-config=/usr/bin/xml2-config \
         --with-xslt-config=/usr/bin/xslt-config \
     && bundle config force_ruby_platform true \
-    && bundle install --without test development \
+    && bundle config set --local without 'test development' \
+    && bundle install \
     && apk del build-dependencies \
     && rm -rf /usr/share/man /tmp/* /var/cache/apk/*
 
