@@ -5,13 +5,13 @@ jobs:
     parallelism: 1
     shell: /bin/bash --login
     docker:
-      - image: circleci/ruby:3.0.3-node-browsers
+      - image: cimg/ruby:3.1-browsers
         environment:
           RAILS_ENV: test
           RACK_ENV: test
           PGHOST: 127.0.0.1
           PGUSER: postgres
-      - image: circleci/postgres:9.6-ram
+      - image: cimg/postgres:12.7
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: decide_test
@@ -39,13 +39,13 @@ jobs:
     parallelism: 1
     shell: /bin/bash --login
     docker:
-      - image: circleci/ruby:3.0.3-node-browsers
+      - image: cimg/ruby:3.1-browsers
         environment:
           RAILS_ENV: development
           RACK_ENV: development
           PGHOST: 127.0.0.1
           PGUSER: postgres
-      - image: circleci/postgres:9.6-ram
+      - image: cimg/postgres:12.7
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: decide_development
@@ -126,7 +126,7 @@ jobs:
           path: .zap/report.html
   build:
     docker:
-      - image: circleci/ruby:3.0.3-node-browsers
+      - image: cimg/ruby:3.1-browsers
     steps:
       - checkout
       - run:
