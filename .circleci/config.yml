@@ -5,7 +5,7 @@ jobs:
     parallelism: 1
     shell: /bin/bash --login
     docker:
-      - image: circleci/ruby:3.0.3-node-browsers
+      - image: circleci/ruby:3.1.-node-browsers
         environment:
           RAILS_ENV: test
           RACK_ENV: test
@@ -39,7 +39,7 @@ jobs:
     parallelism: 1
     shell: /bin/bash --login
     docker:
-      - image: circleci/ruby:3.0.3-node-browsers
+      - image: circleci/ruby:3.1.0-node-browsers
         environment:
           RAILS_ENV: development
           RACK_ENV: development
@@ -126,7 +126,7 @@ jobs:
           path: .zap/report.html
   build:
     docker:
-      - image: circleci/ruby:3.0.3-node-browsers
+      - image: circleci/ruby:3.1.0-node-browsers
     steps:
       - checkout
       - run:
