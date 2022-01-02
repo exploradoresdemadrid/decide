@@ -147,6 +147,10 @@ GEM
     mini_portile2 (2.6.1)
     minitest (5.15.0)
     msgpack (1.4.2)
+    net-pop (0.1.1)
+      digest
+      net-protocol
+      timeout
     net-protocol (0.1.2)
       io-wait
       timeout
@@ -326,6 +330,7 @@ DEPENDENCIES
   factory_bot_rails (>= 6.2.0)
   jquery-rails (>= 4.4.0)
   listen (>= 3.0.5, < 3.8)
+  net-pop
   net-smtp
   pg
   pry
