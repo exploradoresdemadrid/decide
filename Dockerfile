@@ -1,60 +1,59 @@
-FROM ruby:3.0-alpine
+FROM ruby:3.0-alpine AS base
 
-# Required apps for common rails application
-ENV PACKAGES="\
-    git \
+ENV GROUP=edm \
+    USER=edm \
+    DIR=/project
+
+WORKDIR $DIR
+
+RUN apk add -U --no-cache git \
+    build-base \
     curl \
     postgresql-client \
-    imagemagick \
-    tzdata \
-    yarn \
-"
-
-RUN apk add --no-cache $PACKAGES && rm -rf /usr/share/man /tmp/* /var/cache/apk/*
-
-RUN mkdir -p /app
-WORKDIR /app
-
-# Install application gems
-
-COPY Gemfile Gemfile.lock /app/
-
-# Build dependencies for gems (will be removed after installation)
-ENV BUILD_PACKAGES="\
-    libxml2-dev \
-    libxslt-dev \
     postgresql-dev \
-"
+    tzdata \
+    yarn && apk -U upgrade
 
-# Build argument for skip "test development" gems in production
-ARG BUILD_WITHOUT
+# Ruby dependencies
+COPY Gemfile Gemfile.lock $DIR/
+RUN gem install bundler:"$(tail -1 < Gemfile.lock | tr -d " ")"
+RUN BUNDLE_FORCE_RUBY_PLATFORM=1 BUNDLE_WITHOUT="development test beta" bundle install --jobs "$(getconf _NPROCESSORS_ONLN)" --retry 3
 
-# Install gem with installation and removal of gem dependencies and nokogiri build arguments
-RUN set -x \
-    && apk upgrade --no-cache \
-    && apk add --no-cache --virtual build-dependencies \
-        build-base \
-    && apk add --no-cache \
-        $BUILD_PACKAGES \
-    && gem install bundler \
-    && bundle config build.nokogiri --use-system-libraries \
-        --with-xml2-config=/usr/bin/xml2-config \
-        --with-xslt-config=/usr/bin/xslt-config \
-    && bundle config force_ruby_platform true \
-    && bundle config set --local without 'test development' \
-    && bundle install \
-    && apk del build-dependencies \
-    && rm -rf /usr/share/man /tmp/* /var/cache/apk/*
+# JS dependencies using yarn
+COPY yarn.lock $DIR/
+RUN yarn install --check-files
 
-# Start your rails app
-CMD bundle exec puma -C ./config/puma.rb
+COPY . $DIR/
 
-COPY bin/ /app/bin/
+RUN RAILS_ENV=production SECRET_KEY_BASE=1 bundle exec rails --trace assets:precompile assets:clean
 
-COPY package.json yarn.lock /app/
-RUN bin/yarn install
+FROM ruby:3.0-alpine
 
-COPY . /app/
+ENV GROUP=edm \
+    USER=edm \
+    DIR=/project
 
-# Precompile assets
-RUN RAILS_ENV=production SECRET_KEY_BASE=1 rails assets:precompile
+RUN mkdir -p "$DIR" && \
+    addgroup -S "$GROUP" && \
+    adduser -S -s /sbin/nologin -G "$GROUP" "$USER" && \
+    chown "$USER":"$GROUP" "$DIR"
+
+RUN apk add -U --no-cache \
+    postgresql-libs \
+    libxml2 \
+    libxslt \
+    xz-libs \
+    gcompat \
+    tzdata \
+    nodejs \
+    curl \
+    && apk -U upgrade
+
+USER $USER
+
+COPY --from=base --chown=$USER:$GROUP /usr/local/bundle /usr/local/bundle
+COPY --from=base --chown=$USER:$GROUP $DIR/ $DIR/
+
+# Include instructions to start the Rails server...
+EXPOSE 3000
+CMD ["rails", "server", "-b",  "0.0.0.0"]
