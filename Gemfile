@@ -32,6 +32,8 @@ gem 'cancancan'
 gem 'simple_form', '>= 5.1.0'
 
 gem 'rails-i18n' , '>= 6.0.0'
+
+gem 'net-imap'
 gem 'net-smtp'
 gem 'net-pop'
 
