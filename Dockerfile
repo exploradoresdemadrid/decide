@@ -54,6 +54,8 @@ USER $USER
 COPY --from=base --chown=$USER:$GROUP /usr/local/bundle /usr/local/bundle
 COPY --from=base --chown=$USER:$GROUP $DIR/ $DIR/
 
+WORKDIR $DIR
+
 # Include instructions to start the Rails server...
 EXPOSE 3000
 CMD ["rails", "server", "-b",  "0.0.0.0"]
