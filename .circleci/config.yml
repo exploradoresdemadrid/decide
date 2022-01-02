@@ -11,7 +11,7 @@ jobs:
           RACK_ENV: test
           PGHOST: 127.0.0.1
           PGUSER: postgres
-      - image: cimg/postgres:12
+      - image: cimg/postgres:12.7
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: decide_test
@@ -45,7 +45,7 @@ jobs:
           RACK_ENV: development
           PGHOST: 127.0.0.1
           PGUSER: postgres
-      - image: cimg/postgres:12
+      - image: cimg/postgres:12.7
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: decide_development
