@@ -62,7 +62,7 @@ jobs:
       - save_cache:
           key: v1-dep-{{ checksum "Gemfile.lock" }}
           paths:
-            - vendor/bundle
+            - vendor/bundles+
       - run: bundle exec rake db:reset
       - run:
           name: Rails server
@@ -137,7 +137,7 @@ jobs:
             echo 'export ORG_NAME=exploradoresdemadrid' >> $BASH_ENV 
       - setup_remote_docker:
           docker_layer_caching: true
-          version: 19.03.13
+          version: 20.10.11
       - run:
           name: Build & push to DockerHub 
           command: |
