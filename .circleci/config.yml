@@ -62,7 +62,7 @@ jobs:
       - save_cache:
           key: v1-dep-{{ checksum "Gemfile.lock" }}
           paths:
-            - vendor/bundles
+            - vendor/bundle
       - run: bundle exec rake db:reset
       - run:
           name: Rails server
