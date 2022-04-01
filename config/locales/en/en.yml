@@ -58,6 +58,7 @@ en:
   options:
     add: Add option
     none: No option has been configured
+    list: Options
   organization:
     new: New organization
   votes:

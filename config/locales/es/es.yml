@@ -58,6 +58,7 @@ es:
   options:
     add: Añadir opción
     none: Ninguna opción ha sido especificada
+    list: Opciones
   organization:
     new: Nueva organización
   votes:
