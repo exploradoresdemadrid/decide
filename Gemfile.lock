@@ -63,7 +63,7 @@ GEM
     ast (2.4.2)
     autoprefixer-rails (10.3.3.0)
       execjs (~> 2)
-    bcrypt (3.1.17)
+    bcrypt (3.1.16)
     bh (1.3.6)
       actionpack
       activesupport
@@ -107,7 +107,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.10.2)
+    devise-i18n (1.10.1)
       devise (>= 4.8.0)
     diff-lcs (1.5.0)
     digest (3.1.0)
