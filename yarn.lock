@@ -2153,10 +2153,10 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
-snyk@^1.855.0:
-  version "1.855.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.855.0.tgz#1e4443dc26a06a23a8bd62e14923e4d447891ffb"
-  integrity sha512-LZ8tXVleYHPW2GL3UWfaswKatNY1rTQ7aUNOD1rboD4cWydJsHCnSHzoMQcXq+06XBLw//LxL0G2YhdZhPz2mA==
+snyk@^1.965.0:
+  version "1.965.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.965.0.tgz#2214a7f4e865f12c5a4819db67ae0f4587b05d7d"
+  integrity sha512-ymkqOhWDqaPYrLBtKTpqdVimyFVJ8XeUxmj70WuiCUX/u6cmg3MXVkZE65LMga2TGcLPf87p7HN90u2uVRyk7A==
 
 sprintf-js@~1.0.2:
   version "1.0.3"
