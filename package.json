@@ -4,7 +4,7 @@
   "dependencies": {
     "chart.js": "^3.7.1",
     "chartkick": "^4.1.1",
-    "snyk": "^1.855.0"
+    "snyk": "^1.976.0"
   },
   "devDependencies": {
     "@percy/cli": "^1.0.4",
