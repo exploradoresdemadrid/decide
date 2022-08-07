@@ -68,7 +68,12 @@ jobs:
           name: Rails server
           command: bundle exec rails s
           background: true
-      - run: sleep 5 ; npm run cy:run:recorded
+      - run:
+          name: Run Cypress tests
+          command: |
+            sleep 5
+            curl http://localhost:3000/users/sign_in
+            npm run cy:run:recorded
   zaproxy:
     working_directory: ~/decide
     parallelism: 1
