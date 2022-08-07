@@ -1,0 +1,10 @@
+pull_request_rules:
+  - name: Automatic merge con CI pass
+    conditions:
+      - "check-success=ci/circleci: test"
+      - "check-success=cypress: default-group"
+      - "check-success=percy/decide"
+      - "linear-history"
+    actions:
+      merge:
+        method: merge
