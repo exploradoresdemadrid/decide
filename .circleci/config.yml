@@ -68,7 +68,7 @@ jobs:
           name: Rails server
           command: bundle exec rails s
           background: true
-      - run: sleep 5 ; npm run cy:run:recorded
+      - run: sleep 10 ; npm run cy:run:recorded
   zaproxy:
     working_directory: ~/decide
     parallelism: 1
