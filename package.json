@@ -7,7 +7,7 @@
     "snyk": "^1.986.0"
   },
   "devDependencies": {
-    "@percy/cli": "^1.8.1",
+    "@percy/cli": "^1.9.0",
     "@percy/cypress": "^3.1.2",
     "cypress": "^9.5.3",
     "eslint": "^7.32.0",
