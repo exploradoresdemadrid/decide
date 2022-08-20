@@ -14,8 +14,8 @@
 
   <body>
     <div id="main-container">
-      <%= render './header' %>
-      <%= render './navbar' %>
+      <%= render '/header' %>
+      <%= render '/navbar' %>
       <%= alert_box(notice, dismissible: true, id: :notice) if notice.present? %>
       <%= alert_box(alert, context: :danger, dismissible: true) if alert.present? %>
       <%= yield %>
