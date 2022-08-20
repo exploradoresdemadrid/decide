@@ -50,7 +50,6 @@ module Decide
 
     config.time_zone = 'Madrid'
     config.active_record.default_timezone = :local
-    config.active_record.legacy_connection_handling = false
 
     config.active_job.queue_adapter     = :sidekiq
   end
