@@ -102,7 +102,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.10)
-    connection_pool (2.2.5)
+    connection_pool (2.3.0)
     crass (1.0.6)
     cypress-rails (0.5.4)
       puma (>= 3.8.0)
@@ -266,7 +266,7 @@ GEM
       tilt
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
-    sidekiq (6.5.6)
+    sidekiq (6.5.7)
       connection_pool (>= 2.2.5)
       rack (~> 2.0)
       redis (>= 4.5.0, < 5)
@@ -346,7 +346,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 6.0, >= 6.0.0)
   shoulda-matchers (>= 4.1.2)
-  sidekiq (~> 6.5.6)
+  sidekiq (~> 6.5.7)
   simple_form (>= 5.1.0)
   simplecov
   spring
