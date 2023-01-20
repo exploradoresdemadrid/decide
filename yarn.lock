@@ -556,10 +556,10 @@ chartjs-adapter-date-fns@>=3:
   resolved "https://registry.yarnpkg.com/chartjs-adapter-date-fns/-/chartjs-adapter-date-fns-3.0.0.tgz#c25f63c7f317c1f96f9a7c44bd45eeedb8a478e5"
   integrity sha512-Rs3iEB3Q5pJ973J93OBTpnP7qoGwvq3nUnoMdtxO+9aoJof7UFcRbWcIDteXuYd1fgAvct/32T9qaLyLuZVwCg==
 
-chartkick@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/chartkick/-/chartkick-5.0.0.tgz#f9ed2174309079ddbfaf6ce51279e8c73f01732a"
-  integrity sha512-DVkf7SpAY0XfYcTE0XVqYX6P6Wl4vviQodwzJzshATQ1BjV/wWOdq06rt8yBT5uzU8jgbKZEC9OTm/GUd1EN2Q==
+chartkick@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/chartkick/-/chartkick-5.0.1.tgz#f557ff8560f974343dc65c7fc34ce1e8326d8ee7"
+  integrity sha512-4F3tWI3eBQgnjCYZIZ+fHOaJuNyxeyhDE2Tm+voOWB19hDjSJceys/spzN52DOn8bWepNESGXvPVTGU1jeFsbA==
   optionalDependencies:
     chart.js "4"
     chartjs-adapter-date-fns ">=3"
