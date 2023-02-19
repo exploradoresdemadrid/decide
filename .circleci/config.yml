@@ -178,13 +178,3 @@ workflows:
             branches:
               only:
                 - master
-  daily_check:
-    triggers:
-      - schedule:
-          cron: "0 2 * * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - zaproxy
