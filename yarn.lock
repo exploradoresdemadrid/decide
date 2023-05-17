@@ -2471,10 +2471,10 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
-snyk@^1.1154.0:
-  version "1.1154.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.1154.0.tgz#0b7a5a8da19297852b166710c419a71eef04008e"
-  integrity sha512-Dep4Dy1mbgNSz0rtpiYKy2SEqQO+cR1DsZwSqYJkdvIaUrCkGyAefJGlxXA4Wpc2sN1S3BdMed5MQfFPju7C/A==
+snyk@^1.1156.0:
+  version "1.1156.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.1156.0.tgz#da8aa05fdb87d72d704d490e35ee09dc5ab69884"
+  integrity sha512-AZhdVnCfXrvOleBOXqUcrWu0zPeM/FQJXRS3i5V0aDK1UTk2L1xQVGNCCVFZrCbbhpKDjE9DLHQOqMMdwHzLdg==
   dependencies:
     "@sentry/node" "^7.36.0"
     global-agent "^3.0.0"
