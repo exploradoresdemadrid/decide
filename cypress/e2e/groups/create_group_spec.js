@@ -10,7 +10,7 @@ context('Group creation', () => {
   })
   beforeEach(() => {
     groupName = 'Sample group name 1'
-    Cypress.Cookies.preserveOnce('_decide_session')
+    cy.session('_decide_session')
     cy.fillGroupForm(groupName)
   })
 

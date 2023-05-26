@@ -6,7 +6,7 @@ context('Voting creation', () => {
     cy.loginAsAdmin()
   })
   beforeEach(() => {
-    Cypress.Cookies.preserveOnce('_decide_session')
+    cy.session('_decide_session')
     cy.visit('http://localhost:3000/')
   })
 

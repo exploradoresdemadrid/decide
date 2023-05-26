@@ -7,7 +7,7 @@ context('Organization creation', () => {
     cy.loginAsSuperadmin()
   })
   beforeEach(() => {
-    Cypress.Cookies.preserveOnce('_decide_session')
+    cy.session('_decide_session')
     cy.fillOrganizationForm('Sample organization name 1')
   })
 
