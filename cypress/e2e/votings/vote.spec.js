@@ -14,7 +14,7 @@ context('Vote submission', () => {
     cy.contains(votingTitle).click()
   })
   beforeEach(() => {
-    Cypress.Cookies.preserveOnce('_decide_session')
+    cy.session('_decide_session')
   })
   it('ready status', () => {
     cy.get('.alert.alert-warning').should('contain', 'You cannot vote yet. You must wait for the question to be opened.')

@@ -11,7 +11,7 @@ context('Question creation', () => {
     cy.visit('http://localhost:3000/')
   })
   beforeEach(() => {
-    Cypress.Cookies.preserveOnce('_decide_session')
+    cy.session('_decide_session')
   })
 
   it('create questions in a voting', () => {
