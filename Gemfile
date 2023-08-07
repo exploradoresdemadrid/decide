@@ -44,7 +44,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.0.3'
   gem 'rubocop'
   gem 'dotenv-rails', '>= 2.7.6'
-  gem 'cypress-rails', '>= 0.5.3'
+  gem 'cypress-rails', '>= 0.6.1'
 end
 
 group :test do
