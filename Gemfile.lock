@@ -181,7 +181,7 @@ GEM
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    puma (6.3.1)
+    puma (6.4.0)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
@@ -349,7 +349,7 @@ DEPENDENCIES
   net-smtp
   pg
   pry
-  puma (~> 6.3)
+  puma (~> 6.4)
   rack-cors
   rails (~> 7.0.8)
   rails-i18n (>= 6.0.0)
