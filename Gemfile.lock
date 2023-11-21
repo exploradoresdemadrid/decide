@@ -236,10 +236,10 @@ GEM
     rspec-expectations (3.12.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
-    rspec-mocks (3.12.5)
+    rspec-mocks (3.12.6)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
-    rspec-rails (6.0.3)
+    rspec-rails (6.0.4)
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       railties (>= 6.1)
@@ -351,7 +351,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.0.8)
   rails-i18n (>= 6.0.0)
-  rspec-rails (~> 6.0.3)
+  rspec-rails (~> 6.0.4)
   rubocop
   sass-rails (~> 6.0, >= 6.0.0)
   shoulda-matchers (>= 4.1.2)
