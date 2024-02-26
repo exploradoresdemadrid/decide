@@ -129,7 +129,7 @@ GEM
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
-    ffi (1.15.5)
+    ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -140,7 +140,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (2.7.1)
     language_server-protocol (3.17.0.3)
-    listen (3.8.0)
+    listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.22.0)
@@ -341,7 +341,7 @@ DEPENDENCIES
   dotenv-rails (>= 2.7.6)
   factory_bot_rails (>= 6.4.3)
   jquery-rails (>= 4.4.0)
-  listen (>= 3.0.5, < 3.9)
+  listen (>= 3.0.5, < 3.10)
   net-imap
   net-pop
   net-smtp

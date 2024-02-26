@@ -54,7 +54,7 @@ end
 
 group :development do
   gem 'web-console', '>= 4.2.0'
-  gem 'listen', '>= 3.0.5', '< 3.9'
+  gem 'listen', '>= 3.0.5', '< 3.10'
   gem 'spring'
   gem 'bullet'
 end
