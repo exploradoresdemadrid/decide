@@ -29,7 +29,7 @@ gem 'sidekiq', '~>7.2.4'
 gem 'cocoon'
 
 gem 'cancancan'
-gem 'simple_form', '>= 5.1.0'
+gem 'simple_form', '>= 5.3.1'
 
 gem 'rails-i18n' , '>= 6.0.0'
 
