@@ -22,7 +22,7 @@ gem 'btgen', '>= 0.1.0'
 gem 'chartkick'
 
 gem 'devise', '>= 4.8.0'
-gem 'devise-i18n', '>= 1.10.1'
+gem 'devise-i18n', '>= 1.12.1'
 gem 'rack-cors'
 gem 'sidekiq', '~>7.2.4'
 
