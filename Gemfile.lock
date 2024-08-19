@@ -155,7 +155,7 @@ GEM
     marcel (1.0.2)
     method_source (1.1.0)
     mini_mime (1.1.5)
-    minitest (5.25.0)
+    minitest (5.25.1)
     msgpack (1.7.2)
     net-imap (0.4.14)
       date
@@ -272,7 +272,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    shoulda-matchers (6.3.1)
+    shoulda-matchers (6.4.0)
       activesupport (>= 5.2.0)
     sidekiq (7.3.1)
       concurrent-ruby (< 2)
