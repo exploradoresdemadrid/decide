@@ -2,7 +2,7 @@
   "name": "decide",
   "private": true,
   "dependencies": {
-    "chart.js": "^4.4.3",
+    "chart.js": "^4.4.4",
     "chartkick": "^5.0.1",
     "snyk": "^1.1292.4"
   },
