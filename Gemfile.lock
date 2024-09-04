@@ -142,7 +142,7 @@ GEM
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    logger (1.6.0)
+    logger (1.6.1)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -270,7 +270,7 @@ GEM
       tilt
     shoulda-matchers (6.4.0)
       activesupport (>= 5.2.0)
-    sidekiq (7.3.1)
+    sidekiq (7.3.2)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       logger
@@ -352,7 +352,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 6.0, >= 6.0.0)
   shoulda-matchers (>= 4.1.2)
-  sidekiq (~> 7.3.1)
+  sidekiq (~> 7.3.2)
   simple_form (>= 5.1.0)
   simplecov
   spring
