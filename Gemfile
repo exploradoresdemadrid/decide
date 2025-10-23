@@ -16,7 +16,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bootstrap', '~> 4.6.2'
 gem 'bootstrap-sass'
-gem 'jquery-rails', '>= 4.4.0'
+gem 'jquery-rails', '>= 4.6.1'
 gem 'bh', '>= 1.3.6'
 gem 'btgen', '>= 0.1.0'
 gem 'chartkick'
