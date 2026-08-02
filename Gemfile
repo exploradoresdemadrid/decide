@@ -21,7 +21,7 @@ gem 'bh', '>= 1.3.6'
 gem 'btgen', '>= 0.1.0'
 gem 'chartkick'
 
-gem 'devise', '>= 4.8.0'
+gem 'devise', '>= 5.0.0'
 gem 'devise-i18n', '>= 1.10.1'
 gem 'rack-cors'
 gem 'sidekiq', '~>7.3.8'
