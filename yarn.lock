@@ -4151,10 +4151,10 @@ snyk-nodejs-lockfile-parser@2.10.4:
     tslib "^1.9.3"
     uuid "^11.1.1"
 
-snyk@^1.1307.4:
-  version "1.1307.4"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.1307.4.tgz#35e0ea594a1900eec01c86dc1eaf263da79ae157"
-  integrity sha512-KXLi83R6kFhU2ZT/VogXDVH08tvjAFA3+vQ1d0AdkbWxSXG6V/7KJJN3yUIXvOqJacYA+g+zgtqxhU56saW7pA==
+snyk@^1.1308.1:
+  version "1.1308.1"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.1308.1.tgz#9293bcf09bf660f75ffaad54e890e620767c906a"
+  integrity sha512-uXfDnZ9ixMyg+Zc4QEDZ/tJI/BpQdPAigUqg/gQuaW8dD7shHBaaiSRmHJ7jF0HyVYp58LoJRhpkTq4RLzgDsg==
   dependencies:
     "@sentry/node" "^7.36.0"
     boolean "*"
